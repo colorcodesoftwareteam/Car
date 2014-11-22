@@ -1,3 +1,18 @@
+<?php
+include 'src/class/ManageBrandCar.php';
+
+
+
+if (@$_GET ['submit'] == 'true') {
+	
+	$name = $_POST ['brand'];
+	$obj = new ManageBrandCar();
+	
+	if($obj->add($name))
+		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageGroup.php>';
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,11 +114,12 @@
 
 					<div class="panel-body">
 
-						<form class="form-horizontal">
+						<form class="form-horizontal" action="addCarBrand.php?submit=true"
+							method="post">
 							<fieldset>
 
 								<!-- Form Name -->
-						
+
 
 								<!-- Text input-->
 								<div class="form-group">
@@ -142,5 +158,6 @@
 			<p class="text-muted">Copyright © Your Website 2014</p>
 		</div>
 	</footer>
+
 </body>
 </html>

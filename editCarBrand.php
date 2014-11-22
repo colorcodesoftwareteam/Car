@@ -1,11 +1,15 @@
 <?php
 include 'src/class/ManageBrandCar.php';
-if (@$_GET ['delete'] == 'true') {
-	$obj = new ManageBrandCar();
+$obj = new ManageBrandCar ();
+$id = $_GET ['id'];
 
-	if($obj->delete($_GET['id']))
+if (@$_GET ['submit'] == 'true') {
+	
+	$newname = $_POST ['brand'];
+	if ($obj->edit ( $id, $newname ))
 		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageGroup.php>';
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,37 +107,48 @@ if (@$_GET ['delete'] == 'true') {
 			<div class="col-md-12 column">
 				<div class=" panel panel-default">
 					<div class="panel-heading">
-						<h4>รายการยี่ห้อรถยนต์</h4>
+						<h4>เพิ่มยี่ห้อรถยนต์</h4>
 					</div>
 
 					<div class="panel-body">
-						<a href="addCarBrand.php"><button type="button"
-								class="btn btn-primary btn-lg">เพิ่มยี่ห้อรถยนต์</button></a>
 
-						<table class="table .table-bordered">
-							<thead>
-								<tr>
-									<th>จัดการ</th>
-									<th>รายการ</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-								include_once 'src/class/ManageBrandCar.php';
-								$obj = new ManageBrandCar ();
-								$rs = $obj->getBrandAll ();
-								while ( $row = mysql_fetch_object ( $rs ) ) {
-									?>
-								<!-- insert some code  -->
-								<tr>
-									<td><a href="editCarBrand.php?id=<?php echo $row->id;?>">แก้ไข</a>
-										/ <a href="?delete=true&id=<?php echo $row->id;?>">ลบ</a></td>
-									<td><?php echo $row->name;?></td>
-								</tr>
-								<?php  }?>
-								<!-- insert some code  -->
-							</tbody>
-						</table>
+						<form class="form-horizontal"
+							action="editCarBrand.php?submit=true&id=<?php echo $id?>"
+							method="post">
+							<fieldset>
+
+								<!-- Form Name -->
+
+<?php
+$rs = $obj->getBrandById ( $id );
+$row = mysql_fetch_object ( $rs );
+?>
+								<!-- Text input-->
+								<div class="form-group">
+									<div class="control-group col-md-7">
+										<label class="control-label " for="brand">ยี่ห้อ :</label>
+										<div class="controls">
+											<input id="brand" name="brand"
+												value="<?php echo $row->name;?>" placeholder="กรอก....."
+												class="input-xlarge" type="text">
+
+										</div>
+									</div>
+								</div>
+								<!-- Button (Double) -->
+
+								<div class="form-group">
+									<div class="control-group ">
+										<label class="control-label " for="add"></label>
+										<div class="controls col-md-3">
+											<button id="add" name="add" class="btn btn-primary ">แก้ไข</button>
+											<button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+
 
 					</div>
 				</div>
@@ -146,5 +161,6 @@ if (@$_GET ['delete'] == 'true') {
 			<p class="text-muted">Copyright © Your Website 2014</p>
 		</div>
 	</footer>
+
 </body>
 </html>
