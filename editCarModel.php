@@ -1,11 +1,20 @@
 <?php
 include 'src/class/ManageBrandCar.php';
-if (@$_GET ['delete'] == 'true') {
-	$obj = new ManageBrandCar();
+include 'src/class/ManageModelCar.php';
+$obj = new ManageBrandCar ();
+$objModelCar = new ManageModelCar ();
+$id = $_GET ['id'];
 
-	if($obj->delete($_GET['id']))
-		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageGroup.php>';
+if (@$_GET ['submit'] == 'true') {
+	
+	$brandid = $_POST ['brand'];
+	$model = $_POST ['model'];
+	
+	if ($objModelCar->edit ( $id,$brandid, $model ))
+		
+		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageModel.php>';
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -103,37 +112,64 @@ if (@$_GET ['delete'] == 'true') {
 			<div class="col-md-12 column">
 				<div class=" panel panel-default">
 					<div class="panel-heading">
-						<h4>รายการยี่ห้อรถยนต์</h4>
+						<h4>แก้ไขยี่ห้อรถยนต์</h4>
 					</div>
 
 					<div class="panel-body">
-						<a href="addCarBrand.php"><button type="button"
-								class="btn btn-primary btn-lg">เพิ่มยี่ห้อรถยนต์</button></a>
 
-						<table class="table .table-bordered">
-							<thead>
-								<tr>
-									<th>จัดการ</th>
-									<th>รายการ</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php
-								include_once 'src/class/ManageBrandCar.php';
-								$obj = new ManageBrandCar ();
-								$rs = $obj->getBrandAll ();
-								while ( $row = mysql_fetch_object ( $rs ) ) {
-									?>
-								<!-- insert some code  -->
-								<tr>
-									<td><a href="editCarBrand.php?id=<?php echo $row->id;?>">แก้ไข</a>
-										/ <a href="?delete=true&id=<?php echo $row->id;?>">ลบ</a></td>
-									<td><?php echo $row->name;?></td>
-								</tr>
-								<?php  }?>
-								<!-- insert some code  -->
-							</tbody>
-						</table>
+						<form class="form-horizontal" action="editCarModel.php?submit=true&id=<?php echo $id?>"
+							method="post">
+							<fieldset>
+
+								<!-- Form Name -->
+<?php
+$rsModel = $objModelCar->getModelById ( $id );
+$rowModel = mysql_fetch_object ( $rsModel );
+?>
+
+								<div class="form-group">
+									<div class="control-group col-md-3">
+										<label class="control-label " for="brand">ยี่ห้อ :</label> <select
+											class="form-control" id="brand" name="brand">
+											<option>-เลือก-</option>
+										<?php
+										$rs = $obj->getBrandAll ();
+										while ( $row = mysql_fetch_object ( $rs ) ) {
+											?>
+											<option value="<?php echo $row->id;?>"
+												<?php echo ($rowModel->brand_id ==  $row->id)?'selected=':'';?>><?php echo $row->name;?></option>
+
+											<?php }?>
+										</select>
+
+									</div>
+								</div>
+								<!-- Text input-->
+								<div class="form-group">
+									<div class="control-group col-md-7">
+										<label class="control-label " for="model">รุ่น :</label>
+										<div class="controls">
+											<input id="model" name="model" placeholder="กรอก....."
+												value="<?php echo $rowModel->name;?>" class="input-xlarge"
+												type="text">
+
+										</div>
+									</div>
+								</div>
+								<!-- Button (Double) -->
+
+								<div class="form-group">
+									<div class="control-group ">
+										<label class="control-label " for="add"></label>
+										<div class="controls col-md-3">
+											<button id="add" name="add" class="btn btn-primary ">แก้ไข</button>
+											<button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+
 
 					</div>
 				</div>
@@ -146,5 +182,6 @@ if (@$_GET ['delete'] == 'true') {
 			<p class="text-muted">Copyright © Your Website 2014</p>
 		</div>
 	</footer>
+
 </body>
 </html>

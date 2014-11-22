@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2014 at 05:45 PM
+-- Generation Time: Nov 22, 2014 at 03:25 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -46,7 +46,18 @@ CREATE TABLE IF NOT EXISTS `car` (
 CREATE TABLE IF NOT EXISTS `carbrand` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `carbrand`
+--
+
+INSERT INTO `carbrand` (`id`, `name`) VALUES
+(2, 'toyota'),
+(3, 'honda'),
+(4, 'susuki'),
+(5, 'yamaha'),
+(6, 'subaru');
 
 -- --------------------------------------------------------
 
@@ -70,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `carimages` (
 
 CREATE TABLE IF NOT EXISTS `carmodel` (
 `id` int(10) unsigned NOT NULL,
-  `name` varchar(255) DEFAULT NULL
+  `name` varchar(255) DEFAULT NULL,
+  `brand_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -142,7 +154,7 @@ ALTER TABLE `carimages`
 -- Indexes for table `carmodel`
 --
 ALTER TABLE `carmodel`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `brand_id` (`brand_id`), ADD KEY `brand_id_2` (`brand_id`);
 
 --
 -- Indexes for table `mapping_carbrand_carmodel`
@@ -175,7 +187,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `carbrand`
 --
 ALTER TABLE `carbrand`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `carimages`
 --

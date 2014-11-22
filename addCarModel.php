@@ -1,15 +1,15 @@
 <?php
 include 'src/class/ManageBrandCar.php';
-
-
-
+include 'src/class/ManageModelCar.php';
+$obj = new ManageBrandCar();
+$objModelCar = new ManageModelCar();
 if (@$_GET ['submit'] == 'true') {
 	
-	$name = $_POST ['brand'];
-	$obj = new ManageBrandCar();
+	$brandid = $_POST ['brand'];
+	$model = $_POST ['model'];
 	
-	if($obj->add($name))
-		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageBrand.php>';
+	if ($objModelCar->add ( $brandid, $model ))
+		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageModel.php>';
 }
 
 ?>
@@ -114,19 +114,35 @@ if (@$_GET ['submit'] == 'true') {
 
 					<div class="panel-body">
 
-						<form class="form-horizontal" action="addCarBrand.php?submit=true"
+						<form class="form-horizontal" action="addCarModel.php?submit=true"
 							method="post">
 							<fieldset>
 
 								<!-- Form Name -->
 
 
+								<div class="form-group">
+									<div class="control-group col-md-3">
+										<label class="control-label " for="brand">ยี่ห้อ :</label> <select
+											class="form-control" id="brand" name="brand">
+											<option selectd>-เลือก-</option>
+										<?php
+										$rs = $obj->getBrandAll ();
+										while ( $row = mysql_fetch_object ( $rs ) ) {
+											?>
+											<option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
+
+											<?php }?>
+										</select>
+
+									</div>
+								</div>
 								<!-- Text input-->
 								<div class="form-group">
 									<div class="control-group col-md-7">
-										<label class="control-label " for="brand">ยี่ห้อ :</label>
+										<label class="control-label " for="model">รุ่น :</label>
 										<div class="controls">
-											<input id="brand" name="brand" placeholder="กรอก....."
+											<input id="model" name="model" placeholder="กรอก....."
 												class="input-xlarge" type="text">
 
 										</div>
