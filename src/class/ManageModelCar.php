@@ -10,7 +10,7 @@ class ManageModelCar {
 		return $this->objDB->query ( $str );
 	}
 	function edit($id, $brand_id, $model) {
-		$str = "update carmodel set name='" . $model. "', brand_id='".$brand_id."' where id = '" . $id . "'";
+		$str = "update carmodel set name='" . $model . "', brand_id='" . $brand_id . "' where id = '" . $id . "'";
 		return $this->objDB->query ( $str );
 	}
 	function delete($id) {
@@ -23,6 +23,10 @@ class ManageModelCar {
 	}
 	function getModelById($id) {
 		$str = "select * from  carmodel where id='" . $id . "'";
+		return $this->objDB->query ( $str );
+	}
+	function getModelByBrand($id) {
+		$str = "select * from  carmodel where brand_id='" . $id . "'";
 		return $this->objDB->query ( $str );
 	}
 }

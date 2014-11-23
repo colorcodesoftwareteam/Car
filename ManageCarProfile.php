@@ -1,18 +1,10 @@
-<?php
-include 'src/class/ManageBrandCar.php';
-include 'src/class/ManageModelCar.php';
-$obj = new ManageBrandCar ();
-$objModelCar = new ManageModelCar ();
-$id = $_GET ['id'];
-
-if (@$_GET ['submit'] == 'true') {
-	
-	$brandid = $_POST ['brand'];
-	$model = $_POST ['model'];
-	
-	if ($objModelCar->edit ( $id,$brandid, $model ))
-		
-		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageModel.php>';
+﻿<?php 
+include 'src/class/ManageCar.php';
+$objcar = new ManageCar();
+if(@$_GET['delete']=='true'){
+	$id = $_GET['id'];
+	if($objcar->delete($id))
+		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
 }
 
 ?>
@@ -20,7 +12,7 @@ if (@$_GET ['submit'] == 'true') {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>ระบบจัดการแสดงรถยนต์</title>
+<title>ระบบจัดแสดงรถยนต์</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -78,7 +70,8 @@ if (@$_GET ['submit'] == 'true') {
 								<input type="password" class="form-control"
 									id="exampleInputPassword2" placeholder="รหัสผ่าน">
 							</div>
-							<button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
+							<a href="addCarProfile.php"><button type="submit"
+									class="btn btn-default">เข้าสู่ระบบ</button></a>
 							<div class="form-inline">
 								<label> <a href="#">สมัครสมาชิก</a>
 								</label>
@@ -106,76 +99,73 @@ if (@$_GET ['submit'] == 'true') {
 			</div>
 		</div>
 
-
-
 		<div class="row clearfix">
 			<div class="col-md-12 column">
 				<div class=" panel panel-default">
 					<div class="panel-heading">
-						<h4>แก้ไขยี่ห้อรถยนต์</h4>
+						<h4>รายการรถยนต์</h4>
+						<small></small>
 					</div>
 
 					<div class="panel-body">
+						<div class="row clearfix">
+							<div class="col-md-12 column">
+								<a href="addCarProfile.php"><button type="button"
+										class="btn btn-primary btn-lg">เพิ่มรถยนต์</button></a>
+								<table class="table">
+									<thead>
+										<tr>
+											<th>จัดการ</th>
+											<th>รายการ</th>
 
-						<form class="form-horizontal" action="editCarModel.php?submit=true&id=<?php echo $id?>"
-							method="post">
-							<fieldset>
+										</tr>
+									</thead>
+									<tbody>
+                                         <?php 
 
-								<!-- Form Name -->
-<?php
-$rsModel = $objModelCar->getModelById ( $id );
-$rowModel = mysql_fetch_object ( $rsModel );
-?>
+                                        $rsCar = $objcar->getCarAll();
+                                        while($rowCar = mysql_fetch_object($rsCar)){
+                                        ?>
+                                            <tr>
+											<td>
+												<a href="editCarProfile.php?id=<?php echo $rowCar->id;?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
+												<a href="ManageCarProfile.php?delete=true&id=<?php echo $rowCar->id;?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+											</td>
+											<td><?php echo $rowCar->car_year.' '.$rowCar->body_number.' '.$rowCar->fuel_tank?></td>
+										</tr>
 
-								<div class="form-group">
-									<div class="control-group col-md-3">
-										<label class="control-label " for="brand">ยี่ห้อ :</label> <select
-											class="form-control" id="brand" name="brand">
-											<option>-เลือก-</option>
-										<?php
-										$rs = $obj->getBrandAll ();
-										while ( $row = mysql_fetch_object ( $rs ) ) {
-											?>
-											<option value="<?php echo $row->id;?>"
-												<?php echo ($rowModel->brand_id ==  $row->id)?'selected':'';?>><?php echo $row->name;?></option>
+<?php }?>
+									</tbody>
+								</table>
+							</div>
+						</div>
 
-											<?php }?>
-										</select>
-
-									</div>
-								</div>
-								<!-- Text input-->
-								<div class="form-group">
-									<div class="control-group col-md-7">
-										<label class="control-label " for="model">รุ่น :</label>
-										<div class="controls">
-											<input id="model" name="model" placeholder="กรอก....."
-												value="<?php echo $rowModel->name;?>" class="input-xlarge"
-												type="text">
-
-										</div>
-									</div>
-								</div>
-								<!-- Button (Double) -->
-
-								<div class="form-group">
-									<div class="control-group ">
-										<label class="control-label " for="add"></label>
-										<div class="controls col-md-3">
-											<button id="add" name="add" class="btn btn-primary ">แก้ไข</button>
-											<button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>
-										</div>
-									</div>
-								</div>
-							</fieldset>
-						</form>
-
+						<nav>
+							<ul class="pagination">
+								<li><a>หน้าที่</a></li>
+								<li><a href="#"><span aria-hidden="true">&laquo;</span><span
+										class="sr-only">Previous</span></a></li>
+								<li><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#"><span aria-hidden="true">&raquo;</span><span
+										class="sr-only">Next</span></a></li>
+							</ul>
+						</nav>
 
 					</div>
 				</div>
 			</div>
 		</div>
-
+	</div>
+	<div class="row clearfix">
+		<div class="col-md-12 column"></div>
+	</div>
+	</div>
+	<div class="row clearfix">
+		<p></p>
 	</div>
 	<footer class="panel-footer">
 		<div class="container">

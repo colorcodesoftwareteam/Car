@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2014 at 03:25 PM
+-- Generation Time: Nov 23, 2014 at 09:46 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -28,14 +28,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `car` (
 `id` int(11) NOT NULL,
-  `Mapping_CarBrand_CarModel_id` int(11) NOT NULL,
+  `brand_id` int(11) NOT NULL,
+  `model_id` int(11) NOT NULL,
   `car_year` varchar(4) DEFAULT NULL,
   `body_number` varchar(45) DEFAULT NULL,
   `cylinder` varchar(4) DEFAULT NULL,
   `fuel_tank` varchar(2) DEFAULT NULL,
   `color` varchar(255) DEFAULT NULL,
   `detail` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `car`
+--
+
+INSERT INTO `car` (`id`, `brand_id`, `model_id`, `car_year`, `body_number`, `cylinder`, `fuel_tank`, `color`, `detail`) VALUES
+(2, 2, 2, '2014', 'ssx255-5646', '1.9', '25', NULL, NULL),
+(4, 2, 2, '2010', '1ssdww', '1.5', '20', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -46,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `car` (
 CREATE TABLE IF NOT EXISTS `carbrand` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `carbrand`
@@ -83,7 +92,18 @@ CREATE TABLE IF NOT EXISTS `carmodel` (
 `id` int(10) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `brand_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `carmodel`
+--
+
+INSERT INTO `carmodel` (`id`, `name`, `brand_id`) VALUES
+(1, 'altis', 2),
+(2, 'cammy', 2),
+(3, 'accord', 3),
+(10, 'TZR', 6),
+(11, 'xxxx', 6);
 
 -- --------------------------------------------------------
 
@@ -136,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Indexes for table `car`
 --
 ALTER TABLE `car`
- ADD PRIMARY KEY (`id`), ADD KEY `CarDetail_FKIndex1` (`Mapping_CarBrand_CarModel_id`);
+ ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `carbrand`
@@ -182,12 +202,12 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `car`
 --
 ALTER TABLE `car`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `carbrand`
 --
 ALTER TABLE `carbrand`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `carimages`
 --
@@ -197,7 +217,7 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `carmodel`
 --
 ALTER TABLE `carmodel`
-MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `mapping_carbrand_carmodel`
 --
