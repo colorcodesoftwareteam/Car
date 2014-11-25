@@ -18,7 +18,7 @@ if (@$_GET ['submit'] == 'true') {
 
 
     if ($objCar->add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)){
-		/*$lastRow = $objCar->getLastCar();
+		$lastRow = $objCar->getLastCar();
 	
 		for($i=0;$i<10;$i++){
 			if($files['name'][$i]==''){
@@ -34,7 +34,7 @@ if (@$_GET ['submit'] == 'true') {
 				
 				$objCar->addImage($lastRow->id,$name,$path);
 		}
-		*/echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
+		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
 	}
 }
 ?>
