@@ -38,7 +38,7 @@ if (@$_GET ['submit'] == 'true') {
                 <div class="col-md-12 column">
                     <div class=" panel panel-default">
                         <div class="panel-heading">
-                            <h4>เพิ่มรถยนต์</h4>
+                            <h4>แก้ไขรายละเอียดถยนต์</h4>
                             <small></small>
                         </div>
 
