@@ -38,15 +38,13 @@ if (@$_GET ['submit'] == 'true') {
 			<div class="col-md-12 column">
 				<div class=" panel panel-default">
 					<div class="panel-heading">
-						<h4>เพิ่มรถยนต์</h4>
+						<h4>แก้ไขรายละเอียดถยนต์</h4>
 						<small></small>
 					</div>
 
 					<div class="panel-body">
 						<div class="row clearfix">
 							<div class="col-md-12 column">
-
-
 
 
 								<div class="row clearfix">
@@ -57,6 +55,9 @@ if (@$_GET ['submit'] == 'true') {
 												<form class="form-horizontal" role="form"
 													action="editCarProfile.php?submit=true&id=<?php echo $id ?>"
 													method="post">
+
+
+
 													<div class="form-group">
 														<label for="pic1" class="col-sm-2 control-label">รูปภาพที่
 															1</label>
@@ -156,8 +157,9 @@ if (@$_GET ['submit'] == 'true') {
 
 														</div>
 													</div>
-													
-													<hr/>
+
+													<hr />
+
 													<div class="form-group">
 														<label for="inputEmail3" class="col-sm-2 control-label">ยี่ห้อรถ</label>
 														<div class="col-md-4">
@@ -176,7 +178,7 @@ if (@$_GET ['submit'] == 'true') {
 																	<?php echo ($rowBrand->id == $rowCar->brand_id) ? 'selected' : '' ?>>
                                                                             <?php echo $rowBrand->name; ?></option>
                                                                     <?php } ?>
-                                                                </select>
+                                                             </select>
 														</div>
 													</div>
 													<div class="form-group">
@@ -259,6 +261,10 @@ if (@$_GET ['submit'] == 'true') {
 				<!-- Footer -->
                     <?php include 'footer.php'; ?>
                     
+
+
+
+
 
 </body>
 </html>
