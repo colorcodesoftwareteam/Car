@@ -1,6 +1,13 @@
 ﻿<?php
 include 'src/class/ManageCar.php';
-$objcar = new ManageCar();
+
+$objCar = new ManageCar();
+
+$pageSize = 10;
+$currentPage = 1;
+if (isset($_GET['page'])) {
+    $currentPage = $_GET['page'];
+}
 if (@$_GET['delete'] == 'true') {
     $id = $_GET['id'];
     if ($objcar->delete($id))
@@ -42,7 +49,6 @@ if (@$_GET['delete'] == 'true') {
                                                 <th>จัดการ</th>
                                                 <th>ยี่ห้อ</th>
                                                 <th>รุ่น</th>
-                                                <!-- <th>ประเภทรถยนต์</th> -->
                                                 <th>ปีที่ผลิต</th>
                                                 <th>เลขตัวถัง</th>
                                                 <th>ประมาตรกระบอกสูบ (CC)</th>
@@ -51,21 +57,20 @@ if (@$_GET['delete'] == 'true') {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $rsCar = $objcar->getCarAllPaging();
-                                            while ($rowCar = mysql_fetch_object($rsCar)) {
+                                            $arrCar = $objCar->getCarAllPaging($pageSize, $currentPage);
+                                            foreach ($arrCar as $row) {
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <a href="editCarProfile.php?id=<?php echo $rowCar->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
-                                                        <a href="ManageCarProfile.php?delete=true&id=<?php echo $rowCar->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                                        <a href="editCarProfile.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
+                                                        <a href="ManageCarProfile.php?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                                     </td>
-                                                    <td><?php echo $rowCar->brand_name ?></td>
-                                                    <td><?php echo $rowCar->model_name ?></td>
-                                                    <!-- <td><?php //echo $rowCar->xxx  ?></td> -->
-                                                    <td><?php echo $rowCar->car_year ?></td>
-                                                    <td><?php echo $rowCar->body_number ?></td>
-                                                    <td><?php echo $rowCar->cylinder ?></td>
-                                                    <td><?php echo $rowCar->fuel_tank ?></td>
+                                                    <td><?php echo $row->brand_name ?></td>
+                                                    <td><?php echo $row->model_name ?></td>
+                                                    <td><?php echo $row->car_year ?></td>
+                                                    <td><?php echo $row->body_number ?></td>
+                                                    <td><?php echo $row->cylinder ?></td>
+                                                    <td><?php echo $row->fuel_tank ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
@@ -76,18 +81,18 @@ if (@$_GET['delete'] == 'true') {
                             <nav>
                                 <ul class="pagination">
                                     <li><a>หน้าที่</a></li>
-                                    <li><a href="#"><span aria-hidden="true">&laquo;</span><span
-                                                class="sr-only">Previous</span></a></li>
-                                    <li><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#"><span aria-hidden="true">&raquo;</span><span
-                                                class="sr-only">Next</span></a></li>
+                                    <?php $pages = $objCar->getPageing(); ?>
+                                    <li><a href="ManageCarProfile.php?page=<?= ($currentPage - 1) < 1 ? 1 : ($currentPage - 1) ?>"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                                    <?php
+                                    for ($i = 1; $i <= $pages; $i++) {
+                                        ?>
+                                        <li><a href="ManageCarProfile.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                        <?php
+                                    }
+                                    ?>
+                                    <li><a href="ManageCarProfile.php?page=<?= ($currentPage + 1) > $pages ? $currentPage : ($currentPage + 1) ?>"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
                                 </ul>
                             </nav>
-
                         </div>
                     </div>
                 </div>
