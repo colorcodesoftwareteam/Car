@@ -1,12 +1,20 @@
 <?php
 include 'src/class/ManageBrandCar.php';
-if (@$_GET ['delete'] == 'true') {
-    $obj = new ManageBrandCar();
 
-    if ($obj->delete($_GET['id']))
-        echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageBrand.php>';
+$objManageBrandCar = new ManageBrandCar ();
+$pageSize = 9;
+$currentPage = 1;
+if (isset($_GET['page'])) {
+$currentPage = $_GET['page'];
+}
+if (@$_GET ['delete'] == 'true') {
+$objManageBrandCar = new ManageBrandCar();
+
+if ($objManageBrandCar->delete($_GET['id']))
+echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageBrand.php>';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -38,31 +46,43 @@ if (@$_GET ['delete'] == 'true') {
                                 <thead>
                                     <tr>
                                         <th>จัดการ</th>
-                                        <th>รายการ</th>
+                                        <th>ยี่ห้อ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    include_once 'src/class/ManageBrandCar.php';
-                                    $obj = new ManageBrandCar ();
-                                    $rs = $obj->getBrandAll();
-                                    while ($row = mysql_fetch_object($rs)) {
-                                        ?>
-                                        <!-- insert some code  -->
-                                        <tr>
-                                            <td>
-                                                <a href="editCarBrand.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
-                                                <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
-                                            </td>
-                                            <td><?php echo $row->name; ?></td>
-                                        </tr>
+                                    $arrBrand = $objManageBrandCar->getBrandAllPaging($pageSize, $currentPage);
+                                    foreach ($arrBrand as $row) {
+                                    ?>
+                                    <!-- insert some code  -->
+                                    <tr>
+                                        <td>
+                                            <a href="editCarBrand.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
+                                            <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                        </td>
+                                        <td><?php echo $row->name; ?></td>
+                                    </tr>
                                     <?php } ?>
                                     <!-- insert some code  -->
                                 </tbody>
                             </table>
-
                         </div>
                     </div>
+                    <nav>
+                        <ul class="pagination">
+                            <li><a>หน้าที่</a></li>
+                            <?php $pages = $objManageBrandCar->getPageing(); ?>
+                            <li><a href="ManageBrand.php?page=<?= ($currentPage - 1) < 1 ? 1 : ($currentPage - 1) ?>"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            <?php
+                            for ($i = 1; $i <= $pages; $i++) {
+                                ?>
+                                <li><a href="ManageBrand.php?page=<?= $i ?>"><?= $i ?></a></li>
+                                <?php
+                            }
+                            ?>
+                            <li><a href="ManageBrand.php?page=<?= ($currentPage + 1) > $pages ? $currentPage : ($currentPage + 1) ?>"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>

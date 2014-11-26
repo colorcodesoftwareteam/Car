@@ -1,7 +1,8 @@
 <?php
 include 'src/class/ManageBrandCar.php';
 include 'src/class/ManageModelCar.php';
-$obj = new ManageBrandCar ();
+
+$objBrandCar = new ManageBrandCar ();
 $objModelCar = new ManageModelCar ();
 $id = $_GET ['id'];
 
@@ -45,8 +46,7 @@ if (@$_GET ['submit'] == 'true') {
 
                                     <!-- Form Name -->
                                     <?php
-                                    $rsModel = $objModelCar->getModelById($id);
-                                    $rowModel = mysql_fetch_object($rsModel);
+                                    $arrModel = $objModelCar->getModelById($id);
                                     ?>
 
                                     <div class="form-group">
@@ -55,11 +55,11 @@ if (@$_GET ['submit'] == 'true') {
                                                 class="form-control" id="brand" name="brand">
                                                 <option>-เลือก-</option>
                                                 <?php
-                                                $rs = $obj->getBrandAll();
-                                                while ($row = mysql_fetch_object($rs)) {
+                                                $arrBrand = $objBrandCar->getBrandAll();
+                                                foreach ($arrBrand as $row) {
                                                     ?>
                                                     <option value="<?php echo $row->id; ?>"
-                                                            <?php echo ($rowModel->brand_id == $row->id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
+                                                            <?php echo ($arrModel->current()->brand_id == $row->id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
 
                                                 <?php } ?>
                                             </select>
@@ -72,7 +72,7 @@ if (@$_GET ['submit'] == 'true') {
                                             <label class="control-label " for="model">รุ่น :</label>
                                             <div class="controls">
                                                 <input id="model" name="model" placeholder="กรอก....."
-                                                       value="<?php echo $rowModel->name; ?>" class="input-xlarge"
+                                                       value="<?php echo $arrModel->current()->name; ?>" class="input-xlarge"
                                                        type="text">
 
                                             </div>

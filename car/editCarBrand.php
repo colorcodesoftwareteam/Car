@@ -1,6 +1,7 @@
 <?php
 include 'src/class/ManageBrandCar.php';
-$obj = new ManageBrandCar ();
+
+$objBrandCar = new ManageBrandCar ();
 $id = $_GET ['id'];
 
 if (@$_GET ['submit'] == 'true') {
@@ -43,8 +44,7 @@ if (@$_GET ['submit'] == 'true') {
                                     <!-- Form Name -->
 
                                     <?php
-                                    $rs = $obj->getBrandById($id);
-                                    $row = mysql_fetch_object($rs);
+                                    $arrBrand = $objBrandCar->getBrandById($id);
                                     ?>
                                     <!-- Text input-->
                                     <div class="form-group">
@@ -52,7 +52,7 @@ if (@$_GET ['submit'] == 'true') {
                                             <label class="control-label " for="brand">ยี่ห้อ :</label>
                                             <div class="controls">
                                                 <input id="brand" name="brand"
-                                                       value="<?php echo $row->name; ?>" placeholder="กรอก....."
+                                                       value="<?php echo $arrBrand->current()->name; ?>" placeholder="กรอก....."
                                                        class="input-xlarge" type="text">
 
                                             </div>
