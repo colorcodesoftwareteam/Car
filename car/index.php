@@ -50,7 +50,7 @@ if (isset($_GET['year'])) {
 
                                             <td>
                                                 <div align="right">
-                                                    <select class="form-control" id="brand" name="brandid">
+                                                    <select class="form-control-combobox" id="brand" name="brandid">
                                                         <option value="">-เลือก-</option>
                                                         <?php
                                                         $objBrand = new ManageBrandCar ();
@@ -72,7 +72,7 @@ if (isset($_GET['year'])) {
                                         <tr>
                                             <td>
                                                 <div align="right">
-                                                    <select class="form-control" name="modelid" id="model">
+                                                    <select class="form-control-combobox" name="modelid" id="model">
                                                         <option value="">-เลือก-</option>
                                                         <?php
                                                         $objModel = new ManageModelCar ();
@@ -93,7 +93,7 @@ if (isset($_GET['year'])) {
                                         <tr>
                                             <td>
                                                 <div align="right">
-                                                    <select class="form-control" name="year" id="model">
+                                                    <select class="form-control-combobox" name="year" id="model">
                                                         <option value="">-เลือก-</option>
                                                         <?php
                                                         $arrCar = $objCar->getCarYearAll();
