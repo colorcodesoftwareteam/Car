@@ -38,7 +38,7 @@
             <!-- Login form -->
             <form class="form-inline pull-right" style="margin-top:10px;" role="form">
                 <div class="form-group">
-                    <div class="input-group">
+                    <div class="form-group">
                         <label class="sr-only" for="exampleInputEmail2">ชื่อผู้ใช้</label>
                         <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
                     </div>
