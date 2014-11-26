@@ -2,11 +2,14 @@
 include 'src/class/ManageBrandCar.php';
 include 'src/class/ManageModelCar.php';
 include 'src/class/ManageCar.php';
+include 'src/class/ImageHelper.php';
 
 $id = $_GET ['id'];
 $objcar = new ManageCar ();
 $objBrand = new ManageBrandCar ();
 $objModel = new ManageModelCar ();
+$rsCar = $objcar->getImageByCarId($id);
+$numRow = mysql_num_rows($rsCar);
 
 if (@$_GET ['submit'] == 'true') {
     $brandid = $_POST ['brandid'];
@@ -15,9 +18,34 @@ if (@$_GET ['submit'] == 'true') {
     $bodynumber = $_POST ['bodynumber'];
     $cylinder = $_POST ['cylinder'];
     $fueltank = $_POST ['fueltank'];
+	$files = $_FILES['files'];
+	
+    if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)){
+		for($i=0;$i<(10-$numRow);$i++){
+			if($files['name'][$i]==''){
+				continue;
+			}
+				$folder = 'img/upload/';
+				$name = $files['name'][$i];
+				$ext = explode('.',$name);
+				$newname = $ext[0].'_'.date('YmdHis').'.'.$ext[1];
+				$path = $folder.$newname;
 
-    if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank))
+				move_uploaded_file($files['tmp_name'][$i],$path);
+				
+				$objcar->addImage($id,$name,$path);
+		}
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
+		
+	}
+}
+
+if(@$_GET['delete']== 'true'){
+	$carid = $_GET['carid'];
+	if ($objcar->deleteImageById($id)){
+		
+		echo '<meta http-equiv=REFRESH CONTENT=0;url=editCarProfile.php?id='.$carid.'>';
+	}
 }
 ?>
 
@@ -57,109 +85,31 @@ if (@$_GET ['submit'] == 'true') {
                                                 <div class="panel-body">
                                                     <form class="form-horizontal" role="form"
                                                           action="editCarProfile.php?submit=true&id=<?php echo $id ?>"
-                                                          method="post">
+                                                          method="post"  enctype="multipart/form-data">
+
+					<?php
 
 
+					for($i=1;$i<=(10-$numRow);$i++){
+					?>
+					<div class="form-group">
+																			<label for="pic<?php echo $i;?>" class="col-sm-2 control-label">รูปภาพที่
+																				<?php echo $i;?></label>
+																			<div class="col-md-4">
+																				<input class="form-control" id="pic<?php echo $i;?>" type="file"
+																					name="files[]" />
 
-                                                        <div class="form-group">
-                                                            <label for="pic1" class="col-sm-2 control-label">รูปภาพที่
-                                                                1</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic1" type="file"
-                                                                       name="files[]" />
+																			</div>
+																		</div>
+					<?php
+					}
+					$objImage = new ImageHelper();
 
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic2" class="col-sm-2 control-label">รูปภาพที่
-                                                                2</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic2" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic3" class="col-sm-2 control-label">รูปภาพที่
-                                                                3</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic3" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic4" class="col-sm-2 control-label">รูปภาพที่
-                                                                4</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic4" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic5" class="col-sm-2 control-label">รูปภาพที่
-                                                                5</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic5" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic6" class="col-sm-2 control-label">รูปภาพที่
-                                                                6</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic6" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic7" class="col-sm-2 control-label">รูปภาพที่
-                                                                7</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic7" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic8" class="col-sm-2 control-label">รูปภาพที่
-                                                                8</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic8" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic9" class="col-sm-2 control-label">รูปภาพที่
-                                                                9</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic9" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group">
-                                                            <label for="pic10" class="col-sm-2 control-label">รูปภาพที่
-                                                                10</label>
-                                                            <div class="col-md-4">
-                                                                <input class="form-control" id="pic10" type="file"
-                                                                       name="files[]" />
-
-                                                            </div>
-                                                        </div>
+						while($rowImages = mysql_fetch_object($rsCar)){
+							$objImage->init($rowImages->path,$rowImages->id,$id);
+							$objImage->process();
+						}
+					?>
 
                                                         <hr />
 

@@ -29,7 +29,12 @@ class ManageCar {
         $str = "delete from car where id='" . $id . "'";
         return $this->objDB->query($str);
     }
-
+	function deleteImageById($id){
+		$str = "delete from carimages where id='".$id."'";
+		$rowImage = $this->getImageById($id);
+		unlink($rowImage->path);
+		return $this->objDB->query($str);
+	}
     function getCarAll() {
         $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
 		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt 
@@ -164,5 +169,21 @@ class ManageCar {
         }
         return $arrayIterator;
     }
+	function getImageByCarId($id){
+		$str = "SELECT *
+		FROM carimages 
+		WHERE car_id ='".$id."'
+		";
+		return  $this->objDB->query ( $str );
+	}
+	function getImageById($id){
+		$str = "SELECT *
+		FROM carimages 
+		WHERE id ='".$id."'
+		";
+		$rs = $this->objDB->query ( $str );
+		$row = mysql_fetch_object($rs);
+		return  $row;
+	}
 }
 ?>
