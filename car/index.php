@@ -4,6 +4,8 @@ include 'src/class/ManageModelCar.php';
 include "src/class/ManageCar.php";
 
 $objCar = new ManageCar();
+$objBrand = new ManageBrandCar ();
+$objModel = new ManageModelCar ();
 $pageSize = 9;
 $currentPage = 1;
 $brand_id = "";
@@ -53,13 +55,12 @@ if (isset($_GET['year'])) {
                                                     <select class="form-control-combobox" id="brand" name="brandid">
                                                         <option value="">-เลือก-</option>
                                                         <?php
-                                                        $objBrand = new ManageBrandCar ();
-                                                        $rsBrand = $objBrand->getBrandAll();
-                                                        while ($rowBrand = mysql_fetch_object($rsBrand)) {
+                                                        $arrBrand = $objBrand->getBrandAll();
+                                                        foreach ($arrBrand as $row) {
                                                             ?>
-                                                            <option value="<?php echo $rowBrand->id; ?>"
-                                                                    <?php echo ($rowBrand->id == $brand_id) ? 'selected' : '' ?>>
-                                                                <?php echo $rowBrand->name; ?></option>
+                                                            <option value="<?php echo $row->id; ?>"
+                                                                    <?php echo ($row->id == $brand_id) ? 'selected' : '' ?>>
+                                                                <?php echo $row->name; ?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -75,13 +76,12 @@ if (isset($_GET['year'])) {
                                                     <select class="form-control-combobox" name="modelid" id="model">
                                                         <option value="">-เลือก-</option>
                                                         <?php
-                                                        $objModel = new ManageModelCar ();
-                                                        $rsModel = $objModel->getModelAll();
-                                                        while ($rowModel = mysql_fetch_object($rsModel)) {
+                                                        $arrModel = $objModel->getModelAll();
+                                                        foreach ($arrModel as $row) {
                                                             ?>
-                                                            <option value="<?php echo $rowModel->id; ?>"
-                                                                    <?php echo ($rowModel->id == $model_id) ? 'selected' : ''; ?>>
-                                                                <?php echo $rowModel->name; ?></option>
+                                                            <option value="<?php echo $row->id; ?>"
+                                                                    <?php echo ($row->id == $model_id) ? 'selected' : ''; ?>>
+                                                                <?php echo $row->name; ?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -97,11 +97,11 @@ if (isset($_GET['year'])) {
                                                         <option value="">-เลือก-</option>
                                                         <?php
                                                         $arrCar = $objCar->getCarYearAll();
-                                                        foreach ($arrCar as $rowCar) {
+                                                        foreach ($arrCar as $row) {
                                                             ?>
-                                                            <option value="<?php echo $rowCar->car_year; ?>" 
-                                                                    <?php echo ($rowCar->car_year == $year) ? 'selected' : ''; ?>>
-                                                                <?php echo $rowCar->car_year; ?></option>
+                                                            <option value="<?php echo $row->car_year; ?>" 
+                                                                    <?php echo ($row->car_year == $year) ? 'selected' : ''; ?>>
+                                                                <?php echo $row->car_year; ?></option>
                                                             <?php
                                                         }
                                                         ?>
@@ -132,17 +132,24 @@ if (isset($_GET['year'])) {
                                 <div class="row clearfix">
                                     <?php
                                     for ($j = 1; $j <= 3; $j++) {
-                                        $rowCar = $arrCar->current();
-                                        if (isset($rowCar)) {
+                                        $row = $arrCar->current();
+                                        if (isset($row)) {
                                             ?>
                                             <div class="col-md-4 column">
                                                 <div class="row clearfix">
-                                                    <a href="carProfile.html?car_id=<?= $rowCar->id ?>">
+                                                    <a href="carProfile.php?car_id=<?= $row->id ?>&brandid=<?= $brand_id ?>&modelid=<?= $model_id ?>&year=<?= $year ?>">
                                                         <div class="col-md-6 column">
-                                                            <img alt="140x140" src="http://lorempixel.com/140/140/">
+                                                            <?php
+                                                            $arrImgs = $objCar->getCarImages($row->id);
+                                                            if (!is_null($arrImgs->current())) {
+                                                                ?>
+                                                                <img width="140px" hight="140px" src="<?= $arrImgs->current()->path ?>">
+                                                                <?php
+                                                            }
+                                                            ?>
                                                         </div>
                                                         <div class="col-md-6 column">
-                                                            <strong><?php echo $rowCar->brand_name; ?></strong><br> <?php echo $rowCar->model_name; ?><br> ปี <?php echo $rowCar->car_year . '  เลขตัวถัง ' . $rowCar->body_number . '  กระบอกสูบ ' . $rowCar->cylinder . '  ความจุถังน้ำมัน  ' . $rowCar->fuel_tank . ' สี ' . $rowCar->color . '  รายละเอียด ' . $rowCar->detail; ?><br>
+                                                            <strong><?php echo $row->brand_name; ?></strong><br> <?php echo $row->model_name; ?> ปี : <?php echo $row->car_year . '<br/>  เลขตัวถัง : ' . $row->body_number . ' <br/> กระบอกสูบ : ' . $row->cylinder . ' <br/> ความจุถังน้ำมัน : ' . $row->fuel_tank . ' <br/> สี : ' . $row->color . ' <br/> รายละเอียด : ' . $row->detail; ?><br>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -161,7 +168,7 @@ if (isset($_GET['year'])) {
                                     <nav>
                                         <ul class="pagination">
                                             <li><a>หน้าที่</a></li>
-                                            <?php $pages = $objCar->getPageing($pageSize); ?>
+                                            <?php $pages = $objCar->getPageing(); ?>
                                             <li><a href="index.php?page=<?= ($currentPage - 1) < 1 ? 1 : ($currentPage - 1) ?>&brandid=<?= $brand_id ?>&modelid=<?= $model_id ?>&year=<?= $year ?>"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
                                             <?php
                                             for ($i = 1; $i <= $pages; $i++) {

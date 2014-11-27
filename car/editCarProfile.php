@@ -18,34 +18,33 @@ if (@$_GET ['submit'] == 'true') {
     $bodynumber = $_POST ['bodynumber'];
     $cylinder = $_POST ['cylinder'];
     $fueltank = $_POST ['fueltank'];
-	$files = $_FILES['files'];
-	
-    if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)){
-		for($i=0;$i<(10-$numRow);$i++){
-			if($files['name'][$i]==''){
-				continue;
-			}
-				$folder = 'img/upload/';
-				$name = $files['name'][$i];
-				$ext = explode('.',$name);
-				$newname = $ext[0].'_'.date('YmdHis').'.'.$ext[1];
-				$path = $folder.$newname;
+    $files = $_FILES['files'];
 
-				move_uploaded_file($files['tmp_name'][$i],$path);
-				
-				$objcar->addImage($id,$name,$path);
-		}
+    if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)) {
+        for ($i = 0; $i < (10 - $numRow); $i++) {
+            if ($files['name'][$i] == '') {
+                continue;
+            }
+            $folder = 'img/upload/';
+            $name = $files['name'][$i];
+            $ext = explode('.', $name);
+            $newname = $ext[0] . '_' . date('YmdHis') . '.' . $ext[1];
+            $path = $folder . $newname;
+
+            move_uploaded_file($files['tmp_name'][$i], $path);
+
+            $objcar->addImage($id, $name, $path);
+        }
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
-		
-	}
+    }
 }
 
-if(@$_GET['delete']== 'true'){
-	$carid = $_GET['carid'];
-	if ($objcar->deleteImageById($id)){
-		
-		echo '<meta http-equiv=REFRESH CONTENT=0;url=editCarProfile.php?id='.$carid.'>';
-	}
+if (@$_GET['delete'] == 'true') {
+    $carid = $_GET['carid'];
+    if ($objcar->deleteImageById($carid)) {
+
+        echo '<meta http-equiv=REFRESH CONTENT=0;url=editCarProfile.php?id='.$id.'>';
+    }
 }
 ?>
 
@@ -87,29 +86,27 @@ if(@$_GET['delete']== 'true'){
                                                           action="editCarProfile.php?submit=true&id=<?php echo $id ?>"
                                                           method="post"  enctype="multipart/form-data">
 
-					<?php
+                                                        <?php
+                                                        for ($i = 1; $i <= (10 - $numRow); $i++) {
+                                                            ?>
+                                                            <div class="form-group">
+                                                                <label for="pic<?php echo $i; ?>" class="col-sm-2 control-label">รูปภาพที่
+                                                            <?php echo $i; ?></label>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control" id="pic<?php echo $i; ?>" type="file"
+                                                                           name="files[]" />
 
+                                                                </div>
+                                                            </div>
+    <?php
+}
+$objImage = new ImageHelper();
 
-					for($i=1;$i<=(10-$numRow);$i++){
-					?>
-					<div class="form-group">
-																			<label for="pic<?php echo $i;?>" class="col-sm-2 control-label">รูปภาพที่
-																				<?php echo $i;?></label>
-																			<div class="col-md-4">
-																				<input class="form-control" id="pic<?php echo $i;?>" type="file"
-																					name="files[]" />
-
-																			</div>
-																		</div>
-					<?php
-					}
-					$objImage = new ImageHelper();
-
-						while($rowImages = mysql_fetch_object($rsCar)){
-							$objImage->init($rowImages->path,$rowImages->id,$id);
-							$objImage->process();
-						}
-					?>
+while ($rowImages = mysql_fetch_object($rsCar)) {
+    $objImage->init($rowImages->path, $id, $rowImages->id);
+    $objImage->process();
+}
+?>
 
                                                         <hr />
 
@@ -118,16 +115,16 @@ if(@$_GET['delete']== 'true'){
                                                             <div class="col-md-4">
                                                                 <select class="form-control" id="brand" name="brandid">
                                                                     <option>-เลือก-</option>
-                                                                    <?php
-                                                                    $arrCar = $objcar->getCarById($id);
-                                                                    $arrBrand = $objBrand->getBrandAll();
-                                                                    foreach ($arrBrand as $row) {
-                                                                        ?>
+<?php
+$arrCar = $objcar->getCarById($id);
+$arrBrand = $objBrand->getBrandAll();
+foreach ($arrBrand as $row) {
+    ?>
                                                                         <option
                                                                             value="<?php echo $row->id; ?>"
-                                                                            <?php echo ($row->id == $arrCar->current()->brand_id) ? 'selected' : '' ?>>
-                                                                            <?php echo $row->name; ?></option>
-                                                                    <?php } ?>
+                                                                        <?php echo ($row->id == $arrCar->current()->brand_id) ? 'selected' : '' ?>>
+    <?php echo $row->name; ?></option>
+                                                                        <?php } ?>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -136,14 +133,14 @@ if(@$_GET['delete']== 'true'){
 
                                                             <div class="col-md-4">
                                                                 <select class="form-control" name="modelid" id="model">
-                                                                    <?php
-                                                                    $arrModel = $objModel->getModelByBrand($arrCar->current()->brand_id);
-                                                                    foreach ($arrModel as $row) {
-                                                                        ?>
+<?php
+$arrModel = $objModel->getModelByBrand($arrCar->current()->brand_id);
+foreach ($arrModel as $row) {
+    ?>
                                                                         <option
                                                                             value="<?php echo $row->id; ?>"
-                                                                            <?php echo ($row->id == $arrCar->current()->model_id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
-                                                                        <?php } ?>
+                                                                        <?php echo ($row->id == $arrCar->current()->model_id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
+<?php } ?>
                                                                 </select>
 
                                                             </div>
@@ -207,6 +204,6 @@ if(@$_GET['delete']== 'true'){
                         </div>
                     </div>
                     <!-- Footer -->
-                    <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
                     </body>
                     </html>
