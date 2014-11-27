@@ -163,6 +163,9 @@ class ManageCar {
         //exit();
         return $this->objDB->query($str);
     }
+    
+    function getCarImages($carID) {
+        $str = "SELECT * FROM carimages WHERE car_id='" . $carID . "' order by create_dt desc";
 
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
