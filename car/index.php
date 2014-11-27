@@ -96,8 +96,8 @@ if (isset($_GET['year'])) {
                                                     <select class="form-control-combobox" name="year" id="model">
                                                         <option value="">-เลือก-</option>
                                                         <?php
-                                                        $arrCar = $objCar->getCarYearAll();
-                                                        foreach ($arrCar as $row) {
+                                                        $arrYear = $objCar->getCarYearAll();
+                                                        foreach ($arrYear as $row) {
                                                             ?>
                                                             <option value="<?php echo $row->car_year; ?>" 
                                                                     <?php echo ($row->car_year == $year) ? 'selected' : ''; ?>>
@@ -140,10 +140,14 @@ if (isset($_GET['year'])) {
                                                     <a href="carProfile.php?car_id=<?= $row->id ?>&brandid=<?= $brand_id ?>&modelid=<?= $model_id ?>&year=<?= $year ?>">
                                                         <div class="col-md-6 column">
                                                             <?php
-                                                            $arrImgs = $objCar->getCarImages($row->id);
-                                                            if (!is_null($arrImgs->current())) {
+                                                            $arrImgs = $objCar->getCarImagesWithNoImage($row->id);
+                                                            if ($arrImgs->count() > 0) {
                                                                 ?>
                                                                 <img width="140px" hight="140px" src="<?= $arrImgs->current()->path ?>">
+                                                                <?php
+                                                            } else {
+                                                                ?>
+                                                                <img width="140px" hight="140px" src="img/no_img.jpg">
                                                                 <?php
                                                             }
                                                             ?>
