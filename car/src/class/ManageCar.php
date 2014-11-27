@@ -20,7 +20,7 @@ class ManageCar {
     }
 
     function edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank) {
-;
+        ;
         $str = "update car set  brand_id='" . $brandid . "', model_id='" . $modelid . "', car_year='" . $caryear . "', body_number='" . $bodynumber . "', cylinder='" . $cylinder . "', fuel_tank='" . $fueltank . "', update_dt='" . date("Y-m-d  H:i:s") . "' where id = '" . $id . "'";
         return $this->objDB->query($str);
     }
@@ -29,12 +29,14 @@ class ManageCar {
         $str = "delete from car where id='" . $id . "'";
         return $this->objDB->query($str);
     }
-	function deleteImageById($id){
-		$str = "delete from carimages where id='".$id."'";
-		$rowImage = $this->getImageById($id);
-		unlink($rowImage->path);
-		return $this->objDB->query($str);
-	}
+
+    function deleteImageById($id) {
+        $str = "delete from carimages where id='" . $id . "'";
+        $rowImage = $this->getImageById($id);
+        unlink($rowImage->path);
+        return $this->objDB->query($str);
+    }
+
     function getCarAll() {
         $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
 		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt 
@@ -49,13 +51,13 @@ class ManageCar {
         $lim_start = (($page - 1) * $pageSize);
         $lim_end = $lim_start + $pageSize;
         $limit = "limit " . $lim_start . ", " . $lim_end;
-        
+
         $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
 		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt  
                 from car c left join carbrand cb on c.brand_id=cb.id 
 		left join carmodel cm on c.model_id=cm.id 
                 order by c.create_dt desc ";
-        
+
         $this->NUM_ROWS = mysql_num_rows($this->objDB->query($str));
         $rs = $this->objDB->query($str . $limit);
         $arrayIterator = new ArrayIterator();
@@ -122,8 +124,8 @@ class ManageCar {
                 FROM car c LEFT JOIN carbrand cb ON c.brand_id=cb.id 
 		LEFT JOIN carmodel cm ON c.model_id=cm.id 
                 left join carimages im on c.id=im.car_id 
-                WHERE c.id='".$id."' ";
-        
+                WHERE c.id='" . $id . "' ";
+
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
 
@@ -132,7 +134,7 @@ class ManageCar {
         }
         return $arrayIterator;
     }
-    
+
     function getCarYearAll() {
         $str = "SELECT distinct(car_year) FROM car order by car_year desc ";
         $this->objDB->query($str);
@@ -157,10 +159,10 @@ class ManageCar {
         //exit();
         return $this->objDB->query($str);
     }
-    
-    function getCarImages ($carID) {
-        $str = "SELECT * FROM carimages WHERE car_id='".$carID."' order by create_dt desc";
-        
+
+    function getCarImages($carID) {
+        $str = "SELECT * FROM carimages WHERE car_id='" . $carID . "' order by create_dt desc";
+
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
 
@@ -169,21 +171,25 @@ class ManageCar {
         }
         return $arrayIterator;
     }
-	function getImageByCarId($id){
-		$str = "SELECT *
+
+    function getImageByCarId($id) {
+        $str = "SELECT *
 		FROM carimages 
-		WHERE car_id ='".$id."'
+		WHERE car_id ='" . $id . "'
 		";
-		return  $this->objDB->query ( $str );
-	}
-	function getImageById($id){
-		$str = "SELECT *
+        return $this->objDB->query($str);
+    }
+
+    function getImageById($id) {
+        $str = "SELECT *
 		FROM carimages 
-		WHERE id ='".$id."'
+		WHERE id ='" . $id . "'
 		";
-		$rs = $this->objDB->query ( $str );
-		$row = mysql_fetch_object($rs);
-		return  $row;
-	}
+        $rs = $this->objDB->query($str);
+        $row = mysql_fetch_object($rs);
+        return $row;
+    }
+
 }
+
 ?>
