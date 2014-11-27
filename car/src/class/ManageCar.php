@@ -176,6 +176,25 @@ class ManageCar {
         return $arrayIterator;
     }
 	
+    function getCarImagesWithNoImage($carID) {
+        $str = "SELECT * FROM carimages WHERE car_id='" . $carID . "' order by create_dt desc";
+
+        $rs = $this->objDB->query($str);
+        $arrayIterator = new ArrayIterator();
+
+        while ($row = mysql_fetch_object($rs)) {
+            $arrayIterator->append($row);
+        }
+        /*if ($arrayIterator->count() == 0) {
+            $tmp_arr = [ 
+                "name" => "",
+                "path" => "img/no_img.jpg",
+            ];
+            $arrayIterator->append($tmp_arr);
+        }*/
+        return $arrayIterator;
+    }
+
     function getImageByCarId($id) {
         $str = "SELECT *
 		FROM carimages 
