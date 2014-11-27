@@ -170,9 +170,9 @@ if (@$_GET ['submit'] == 'true') {
                                                                     <?php
                                                                     $objBrand = new ManageBrandCar ();
                                                                     $rsBrand = $objBrand->getBrandAll();
-                                                                    while ($rowBrand = mysql_fetch_object($rsBrand)) {
+                                                                    foreach ($rsBrand as $row) {
                                                                         ?>
-                                                                        <option value="<?php echo $rowBrand->id; ?>"><?php echo $rowBrand->name; ?></option>
+                                                                        <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
                                                                     <?php } ?>
                                                                 </select>
                                                             </div>
