@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include 'src/class/ManageBrandCar.php';
 include 'src/class/ManageModelCar.php';
 include "src/class/ManageCar.php";
@@ -140,7 +140,7 @@ if (isset($_GET['car_id'])) {
                                         <p></p>
                                     </div>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                     <div class="row clearfix">
                                         <div class="col-md-12 col-md-offset-1">
                                             <?php
@@ -208,14 +208,10 @@ if (isset($_GET['car_id'])) {
                                                         <span class="sr-only">Next</span>
                                                     </a>
                                                 </div>
-
-
-
-
-
-                                                <div class="row clearfix" style="margin-top:20px;"></div>
-                                                <div class="col-md-offset-4">
-                                                    <div class="form-group">
+                                            </div>
+                                        </div>
+                                    </div>
+									<div class="form-group">
                                                         <div class="input-group">
                                                             <span><strong>ยี่ห้อรถยนต์ : </strong><?= $arrCar->current()->brand_name ?></span>
                                                         </div>
@@ -241,13 +237,6 @@ if (isset($_GET['car_id'])) {
                                                         </div>
                                                         <p></p>
                                                     </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
                                 </div>
                             </div>
 
