@@ -3,11 +3,11 @@
 $id = $_POST ['id'];
 include '../src/class/ManageModelCar.php';
 $objModel = new ManageModelCar ();
-$rsModel = $objModel->getModelById($id);
+$rsModel = $objModel->getModelByBrand($id);
 
-while ( $rowModel = mysql_fetch_object ( $rsModel ) ) {
+foreach  ( $rsModel as $row ) {
 	?>
-<option value="<?php echo $rowModel->id;?>"><?php echo $rowModel->name;?></option>
+<option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
 <?php }?>
 															
 													

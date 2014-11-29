@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class ImageHelper{
 	private $class;
 	private $src;
@@ -21,10 +21,11 @@ class ImageHelper{
 	}
 	
 	function process(){
-		$temp ='<div class="form-group"><div class="col-md-4">';
-		$temp .='<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'">';
-		$temp .='<div class="col-md-4"><a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a></div>';
-		$temp .='</div></div>';
+		$temp =' <div align="center"><div class="form-group"> <div class="col-md-12">  ';
+		$temp .='<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'"> <a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a></div> ';
+		$temp .='</div>';
+		$temp .='</div>';
+		
 		echo $temp;
 	}
 	
