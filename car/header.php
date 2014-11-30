@@ -50,7 +50,7 @@
                 <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
                 <div class="form-inline">
                     <label>
-                        <a href="#">สมัครสมาชิก</a>
+                        <a href="addMemberProfile.php">สมัครสมาชิก</a>
                     </label>
                 </div>
             </form>
