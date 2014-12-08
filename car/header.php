@@ -36,16 +36,16 @@
                 </li>
             </ul>
             <!-- Login form -->
-            <form class="form-inline pull-right" style="margin-top:10px;" role="form">
+            <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
                 <div class="form-group">
                     <div class="form-group">
                         <label class="sr-only" for="exampleInputEmail2">ชื่อผู้ใช้</label>
-                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="sr-only" for="exampleInputPassword2">รหัสผ่าน</label>
-                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
                 </div>
                 <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
                 <div class="form-inline">
