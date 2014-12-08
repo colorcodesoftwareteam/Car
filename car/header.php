@@ -61,7 +61,7 @@
             
             
             
-            <span class="" style="color:white;">สวัสดี <?php echo $_SESSION['name'].' '.$_SESSION['lastname'];?></span>, <a href="actionsNonMember.php?action=logout" class="text-danger">ออกจากระบบ</a>
+            <span class="" style="color:white;">สวัสดี <?php echo $_SESSION['name'].' '.$_SESSION['lastname'];?></span>, <a href="actionsMember.php?action=logout" class="text-danger">ออกจากระบบ</a>
             <?php }?>
         </div>
         <!-- /.navbar-collapse -->

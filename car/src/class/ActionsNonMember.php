@@ -24,11 +24,6 @@ class ActionsNonMember {
             echo '<meta http-equiv="refresh" content="0; url=index.php">';
     }
 
-    function logout() {
-        if ($this->logSystem->logout())
-            echo '<meta http-equiv="refresh" content="0; url=index.php">';
-    }
-
     function setData($data) {
         $this->data = $data;
     }
