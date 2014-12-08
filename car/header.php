@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!-- Navigation panel -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -36,6 +37,7 @@
                 </li>
             </ul>
             <!-- Login form -->
+            <?php if (!isset($_SESSION['id'])) { ?>
             <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
                 <div class="form-group">
                     <div class="form-group">
@@ -54,6 +56,13 @@
                     </label>
                 </div>
             </form>
+            
+            <?php }else{?>
+            
+            
+            
+            <span class="" style="color:white;">สวัสดี <?php echo $_SESSION['name'].' '.$_SESSION['lastname'];?></span>, <a href="actionsNonMember.php?action=logout" class="text-danger">ออกจากระบบ</a>
+            <?php }?>
         </div>
         <!-- /.navbar-collapse -->
     </div>

@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 include_once 'Database.php';
 
@@ -13,10 +14,20 @@ class LoginSystem {
     }
 
     function login($data) {
-        $StrQuery = "SELECT * FROM MEMBER WHERE email ='".$data['email']."' and phoneNumber = '".$data['password']."'";
+        $StrQuery = "SELECT * FROM MEMBER WHERE email ='" . $data['email'] . "' and phoneNumber = '" . $data['password'] . "'";
         $rs = $this->objDB->query($StrQuery);
         $row = mysql_fetch_object($rs);
-        echo $row->name;
+        $_SESSION['id'] = $row->id;
+        $_SESSION['Role_id'] = $row->Role_id;
+        $_SESSION['name'] = $row->name;
+        $_SESSION['lastname'] = $row->lastname;
+        if ($this->objDB->hasRows())
+            return true;
+    }
+
+    function logout() {
+        session_destroy();
+        return true;
     }
 
     function validate() {

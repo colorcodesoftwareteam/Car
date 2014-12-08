@@ -20,7 +20,13 @@ class ActionsNonMember {
     }
 
     function login($data) {
-        $this->logSystem->login($data);
+        if ($this->logSystem->login($data))
+            echo '<meta http-equiv="refresh" content="0; url=index.php">';
+    }
+
+    function logout() {
+        if ($this->logSystem->logout())
+            echo '<meta http-equiv="refresh" content="0; url=index.php">';
     }
 
     function setData($data) {
@@ -34,6 +40,9 @@ class ActionsNonMember {
                 break;
             case 'login':
                 $this->login($this->data);
+                break;
+            case 'logout':
+                $this->logout();
                 break;
         }
     }
