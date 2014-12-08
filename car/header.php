@@ -16,7 +16,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="#">เปรียบเทียบรถยนต์</a>
+                    <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
                 </li>
                 <li>
                     <a href="ManageCarProfile.php">จัดการรถยนต์</a>
