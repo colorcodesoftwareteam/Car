@@ -1,3 +1,27 @@
+<?php
+include 'src/class/ManageBrandCar.php';
+include 'src/class/ManageModelCar.php';
+include "src/class/ManageCar.php";
+
+$objCar = new ManageCar();
+$objBrand = new ManageBrandCar ();
+$objModel = new ManageModelCar ();
+$brand_id = "";
+$model_id = "";
+$year = "";
+if (isset($_GET['page'])) {
+    $currentPage = $_GET['page'];
+}
+if (isset($_GET['brandid'])) {
+    $brand_id = $_GET['brandid'];
+}
+if (isset($_GET['modelid'])) {
+    $model_id = $_GET['modelid'];
+}
+if (isset($_GET['year'])) {
+    $year = $_GET['year'];
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -43,67 +67,75 @@
                                             </h3>
                                         </div>
                                         <div class="panel-body">
-                                            <div class="btn-group" >
-                                                <button class="btn btn-default" >
-                                                    ยี่ห้อรถยนต์ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="#">Toyota</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Honda</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Ford</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="row clearfix"><p></div>
-                                            <div class="btn-group ">
-                                                <button class="btn btn-default">
-                                                    รุ่น &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="#">A Secment</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">B Secment</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">D Secment</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <button type="button" class="btn btn-primary ">
-                                                ค้นหา 
-                                            </button>
-                                            <div class="row clearfix">
-                                                <p></div>
-                                            <div class="btn-group ">
-                                                <button class="btn btn-default">
-                                                    ปีที่ผลิต &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </button> 
-                                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="#">1970</a>
-                                                    </li>
-                                                    <li >
-                                                        <a href="#">1980</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">2000</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+										<form class="form-horizontal" role="form" action="index.php" method="get">
+                                <table class="table table-no-border">
+                                    <tbody>
+                                        <tr>
+
+                                            <td>
+                                                <div align="right">
+                                                    <select class="form-control-combobox" id="brand" name="brandid">
+                                                        <option value="">-เลือก-</option>
+                                                        <?php
+                                                        $arrBrand = $objBrand->getBrandAll();
+                                                        foreach ($arrBrand as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row->id; ?>"
+                                                                    <?php echo ($row->id == $brand_id) ? 'selected' : '' ?>>
+                                                                <?php echo $row->name; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div align="right">
+                                                    <select class="form-control-combobox" name="modelid" id="model">
+                                                        <option value="">-เลือก-</option>
+                                                        <?php
+                                                        $arrModel = $objModel->getModelAll();
+                                                        foreach ($arrModel as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row->id; ?>"
+                                                                    <?php echo ($row->id == $model_id) ? 'selected' : ''; ?>>
+                                                                <?php echo $row->name; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-3 col-md-offset-2"><button type="submit" class="btn btn-primary ">ค้นหา</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div align="right">
+                                                    <select class="form-control-combobox" name="year" id="model">
+                                                        <option value="">-เลือก-</option>
+                                                        <?php
+                                                        $arrYear = $objCar->getCarYearAll();
+                                                        foreach ($arrYear as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row->car_year; ?>" 
+                                                                    <?php echo ($row->car_year == $year) ? 'selected' : ''; ?>>
+                                                                <?php echo $row->car_year; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>									
+																				
                                         </div>
                                         <div class="panel-footer">
                                             <div class="row clearfix">
@@ -129,7 +161,21 @@
                                                     </p>
                                                     <p>
                                                     </p>
-                                                    <nav>
+
+                                                </div>
+												                                                <div class="col-md-12 column">
+                                                    <img alt="140x140" src="http://lorempixel.com/140/140/" />
+                                                    <h2>
+                                                        Honda
+                                                    </h2>
+                                                    <p>
+                                                        รายละเอียด : ผลิตปี 2014 
+                                                    </p>
+                                                    <p>
+                                                    </p>
+
+                                                </div>
+												                                                    <nav>
                                                         <ul class="pagination">
                                                             <li><a>หน้าที่</a></li>
                                                             <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
@@ -141,7 +187,8 @@
                                                             <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
                                                         </ul>
                                                     </nav>
-                                                </div>
+												
+												
                                             </div>
                                         </div>
                                     </div>
@@ -167,67 +214,74 @@
                                             </h3>
                                         </div>
                                         <div class="panel-body">
-                                            <div class="btn-group" >
-                                                <button class="btn btn-default" >
-                                                    ยี่ห้อรถยนต์ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="#">Toyota</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Honda</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Ford</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="row clearfix"><p></div>
-                                            <div class="btn-group ">
-                                                <button class="btn btn-default">
-                                                    รุ่น &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </button> <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="#">A Secment</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">B Secment</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">D Secment</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <button type="button" class="btn btn-primary ">
-                                                ค้นหา 
-                                            </button>
-                                            <div class="row clearfix">
-                                                <p></div>
-                                            <div class="btn-group ">
-                                                <button class="btn btn-default">
-                                                    ปีที่ผลิต &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                </button> 
-                                                <button data-toggle="dropdown" class="btn btn-default dropdown-toggle"><span class="caret"></span></button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="#">1970</a>
-                                                    </li>
-                                                    <li >
-                                                        <a href="#">1980</a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">2000</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                           <form class="form-horizontal" role="form" action="index.php" method="get">
+                                <table class="table table-no-border">
+                                    <tbody>
+                                        <tr>
+
+                                            <td>
+                                                <div align="right">
+                                                    <select class="form-control-combobox" id="brand" name="brandid">
+                                                        <option value="">-เลือก-</option>
+                                                        <?php
+                                                        $arrBrand = $objBrand->getBrandAll();
+                                                        foreach ($arrBrand as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row->id; ?>"
+                                                                    <?php echo ($row->id == $brand_id) ? 'selected' : '' ?>>
+                                                                <?php echo $row->name; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div align="right">
+                                                    <select class="form-control-combobox" name="modelid" id="model">
+                                                        <option value="">-เลือก-</option>
+                                                        <?php
+                                                        $arrModel = $objModel->getModelAll();
+                                                        foreach ($arrModel as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row->id; ?>"
+                                                                    <?php echo ($row->id == $model_id) ? 'selected' : ''; ?>>
+                                                                <?php echo $row->name; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td class="col-md-3 col-md-offset-2"><button type="submit" class="btn btn-primary ">ค้นหา</button></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div align="right">
+                                                    <select class="form-control-combobox" name="year" id="model">
+                                                        <option value="">-เลือก-</option>
+                                                        <?php
+                                                        $arrYear = $objCar->getCarYearAll();
+                                                        foreach ($arrYear as $row) {
+                                                            ?>
+                                                            <option value="<?php echo $row->car_year; ?>" 
+                                                                    <?php echo ($row->car_year == $year) ? 'selected' : ''; ?>>
+                                                                <?php echo $row->car_year; ?></option>
+                                                            <?php
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>		
                                         </div>
                                         <div class="panel-footer">
                                             <div class="row clearfix">
