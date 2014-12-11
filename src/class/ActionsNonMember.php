@@ -2,16 +2,19 @@
 
 include_once 'MemberSystem.php';
 include_once 'LoginSystem.php';
+include_once 'ManageCar.php';
 
 class ActionsNonMember {
 
     private $memSystem;
     private $logSystem;
     private $data;
+    private $mCar;
 
     function __construct() {
         $this->memSystem = new MemberSystem();
         $this->logSystem = new LoginSystem();
+        $this->mCar = new ManageCar();
     }
 
     function register($data) {
@@ -38,6 +41,9 @@ class ActionsNonMember {
                 break;
             case 'logout':
                 $this->logout();
+                break;
+            case 'choosecar1':
+                $_SESSION['car1'] = $this->mCar->getCarById($this->data['GET']['carid']);
                 break;
         }
     }
