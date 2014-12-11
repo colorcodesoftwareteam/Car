@@ -31,10 +31,10 @@ class ActionsNonMember {
     function process($action) {
         switch ($action) {
             case 'register':
-                $this->register($this->data);
+                $this->register($this->data['POST']);
                 break;
             case 'login':
-                $this->login($this->data);
+                $this->login($this->data['POST']);
                 break;
             case 'logout':
                 $this->logout();
