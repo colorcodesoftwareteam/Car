@@ -37,6 +37,12 @@ class ActionsNonMember {
         echo '<meta http-equiv="refresh" content="0; url=carCompare.php">';
     }
 
+    function chooseCarAgain() {
+        unset($_SESSION['car1']);
+        unset($_SESSION['car2']);
+        echo '<meta http-equiv="refresh" content="0; url=carCompare.php">';
+    }
+
     function setData($data) {
         $this->data = $data;
     }
@@ -57,6 +63,9 @@ class ActionsNonMember {
                 break;
             case 'choosecar2':
                 $this->chooseCar2();
+                break;
+            case 'choosecaragain':
+                $this->chooseCarAgain();
                 break;
         }
     }
