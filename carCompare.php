@@ -89,7 +89,7 @@ if (isset($_GET['year'])) {
                                             <?php
                                             if (isset($_SESSION['car1']) && isset($_SESSION['car2'])) {
                                                 ?>
-                                            <button class="btn btn-success">Compare</button>
+                                            <a href="carCompareProfiles.php"><button class="btn btn-success">Compare</button></a>
                                                 <?php
                                             }
                                             ?>
