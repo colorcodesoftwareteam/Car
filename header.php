@@ -15,54 +15,58 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+
                 <li>
                     <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
                 </li>
-                <li>
-                    <a href="ManageCarProfile.php">จัดการรถยนต์</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">จัดการหมวดหมู่รถยนต์<b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="ManageBrand.php">จัดการยี่ห้อ</a>
-                        </li>
-                        <li>
-                            <a href="ManageModel.php">จัดการรุ่น</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">จัดการสมาชิก</a>
-                </li>
+                <?php if (isset($_SESSION['id'])) { ?>
+                    <li>
+                        <a href="ManageCarProfile.php">จัดการรถยนต์</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">จัดการหมวดหมู่รถยนต์<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="ManageBrand.php">จัดการยี่ห้อ</a>
+                            </li>
+                            <li>
+                                <a href="ManageModel.php">จัดการรุ่น</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php
+                }
+                if (@$_SESSION['type_member'] == 'admin') {
+                    ?>
+
+                    <li>
+                        <a href="#">จัดการสมาชิก</a>
+                    </li>
+                <?php } ?>
             </ul>
             <!-- Login form -->
             <?php if (!isset($_SESSION['id'])) { ?>
-            <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
-                <div class="form-group">
+                <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
                     <div class="form-group">
-                        <label class="sr-only" for="exampleInputEmail2">ชื่อผู้ใช้</label>
-                        <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputEmail2">ชื่อผู้ใช้</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="exampleInputPassword2">รหัสผ่าน</label>
-                    <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
-                </div>
-                <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
-                <div class="form-inline">
-                    <label>
-                        <a href="addMemberProfile.php">สมัครสมาชิก</a>
-                    </label>
-                </div>
-            </form>
-            
-            <?php }else{?>
-            
-            
-            
-            <span class="" style="color:white;">สวัสดี <?php echo $_SESSION['name'].' '.$_SESSION['lastname'];?></span>, <a href="actionsMember.php?action=logout" class="text-danger">ออกจากระบบ</a>
-            <?php }?>
+                    <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">รหัสผ่าน</label>
+                        <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
+                    </div>
+                    <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
+                    <div class="form-inline">
+                        <label>
+                            <a href="addMemberProfile.php">สมัครสมาชิก</a>
+                        </label>
+                    </div>
+                </form>
+            <?php } else { ?>
+                <span class="" style="color:white;">สวัสดี <?php echo $_SESSION['name'] . ' ' . $_SESSION['lastname']; ?></span>, <a href="actionsMember.php?action=logout" class="text-danger">ออกจากระบบ</a>
+            <?php } ?>
         </div>
         <!-- /.navbar-collapse -->
     </div>
