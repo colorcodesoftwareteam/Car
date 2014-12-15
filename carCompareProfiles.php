@@ -25,8 +25,15 @@
 
                         <div class="panel-body">
                             <div class="row clearfix">
-                                <div class=" col-md-offset-11">
+                                <div class="col-md-3">
+                                    <a href="actionsNonMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn btn-lg ">
+                                            เลือกอีกครั้ง
+                                        </button> 
+                                    </a>
+                                </div>
+                                <div class=" col-md-offset-9">
                                     <div class="row clearfix" >
+
                                         <button type="button" class="glyphicon glyphicon-print btn-primary btn btn-lg ">
                                             พิมพ์
                                         </button> 
@@ -133,42 +140,44 @@
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ยี่ห้อรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text1" placeholder="ยี่ห้อรถยนต์">
+                                                                <input type="email" class="form-control" id="text1" placeholder="ยี่ห้อรถยนต์" value="<?php echo $_SESSION['car1'][0]->brand_name; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEma">รุ่น</label>
-                                                                <input type="email" class="form-control" id="text2" placeholder="รุ่น">
+                                                                <input type="email" class="form-control" id="text2" placeholder="รุ่น" value="<?php echo $_SESSION['car1'][0]->model_name; ?>">
                                                             </div>
                                                             <p></p>
+                                                            <!--
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ประเภทรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text3" placeholder="ประเภทรถยนต์">
-                                                            </div>
+                                                                <input type="email" class="form-control" id="text3" placeholder="ประเภทรถยนต์" value="<?php echo $_SESSION['car1'][0]->brand_name; ?>">
+                                                            </div> 
+                                                            -->
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ปีที่ผลิต</label>
-                                                                <input type="email" class="form-control" id="text4" placeholder="ปีที่ผลิต">
+                                                                <input type="email" class="form-control" id="text4" placeholder="ปีที่ผลิต" value="<?php echo $_SESSION['car1'][0]->car_year; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">เลขตัวถัง</label>
-                                                                <input type="email" class="form-control" id="text5" placeholder="เลขตัวถัง">
+                                                                <input type="email" class="form-control" id="text5" placeholder="เลขตัวถัง" value="<?php echo $_SESSION['car1'][0]->body_number; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ปริมาตรกระบอกสูบ(CC)</label>
-                                                                <input type="email" class="form-control" id="text6" placeholder="ปริมาตรกระบอกสูบ">
+                                                                <input type="email" class="form-control" id="text6" placeholder="ปริมาตรกระบอกสูบ" value="<?php echo $_SESSION['car1'][0]->cylinder; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ความจุถังน้ำมัน</label>
-                                                                <input type="email" class="form-control" id="text7" placeholder="ความจุถังน้ำมัน">
+                                                                <input type="email" class="form-control" id="text7" placeholder="ความจุถังน้ำมัน" value="<?php echo $_SESSION['car1'][0]->fuel_tank; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">รายละเอียดอื่นๆ</label>
-                                                                <input type="email" class="form-control" id="text8" placeholder="รายละเอียดอื่นๆ">
+                                                                <input type="email" class="form-control" id="text8" placeholder="รายละเอียดอื่นๆ" value="<?php echo $_SESSION['car1'][0]->detail; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -288,42 +297,44 @@
                                                         <div class="form-group">
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ยี่ห้อรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text1" placeholder="ยี่ห้อรถยนต์">
+                                                                <input type="email" class="form-control" id="text1" placeholder="ยี่ห้อรถยนต์" value="<?php echo $_SESSION['car2'][0]->brand_name; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEma">รุ่น</label>
-                                                                <input type="email" class="form-control" id="text2" placeholder="รุ่น">
+                                                                <input type="email" class="form-control" id="text2" placeholder="รุ่น" value="<?php echo $_SESSION['car2'][0]->model_name; ?>">
                                                             </div>
                                                             <p></p>
+                                                            <!--
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ประเภทรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text3" placeholder="ประเภทรถยนต์">
+                                                                <input type="email" class="form-control" id="text3" placeholder="ประเภทรถยนต์" value="<?php echo $_SESSION['car2'][0]->brand_name; ?>">
                                                             </div>
+                                                            -->
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ปีที่ผลิต</label>
-                                                                <input type="email" class="form-control" id="text4" placeholder="ปีที่ผลิต">
+                                                                <input type="email" class="form-control" id="text4" placeholder="ปีที่ผลิต" value="<?php echo $_SESSION['car2'][0]->car_year; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">เลขตัวถัง</label>
-                                                                <input type="email" class="form-control" id="text5" placeholder="เลขตัวถัง">
+                                                                <input type="email" class="form-control" id="text5" placeholder="เลขตัวถัง" value="<?php echo $_SESSION['car2'][0]->body_number; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ปริมาตรกระบอกสูบ(CC)</label>
-                                                                <input type="email" class="form-control" id="text6" placeholder="ปริมาตรกระบอกสูบ">
+                                                                <input type="email" class="form-control" id="text6" placeholder="ปริมาตรกระบอกสูบ" value="<?php echo $_SESSION['car2'][0]->cylinder; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">ความจุถังน้ำมัน</label>
-                                                                <input type="email" class="form-control" id="text7" placeholder="ความจุถังน้ำมัน">
+                                                                <input type="email" class="form-control" id="text7" placeholder="ความจุถังน้ำมัน" value="<?php echo $_SESSION['car2'][0]->fuel_tank; ?>">
                                                             </div>
                                                             <p></p>
                                                             <div class="input-group">
                                                                 <label class="sr-only" for="exampleInputEmail2">รายละเอียดอื่นๆ</label>
-                                                                <input type="email" class="form-control" id="text8" placeholder="รายละเอียดอื่นๆ">
+                                                                <input type="email" class="form-control" id="text8" placeholder="รายละเอียดอื่นๆ" value="<?php echo $_SESSION['car2'][0]->detail; ?>">
                                                             </div>
                                                         </div>
                                                     </div>
