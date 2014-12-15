@@ -27,6 +27,16 @@ class ActionsNonMember {
             echo '<meta http-equiv="refresh" content="0; url=index.php">';
     }
 
+    function chooseCar1() {
+        $_SESSION['car1'] = $this->mCar->getCarById($this->data['GET']['carid']);
+        echo '<meta http-equiv="refresh" content="0; url=carCompare.php">';
+    }
+
+    function chooseCar2() {
+        $_SESSION['car2'] = $this->mCar->getCarById($this->data['GET']['carid']);
+        echo '<meta http-equiv="refresh" content="0; url=carCompare.php">';
+    }
+
     function setData($data) {
         $this->data = $data;
     }
@@ -43,7 +53,10 @@ class ActionsNonMember {
                 $this->logout();
                 break;
             case 'choosecar1':
-                $_SESSION['car1'] = $this->mCar->getCarById($this->data['GET']['carid']);
+                $this->chooseCar1();
+                break;
+            case 'choosecar2':
+                $this->chooseCar2();
                 break;
         }
     }
