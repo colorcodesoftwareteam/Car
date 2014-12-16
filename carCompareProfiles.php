@@ -1,3 +1,10 @@
+<?php
+include_once 'src/class/ManageBrandCar.php';
+include_once 'src/class/ManageModelCar.php';
+include_once "src/class/ManageCar.php";
+
+$objCar = new ManageCar();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -115,27 +122,76 @@
                                         <div class="panel-footer">
                                             <div class="row clearfix">
                                                 <div class="col-md-12 col-md-offset-1">
-                                                    <button type="button" class="btn btn-primary ">
-                                                        &nbsp;<< &nbsp; 
-                                                    </button>
-                                                    <img alt="" src="http://lorempixel.com/140/140/">
-                                                    <button type="button" class="btn btn-primary ">
-                                                        &nbsp;>> &nbsp; 
-                                                    </button>
-                                                    <div class="col-md-8">
-                                                        <nav>
-                                                            <ul class="pagination">
-                                                                <li><a>หน้าที่</a></li>
-                                                                <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                                                                <li><a href="#">1</a></li>
-                                                                <li><a href="#">2</a></li>
-                                                                <li><a href="#">3</a></li>
-                                                                <li><a href="#">4</a></li>
-                                                                <li><a href="#">5</a></li>
-                                                                <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
+                                                    
+                                                        <div class="col-md-6 ">
+                                                            <?php
+                                                            $imgCar = $objCar->getCarImages($_SESSION['car1'][0]->id);
+                                                            ?>
+
+                                                            <div id="carousel-example-generic" class="carousel slide col-md-10" data-ride="carousel">
+                                                                <!-- Indicators -->
+                                                                <ol class="carousel-indicators">
+                                                                    <?php
+                                                                    $i = 0;
+                                                                    foreach ($imgCar as $row) {
+                                                                        ?>
+                                                                        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i++; ?>" ></li>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
+                                                                </ol>
+
+                                                                <!-- Wrapper for slides -->
+                                                                <div class="carousel-inner" role="listbox">
+                                                                    <?php
+                                                                    $i = 0;
+                                                                    if ($imgCar->count() > 0) {
+                                                                        foreach ($imgCar as $row) {
+                                                                            if ($i == 0) {
+                                                                                ?>
+                                                                                <div class="item active">
+                                                                                    <?php
+                                                                                } else {
+                                                                                    ?>
+                                                                                    <div class="item ">
+                                                                                        <?php
+                                                                                    }
+                                                                                    ?>
+                                                                                    <img src="<?php echo $row->path; ?>" alt="..." >
+                                                                                    <div class="carousel-caption">
+                                                                                        <?php
+                                                                                        $i++;
+                                                                                        ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <?php
+                                                                            }
+                                                                            ?>
+                                                                        </div>
+                                                                        <?php
+                                                                    } else {
+                                                                        ?>
+                                                                        <div class="active">
+                                                                            <img src="img/no_img.jpg" alt="..." >
+                                                                        </div>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
+                                                                    <!-- Controls -->
+                                                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                                        <span class="sr-only">Previous</span>
+                                                                    </a>
+                                                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                                        <span class="sr-only">Next</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    
+
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <div class="input-group">
@@ -272,27 +328,75 @@
                                         <div class="panel-footer">
                                             <div class="row clearfix">
                                                 <div class="col-md-12 col-md-offset-1">
-                                                    <button type="button" class="btn btn-primary ">
-                                                        &nbsp;<< &nbsp; 
-                                                    </button>
-                                                    <img alt="" src="http://lorempixel.com/140/140/">
-                                                    <button type="button" class="btn btn-primary ">
-                                                        &nbsp;>> &nbsp; 
-                                                    </button>
-                                                    <div class="col-md-8">
-                                                        <nav>
-                                                            <ul class="pagination">
-                                                                <li><a>หน้าที่</a></li>
-                                                                <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                                                                <li><a href="#">1</a></li>
-                                                                <li><a href="#">2</a></li>
-                                                                <li><a href="#">3</a></li>
-                                                                <li><a href="#">4</a></li>
-                                                                <li><a href="#">5</a></li>
-                                                                <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
+                                                    
+                                                        <div class="col-md-6">
+                                                            <?php
+                                                            $imgCar = $objCar->getCarImages($_SESSION['car2'][0]->id);
+                                                            ?>
+                                                            <div id="carousel-example-generic" class="carousel slide col-md-10" data-ride="carousel">
+                                                                <!-- Indicators -->
+                                                                <ol class="carousel-indicators">
+                                                                    <?php
+                                                                    $i = 0;
+                                                                    foreach ($imgCar as $row) {
+                                                                        ?>
+                                                                        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i++; ?>" ></li>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
+                                                                </ol>
+
+                                                                <!-- Wrapper for slides -->
+                                                                <div class="carousel-inner" role="listbox">
+                                                                    <?php
+                                                                    $i = 0;
+                                                                    if ($imgCar->count() > 0) {
+                                                                        foreach ($imgCar as $row) {
+                                                                            if ($i == 0) {
+                                                                                ?>
+                                                                                <div class="item active">
+                                                                                    <?php
+                                                                                } else {
+                                                                                    ?>
+                                                                                    <div class="item ">
+                                                                                        <?php
+                                                                                    }
+                                                                                    ?>
+                                                                                    <img src="<?php echo $row->path; ?>" alt="..." >
+                                                                                    <div class="carousel-caption">
+                                                                                        <?php
+                                                                                        $i++;
+                                                                                        ?>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <?php
+                                                                            }
+                                                                            ?>
+                                                                        </div>
+                                                                        <?php
+                                                                    } else {
+                                                                        ?>
+                                                                        <div class="active">
+                                                                            <img src="img/no_img.jpg" alt="..." >
+                                                                        </div>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
+                                                                    <!-- Controls -->
+                                                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                                                        <span class="sr-only">Previous</span>
+                                                                    </a>
+                                                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                                                        <span class="sr-only">Next</span>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                   
+
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <div class="input-group">
