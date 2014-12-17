@@ -1,45 +1,6 @@
-﻿<?php
-include 'src/class/ManageBrandCar.php';
-include 'src/class/ManageModelCar.php';
-include 'src/class/ManageCar.php';
-
-$objCar = new ManageCar ();
-
-
-if (@$_GET ['submit'] == 'true') {
-    $brandid = $_POST ['brandid'];
-    $modelid = $_POST ['modelid'];
-    $caryear = $_POST ['caryear'];
-    $bodynumber = $_POST ['bodynumber'];
-    $cylinder = $_POST ['cylinder'];
-    $fueltank = $_POST ['fueltank'];
-	$files = $_FILES['files'];
-
-
-
-    if ($objCar->add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)){
-		$lastRow = $objCar->getLastCar();
-	
-		for($i=0;$i<10;$i++){
-			if($files['name'][$i]==''){
-				continue;
-			}
-				$folder = 'img/upload/';
-				$name = $files['name'][$i];
-				$ext = explode('.',$name);
-				$newname = $ext[0].'_'.date('YmdHis').'.'.$ext[1];
-				$path = $folder.$newname;
-
-				move_uploaded_file($files['tmp_name'][$i],$path);
-				
-				$objCar->addImage($lastRow->id,$name,$path);
-		}
-		echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
-	}
-}
+<?php
+include_once 'src/class/MemberSystem.php';
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -60,36 +21,38 @@ if (@$_GET ['submit'] == 'true') {
                 <div class="col-md-12 column">
                     <div class=" panel panel-default">
                         <div class="panel-heading">
-                            <h4>เพิ่มรถยนต์</h4>
+                            <h4>แก้ไขโปรไฟล์</h4>
                             <small></small>
                         </div>
 
                         <div class="panel-body">
-						
+
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
 
                                     <br></br>
                                     <div class="row clearfix">
-									
-									
+
+
                                         <div class="col-md-12 column">
-										
+
                                             <div class="panel panel-default">
 
                                                 <div class="panel-body">
-
+                                                    <?php
+                                                    $objMem = new MemberSystem();
+                                                    $curMember = $objMem->getMemeberById($_SESSION['memberId']);
+                                                    ?>
                                                     <form class="form-horizontal" role="form"
-                                                          action="addCarProfile.php?submit=true" method="post"  enctype="multipart/form-data">
-										
-										
-														  
-													<hr/>
+                                                          action="actionsMember.php?action=updateprofile&memberid=<?php echo $_SESSION['memberId'] ?>" method="post"  enctype="multipart/form-data">
+                                                        <hr/>
+
+
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ชื่อ</label>
                                                             <div class="col-md-4">
-                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="fueltank" />
+                                                                <input class="form-control" id="inputPassword3"
+                                                                       type="text" name="name"  value="<?php echo $curMember->current()->name; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -97,7 +60,7 @@ if (@$_GET ['submit'] == 'true') {
 
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="fueltank" />
+                                                                       type="text" name="lastname" value="<?php echo $curMember->current()->lastname; ?>" />
 
                                                             </div>
                                                         </div>
@@ -105,10 +68,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="inputEmail3" class="col-sm-2 control-label">เพศ</label>
                                                             <div class="col-md-4">
 
-                                                                <select class="form-control" name="typecar">
-                                                                    <option value="0">ชาย</option>
-                                                                    <option value="1">หญิง</option>
-
+                                                                <select class="form-control" name="gender">
+                                                                    <option value="0" <?php echo ($curMember->current()->gender == '0') ? 'selected' : ''; ?>>ชาย</option>
+                                                                    <option value="1" <?php echo ($curMember->current()->gender == '1') ? 'selected' : ''; ?>>หญิง</option>
                                                                 </select>
                                                             </div>
 
@@ -116,36 +78,36 @@ if (@$_GET ['submit'] == 'true') {
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">วันเกิด</label>
                                                             <div class="col-sm-10">
-                                                                <input class="form-control" id="dateData" type="datetime" name="caryear" />
+                                                                <input class="form-control" id="dateData" type="datetime" name="birthdate" value="<?php echo $curMember->current()->birthdate; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ที่อยู่</label>
                                                             <div class="col-sm-10">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="bodynumber" />
+                                                                       type="text" name="address"  value="<?php echo $curMember->current()->address; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">เบอร์โทรศัพท์</label>
                                                             <div class="col-sm-10">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="cylinder" />
+                                                                       type="text" name="phoneNumber"  value="<?php echo $curMember->current()->phoneNumber; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">อีเมลล์</label>
                                                             <div class="col-sm-10">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="fueltank" />
+                                                                       type="text" name="email" value="<?php echo $curMember->current()->email; ?>" />
                                                             </div>
                                                         </div>
-														
+
                                                         <button type="button" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
                                                         <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 
-														
-														
+
+
                                                     </form>
                                                 </div>
 
@@ -159,26 +121,5 @@ if (@$_GET ['submit'] == 'true') {
                     </div>
                     <!-- Footer -->
                     <?php include 'footer.php'; ?>
-
-                    <script type="text/javascript">
-                        $(function() {
-                            $('#brand').change(function() {
-                                var brandid = $('#brand').val();
-                                $('#model').css('visibility', 'visible');
-                                $.post('json/listModel.php', {id: brandid}, function(data) {
-                                    $('#model').html(data);
-                                });
-
-
-                            });
-							
-							$( "#datepicker" ).datepicker();
-							});
-
-                        });
-	
-                    </script>
-
-
                     </body>
                     </html>
