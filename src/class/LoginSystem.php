@@ -17,7 +17,7 @@ class LoginSystem {
         $StrQuery = "SELECT * FROM MEMBER WHERE email ='" . $data['email'] . "' and phoneNumber = '" . $data['password'] . "'";
         $rs = $this->objDB->query($StrQuery);
         $row = mysql_fetch_object($rs);
-        $_SESSION['id'] = $row->id;
+        $_SESSION['memberId'] = $row->id;
         $_SESSION['Role_id'] = $row->Role_id;
         $_SESSION['name'] = $row->name;
         $_SESSION['lastname'] = $row->lastname;
