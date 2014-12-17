@@ -18,12 +18,23 @@ class MemberSystem {
         return $this->objDB->query($str);
     }
 
-    function editMember() {
-        echo 'Edited Member';
+    function editMember($data) {
+        $str = "update member set name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "' ,  gender='" . $data['POST']['gender'] . "',birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "' where id = '" . $data['GET']['memberid'] . "'";
+        return $this->objDB->query($str);
     }
 
-    function deleteMember() {
+    function deleteMember($data) {
         echo 'Deleted Member';
+    }
+
+    function getMemeberById($id) {
+        $str = "select * from member where id='" . $id . "'";
+        $rs = $this->objDB->query($str);
+        $arrauIterator = new ArrayIterator();
+        while ($row = mysql_fetch_object($rs)) {
+            $arrauIterator->append($row);
+        }
+        return $arrauIterator;
     }
 
 }
