@@ -1,4 +1,7 @@
-<?php session_start(); ?>
+<?php
+session_start();
+include_once 'src/class/MemberSystem.php';
+?>
 <!-- Navigation panel -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -19,7 +22,7 @@
                 <li>
                     <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
                 </li>
-                <?php if (isset($_SESSION['id'])) { ?>
+<?php if (isset($_SESSION['memberId'])) { ?>
                     <li>
                         <a href="ManageCarProfile.php">จัดการรถยนต์</a>
                     </li>
@@ -42,10 +45,10 @@
                     <li>
                         <a href="#">จัดการสมาชิก</a>
                     </li>
-                <?php } ?>
+<?php } ?>
             </ul>
             <!-- Login form -->
-            <?php if (!isset($_SESSION['id'])) { ?>
+<?php if (!isset($_SESSION['memberId'])) { ?>
                 <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
                     <div class="form-group">
                         <div class="form-group">
@@ -64,9 +67,14 @@
                         </label>
                     </div>
                 </form>
-            <?php } else { ?>
-                <span class="" style="color:white;">สวัสดี <?php echo $_SESSION['name'] . ' ' . $_SESSION['lastname']; ?></span>, <a href="actionsMember.php?action=logout" class="text-danger">ออกจากระบบ</a>
-            <?php } ?>
+            <?php
+            } else {
+                $objMem = new MemberSystem();
+                $curMember = $objMem->getMemeberById($_SESSION['memberId']);
+                ?>
+
+                <span class="" style="color:white;">สวัสดี <?php echo $curMember->current()->name . ' ' . $curMember->current()->lastname; ?></span>,<a href="editMemberProfile.php"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
+<?php } ?>
         </div>
         <!-- /.navbar-collapse -->
     </div>
