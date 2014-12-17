@@ -51,7 +51,7 @@ class ManageCar {
     function getCarAllPaging($pageSize, $page) {
         $this->PAGE_SIZE = $pageSize;
         $lim_start = (($page - 1) * $pageSize);
-        $lim_end = $lim_start + $pageSize;
+        $lim_end = $pageSize;
         $limit = "limit " . $lim_start . ", " . $lim_end;
 
         $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,

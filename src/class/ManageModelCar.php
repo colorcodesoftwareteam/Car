@@ -43,7 +43,7 @@ class ManageModelCar {
     function getModelAllPaging($pageSize, $page) {
         $this->PAGE_SIZE = $pageSize;
         $lim_start = (($page - 1) * $pageSize);
-        $lim_end = $lim_start + $pageSize;
+        $lim_end = $pageSize;
         $limit = "limit " . $lim_start . ", " . $lim_end;
 
         $str = "select cm.id, cm.name, cb.id as brand_id, cb.name as brand_name from carmodel cm
