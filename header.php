@@ -39,7 +39,7 @@ include_once 'src/class/MemberSystem.php';
                     </li>
                     <?php
                 }
-                if (@$_SESSION['type_member'] == 'admin') {
+                if (@$_SESSION['Role_id'] == '1') {
                     ?>
 
                     <li>
