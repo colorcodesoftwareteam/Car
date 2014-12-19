@@ -18,7 +18,7 @@
                 <div class="col-md-12 column">
                     <div class=" panel panel-default">
                         <div class="panel-heading">
-                            <h4>เพิ่มรถยนต์</h4>
+                            <h4>สมัครสมาชิก</h4>
                             <small></small>
                         </div>
 
@@ -98,7 +98,7 @@
                                                                        type="text" name="email" />
                                                             </div>
                                                         </div>
-                                                        <button type="button" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
+                                                        <button type="reset" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
                                                         <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 
                                                     </form>
