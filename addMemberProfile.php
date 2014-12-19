@@ -73,29 +73,36 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">วันเกิด</label>
-                                                            <div class="col-sm-10">
-                                                                <input class="form-control" id="dateData" type="datetime" name="birthday" />
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="date" type="datetime" name="birthday" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ที่อยู่</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="address" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">เบอร์โทรศัพท์</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="phone" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">อีเมลล์</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="email" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-2 control-label">รหัสผ่าน</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="inputPassword3"
+                                                                       type="password" name="password" />
                                                             </div>
                                                         </div>
                                                         <button type="reset" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
@@ -114,5 +121,15 @@
                     </div>
                     <!-- Footer -->
                     <?php include 'footer.php'; ?>
+
+                    <script>
+                        $(function () {
+
+                            $("#date").datepicker({
+                                dateFormat: "yy-mm-dd"
+                            });
+                        });
+
+                    </script>
                     </body>
                     </html>
