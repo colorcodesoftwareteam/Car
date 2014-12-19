@@ -65,11 +65,7 @@ if (isset($_GET['year'])) {
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">
-                                                <?php if (!isset($_SESSION['car1'])) { ?>
-                                                    เลือกรถคันที่ 1
-                                                <?php } else { ?>
-                                                    เลือกรถคันที่ 2
-                                                <?php } ?>
+                                                เลือกรถยนต์
                                             </h3>
 
                                         </div>
