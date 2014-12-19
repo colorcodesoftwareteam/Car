@@ -23,8 +23,17 @@ class ActionsNonMember {
     }
 
     function login($data) {
-        if ($this->logSystem->login($data))
+        $username = 'false';
+        $this->logSystem->setData($data);
+        if ($this->logSystem->checkUsername()) {
+            $username = 'true';
+        }
+
+        if ($this->logSystem->login()) {
             echo '<meta http-equiv="refresh" content="0; url=index.php">';
+        } else {
+            echo '<meta http-equiv="refresh" content="0; url=index.php?username='.$username.'&login=false">';
+        }
     }
 
     function chooseCar1() {
