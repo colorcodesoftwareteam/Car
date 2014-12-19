@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2014 at 03:30 AM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Generation Time: Dec 18, 2014 at 07:28 AM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `car` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   `model_id` int(11) NOT NULL,
   `car_year` varchar(4) DEFAULT NULL,
@@ -37,9 +37,8 @@ CREATE TABLE IF NOT EXISTS `car` (
   `color` varchar(255) DEFAULT NULL,
   `detail` varchar(255) DEFAULT NULL,
   `create_dt` datetime DEFAULT NULL,
-  `update_dt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+  `update_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `car`
@@ -64,10 +63,9 @@ INSERT INTO `car` (`id`, `brand_id`, `model_id`, `car_year`, `body_number`, `cyl
 --
 
 CREATE TABLE IF NOT EXISTS `carbrand` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+`id` int(10) unsigned NOT NULL,
+  `name` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `carbrand`
@@ -85,15 +83,13 @@ INSERT INTO `carbrand` (`id`, `name`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `carimages` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `car_id` int(10) unsigned NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `path` varchar(255) DEFAULT NULL,
   `detail` varchar(255) DEFAULT NULL,
-  `create_dt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `CarImages_FKIndex1` (`car_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=19 ;
+  `create_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `carimages`
@@ -126,13 +122,10 @@ INSERT INTO `carimages` (`id`, `car_id`, `name`, `path`, `detail`, `create_dt`) 
 --
 
 CREATE TABLE IF NOT EXISTS `carmodel` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `name` varchar(255) DEFAULT NULL,
-  `brand_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `brand_id` (`brand_id`),
-  KEY `brand_id_2` (`brand_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+  `brand_id` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `carmodel`
@@ -154,7 +147,7 @@ INSERT INTO `carmodel` (`id`, `name`, `brand_id`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `member` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+`id` int(10) unsigned NOT NULL,
   `Role_id` int(10) unsigned NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
@@ -165,10 +158,15 @@ CREATE TABLE IF NOT EXISTS `member` (
   `email` varchar(50) DEFAULT NULL,
   `detail` varchar(255) DEFAULT NULL,
   `create_dt` datetime DEFAULT NULL,
-  `update_dt` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `Member_FKIndex1` (`Role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `update_dt` datetime DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`id`, `Role_id`, `name`, `lastname`, `gender`, `birthdate`, `address`, `phoneNumber`, `email`, `detail`, `create_dt`, `update_dt`) VALUES
+(1, 1, 'Administrator', 'Administrator', NULL, NULL, NULL, 'admin', 'admin@mail.com', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -177,12 +175,93 @@ CREATE TABLE IF NOT EXISTS `member` (
 --
 
 CREATE TABLE IF NOT EXISTS `role` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
-  `detail` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+`id` int(11) NOT NULL,
+  `name` varchar(45) COLLATE utf8_bin NOT NULL,
+  `detail` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `name`, `detail`) VALUES
+(1, 'admin', ''),
+(2, 'member', '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `car`
+--
+ALTER TABLE `car`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `carbrand`
+--
+ALTER TABLE `carbrand`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `carimages`
+--
+ALTER TABLE `carimages`
+ ADD PRIMARY KEY (`id`), ADD KEY `CarImages_FKIndex1` (`car_id`);
+
+--
+-- Indexes for table `carmodel`
+--
+ALTER TABLE `carmodel`
+ ADD PRIMARY KEY (`id`), ADD KEY `brand_id` (`brand_id`), ADD KEY `brand_id_2` (`brand_id`);
+
+--
+-- Indexes for table `member`
+--
+ALTER TABLE `member`
+ ADD PRIMARY KEY (`id`), ADD KEY `Member_FKIndex1` (`Role_id`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `car`
+--
+ALTER TABLE `car`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `carbrand`
+--
+ALTER TABLE `carbrand`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `carimages`
+--
+ALTER TABLE `carimages`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `carmodel`
+--
+ALTER TABLE `carmodel`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `member`
+--
+ALTER TABLE `member`
+MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
