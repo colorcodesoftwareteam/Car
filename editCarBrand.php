@@ -65,7 +65,7 @@ if (@$_GET ['submit'] == 'true') {
                                             <label class="control-label " for="add"></label>
                                             <div class="controls col-md-3">
                                                 <button id="add" name="add" class="btn btn-primary ">แก้ไข</button>
-                                                <button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>
+                                                <!-- <button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button> -->
                                             </div>
                                         </div>
                                     </div>
