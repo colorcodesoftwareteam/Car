@@ -6,7 +6,7 @@ include_once 'src/class/MemberSystem.php';
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <!-- <div class="navbar-header">
+        <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -14,17 +14,15 @@ include_once 'src/class/MemberSystem.php';
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="index.php">หน้าหลัก</a>
-        </div>-->
+        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="index.php">หน้าหลัก</a>
-                </li>
+
                 <li>
                     <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
                 </li>
-<?php if (isset($_SESSION['memberId'])) { ?>
+                <?php if (isset($_SESSION['memberId'])) { ?>
                     <li>
                         <a href="ManageCarProfile.php">จัดการรถยนต์</a>
                     </li>
@@ -47,15 +45,16 @@ include_once 'src/class/MemberSystem.php';
                     <li>
                         <a href="#">จัดการสมาชิก</a>
                     </li>
-<?php } ?>
+                <?php } ?>
             </ul>
             <!-- Login form -->
-<?php if (!isset($_SESSION['memberId'])) { ?>
+            <?php if (!isset($_SESSION['memberId'])) { ?>
                 <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
                     <div class="form-group">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">ชื่อผู้ใช้</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
+
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,20 +62,32 @@ include_once 'src/class/MemberSystem.php';
                         <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
                     </div>
                     <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
+
                     <div class="form-inline">
+
                         <label>
                             <a href="addMemberProfile.php">สมัครสมาชิก</a>
                         </label>
+
                     </div>
+                    <?php if (@$_GET['username'] == 'false') { ?>
+                        <span class="text-danger">username นี้ไม่มีในระบบ!,</span>
+                        <?php
+                    }
+                    if (@$_GET['login'] == 'false') {
+                        ?>
+                        <span class="text-danger">รหัสผ่านไม่ถูกต้อง!</span>
+                    <?php } ?>
+
                 </form>
-            <?php
+                <?php
             } else {
                 $objMem = new MemberSystem();
                 $curMember = $objMem->getMemeberById($_SESSION['memberId']);
                 ?>
 
                 <span class="" style="color:white;">สวัสดี <?php echo $curMember->current()->name . ' ' . $curMember->current()->lastname; ?></span>,<a href="editMemberProfile.php"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
-<?php } ?>
+            <?php } ?>
         </div>
         <!-- /.navbar-collapse -->
     </div>
