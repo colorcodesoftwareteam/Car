@@ -35,7 +35,7 @@ if (@$_GET ['submit'] == 'true') {
                 <div class="col-md-12 column">
                     <div class=" panel panel-default">
                         <div class="panel-heading">
-                            <h4>แก้ไขยี่ห้อรถยนต์</h4>
+                            <h4>แก้ไขรุ่นรถยนต์</h4>
                         </div>
 
                         <div class="panel-body">
@@ -50,9 +50,9 @@ if (@$_GET ['submit'] == 'true') {
                                     ?>
 
                                     <div class="form-group">
-                                        <div class="control-group col-md-3">
-                                            <label class="control-label " for="brand">ยี่ห้อ :</label> <select
-                                                class="form-control" id="brand" name="brand">
+                                        <label class="col-sm-2 control-label " for="brand">ยี่ห้อ</label>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="brand" name="brand">
                                                 <option>-เลือก-</option>
                                                 <?php
                                                 $arrBrand = $objBrandCar->getBrandAll();
@@ -63,32 +63,19 @@ if (@$_GET ['submit'] == 'true') {
 
                                                 <?php } ?>
                                             </select>
-
                                         </div>
                                     </div>
                                     <!-- Text input-->
                                     <div class="form-group">
-                                        <div class="control-group col-md-7">
-                                            <label class="control-label " for="model">รุ่น :</label>
-                                            <div class="controls">
-                                                <input id="model" name="model" placeholder="กรอก....."
-                                                       value="<?php echo $arrModel->current()->name; ?>" class="input-xlarge"
-                                                       type="text">
-
-                                            </div>
+                                        <label  class="col-sm-2 control-label " for="model">รุ่น</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-control" id="model" name="model" placeholder=""
+                                                   value="<?php echo $arrModel->current()->name; ?>" type="text">
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
-
-                                    <div class="form-group">
-                                        <div class="control-group ">
-                                            <label class="control-label " for="add"></label>
-                                            <div class="controls col-md-3">
-                                                <button id="add" name="add" class="btn btn-primary ">แก้ไข</button>
-                                                <!-- <button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>-->
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button type="submit" id="add" name="add" class="btn btn-primary">แก้ไข</button>
+                                    <!-- <button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>-->
                                 </fieldset>
                             </form>
                         </div>
