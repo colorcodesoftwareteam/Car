@@ -162,14 +162,14 @@ foreach ($arrModel as $row) {
                                                         -->
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ปีที่ผลิต</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputEmail3" type="text"
                                                                        name="caryear" value="<?php echo $arrCar->current()->car_year; ?>" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">เลขตัวถัง</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="bodynumber"
                                                                        value="<?php echo $arrCar->current()->body_number; ?>" />
@@ -178,7 +178,7 @@ foreach ($arrModel as $row) {
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ปริมาตรกระบอกสูบ
                                                                 (CC)</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="cylinder"
                                                                        value="<?php echo $arrCar->current()->cylinder; ?>" />
@@ -186,7 +186,7 @@ foreach ($arrModel as $row) {
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ความจุถังน้ำมัน</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="fueltank"
                                                                        value="<?php echo $arrCar->current()->fuel_tank; ?>" />
