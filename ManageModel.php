@@ -36,8 +36,7 @@ if (@$_GET ['delete'] == 'true') {
                         </div>
 
                         <div class="panel-body">
-                            <a href="addCarModel.php"><button type="button"
-                               class="btn btn-primary btn-lg">เพิ่มรุ่นรถยนต์</button></a>
+                            <a href="addCarModel.php"><button type="button" class="btn btn-primary">เพิ่มรุ่นรถยนต์</button></a>
 
                             <table class="table .table-bordered">
                                 <thead>
@@ -55,8 +54,8 @@ if (@$_GET ['delete'] == 'true') {
                                         <!-- insert some code  -->
                                         <tr>
                                             <td>
-                                                <a href="editCarModel.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
-                                                <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                                <a href="editCarModel.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
+                                                <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                             </td>
                                             <td><?php echo $row->brand_name; ?></td>
                                             <td><?php echo $row->name; ?></td>
