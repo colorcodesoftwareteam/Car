@@ -29,15 +29,15 @@ class ImageHelper{
 		echo $temp;
 	}
 	
-        function slideShow($imgCar) {
-            $temp = '<div id="carSlideShow" class="carousel slide col-md-10">';
+        function slideShow($slideName, $imgCar) {
+            $temp = '<div id="' .$slideName. '" class="carousel slide col-md-10">';
             $temp .= '<ol class="carousel-indicators">';
             $i = 0;
             foreach ($imgCar as $row) {
                 if ($i == 0) {
-                    $temp .= '<li data-target="#carSlideShow" data-slide-to="' .$i. '" class="active"></li>';
+                    $temp .= '<li data-target="#' .$slideName. '" data-slide-to="' .$i. '" class="active"></li>';
                 } else {
-                    $temp .= '<li data-target="#carSlideShow" data-slide-to="' .$i. '"></li>';
+                    $temp .= '<li data-target="#' .$slideName. '" data-slide-to="' .$i. '"></li>';
                 }
                 $i++;
             }
@@ -59,10 +59,10 @@ class ImageHelper{
                 $i++;
             }
             $temp .= '</div>';
-            $temp .= '<a class="left carousel-control" href="#carSlideShow" data-slide="prev">';
+            $temp .= '<a class="left carousel-control" href="#' .$slideName. '" data-slide="prev">';
             $temp .= '<span class="icon-prev"></span>';
             $temp .= '</a>';
-            $temp .= '<a class="right carousel-control" href="#carSlideShow" data-slide="next">';
+            $temp .= '<a class="right carousel-control" href="#' .$slideName. '" data-slide="next">';
             $temp .= '<span class="icon-next"></span>';
             $temp .= '</a>';
             $temp .= '</div>';
