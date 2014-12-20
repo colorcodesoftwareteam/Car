@@ -99,10 +99,16 @@ include_once 'src/class/MemberSystem.php';
                                                             <label for="inputPassword3" class="col-sm-2 control-label">อีเมลล์</label>
                                                             <div class="col-sm-10">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="email" value="<?php echo $curMember->current()->email; ?>" />
+                                                                       type="email" name="email" value="<?php echo $curMember->current()->email; ?>" />
                                                             </div>
                                                         </div>
-
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-2 control-label">รหัสผ่าน</label>
+                                                            <div class="col-sm-4">
+                                                                <input class="form-control" id="inputPassword3"
+                                                                       type="password" name="password" />
+                                                            </div>
+                                                        </div>
                                                         <!-- <button type="button" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button> -->
                                                         <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 
