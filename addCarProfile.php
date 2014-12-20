@@ -231,8 +231,8 @@ if (@$_GET ['submit'] == 'true') {
                                                                        type="text" name="fueltank" />
                                                             </div>
                                                         </div>
-                                                        <button type="button" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
-                                                        <button type="submit" class="btn btn-primary btn-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                                        <button type="button" class="btn btn-primary">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
+                                                        <button type="submit" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
 
                                                     </form>
                                                 </div>
