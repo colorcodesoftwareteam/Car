@@ -29,7 +29,45 @@ class ImageHelper{
 		echo $temp;
 	}
 	
-	
+        function slideShow($imgCar) {
+            $temp = '<div id="carSlideShow" class="carousel slide col-md-10">';
+            $temp .= '<ol class="carousel-indicators">';
+            $i = 0;
+            foreach ($imgCar as $row) {
+                if ($i == 0) {
+                    $temp .= '<li data-target="#carSlideShow" data-slide-to="' .$i. '" class="active"></li>';
+                } else {
+                    $temp .= '<li data-target="#carSlideShow" data-slide-to="' .$i. '"></li>';
+                }
+                $i++;
+            }
+            $temp .= '</ol>';
 
+            $temp .= '<div class="carousel-inner">';
+            $i = 0;
+            foreach ($imgCar as $row) {
+                if ($i == 0) {
+                    $temp .= '<div class="item active">';
+                    //$temp .= '<div class="fill" style="background-image:url(\'' .$row->path. '\');"></div>';
+                    $temp .= '<img src="' .$row->path. '" />';
+                    $temp .= '</div>';
+                } else {
+                    $temp .= '<div class="item">';
+                    $temp .= '<img src="' .$row->path. '" />';
+                    $temp .= '</div>';
+                }
+                $i++;
+            }
+            $temp .= '</div>';
+            $temp .= '<a class="left carousel-control" href="#carSlideShow" data-slide="prev">';
+            $temp .= '<span class="icon-prev"></span>';
+            $temp .= '</a>';
+            $temp .= '<a class="right carousel-control" href="#carSlideShow" data-slide="next">';
+            $temp .= '<span class="icon-next"></span>';
+            $temp .= '</a>';
+            $temp .= '</div>';
+            
+            echo $temp;
+        }
 }
 ?>
