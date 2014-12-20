@@ -12,14 +12,14 @@ class MemberSystem {
 
     function newMember($data) {
 
-        $str = "insert into member (Role_id,name,lastname,gender,birthdate,address,phoneNumber,email,create_dt,update_dt) "
-                . "values(2,'" . $data['name'] . "','" . $data['lname'] . "'," . $data['gender'] . ",'" . $data['birthday'] . "','" . $data['address'] . "','" . $data['phone'] . "','" . $data['email'] . "','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
+        $str = "insert into member (Role_id,name,lastname,gender,birthdate,address,phoneNumber,email,password,create_dt,update_dt) "
+                . "values(2,'" . $data['name'] . "','" . $data['lname'] . "'," . $data['gender'] . ",'" . $data['birthday'] . "','" . $data['address'] . "','" . $data['phone'] . "','" . $data['email'] . "','". $data['password'] ."','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
 
         return $this->objDB->query($str);
     }
 
     function editMember($data) {
-        $str = "update member set name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "' ,  gender='" . $data['POST']['gender'] . "',birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "' where id = '" . $data['GET']['memberid'] . "'";
+        $str = "update member set name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "' ,  gender='" . $data['POST']['gender'] . "',birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "',password='". $data['password'] ."' where id = '" . $data['GET']['memberid'] . "'";
         return $this->objDB->query($str);
     }
 
