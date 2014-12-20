@@ -106,7 +106,6 @@ $objCar = new ManageCar();
                                                                             <?php
                                                                         }
                                                                         ?>
-                                                                    </div>
                                                                     <?php
                                                                 } else {
                                                                     ?>
@@ -249,7 +248,6 @@ $objCar = new ManageCar();
                                                                             <?php
                                                                         }
                                                                         ?>
-                                                                    </div>
                                                                     <?php
                                                                 } else {
                                                                     ?>
