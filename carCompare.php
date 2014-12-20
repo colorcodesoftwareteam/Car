@@ -53,7 +53,7 @@ if (isset($_GET['year'])) {
                             <div class="row clearfix">
                                 <div class=" col-md-offset-11">
                                     <div class="row clearfix" >
-                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn btn-lg ">
+                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn">
                                             พิมพ์
                                         </button> 
                                         <p></p>
@@ -330,7 +330,7 @@ if (isset($_GET['year'])) {
 
                                                     </h2>
                                                     <p>
-                                                        <button type="button" class="btn btn-primary btn-lg">ภาพถ่ายจากกล้อง</button>
+                                                        <button type="button" class="btn btn-primary">ภาพถ่ายจากกล้อง</button>
                                                     </p>
                                                     <p>
                                                     </p>
