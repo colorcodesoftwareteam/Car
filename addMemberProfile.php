@@ -95,7 +95,7 @@
                                                             <label for="inputPassword3" class="col-sm-2 control-label">อีเมลล์</label>
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="email" />
+                                                                       type="email" name="email" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
