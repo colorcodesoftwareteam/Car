@@ -33,7 +33,7 @@ $objCar = new ManageCar();
                         <div class="panel-body">
                             <div class="row clearfix">
                                 <div class="col-md-3">
-                                    <a href="actionsNonMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn btn-lg ">
+                                    <a href="actionsNonMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn ">
                                             เลือกอีกครั้ง
                                         </button> 
                                     </a>
@@ -41,7 +41,7 @@ $objCar = new ManageCar();
                                 <div class=" col-md-offset-9">
                                     <div class="row clearfix" >
 
-                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn btn-lg ">
+                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn ">
                                             พิมพ์
                                         </button> 
                                         <p></p>
