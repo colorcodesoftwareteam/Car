@@ -37,36 +37,17 @@ if (@$_GET ['submit'] == 'true') {
 
                         <div class="panel-body">
 
-                            <form class="form-horizontal" action="addCarBrand.php?submit=true"
-                                  method="post">
-                                <fieldset>
-
-                                    <!-- Form Name -->
-
-
-                                    <!-- Text input-->
-                                    <div class="form-group">
-                                        <div class="control-group col-md-7">
-                                            <label class="control-label " for="brand">ยี่ห้อ :</label>
-                                            <div class="controls">
-                                                <input id="brand" name="brand" placeholder="กรอก....."
-                                                       class="input-xlarge" type="text">
-
-                                            </div>
-                                        </div>
+                            <form class="form-horizontal" action="addCarBrand.php?submit=true" method="post">
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label" for="brand">ยี่ห้อ </label>
+                                    <div class="col-sm-4">
+                                        <input class="form-control" id="brand" name="brand" placeholder="" type="text">
                                     </div>
-                                    <!-- Button (Double) -->
-
-                                    <div class="form-group">
-                                        <div class="control-group ">
-                                            <label class="control-label " for="add"></label>
-                                            <div class="controls col-md-3">
-                                                <button id="add" name="add" class="btn btn-primary ">เพิ่ม</button>
-                                                <button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </fieldset>
+                                </div>
+                                
+                                <button type="reset" id="clear" name="clear" class="btn btn-success">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
+                                <button type="submit" id="add" name="add" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                             </form>
                         </div>
                     </div>
