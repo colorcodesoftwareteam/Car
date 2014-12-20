@@ -43,7 +43,7 @@ class LoginSystem {
     }
 
     function validate() {
-        $StrQuery = "SELECT * FROM MEMBER WHERE email ='" . $this->user . "' and phoneNumber = '" . $this->pass . "'";
+        $StrQuery = "SELECT * FROM MEMBER WHERE email ='" . $this->user . "' and password = '" . $this->pass . "'";
         $rs = $this->objDB->query($StrQuery);
         $this->profile = mysql_fetch_object($rs);
         if ($this->objDB->hasRows())
