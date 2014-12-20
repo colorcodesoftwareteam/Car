@@ -2,14 +2,18 @@
 include 'src/class/ManageBrandCar.php';
 include 'src/class/ManageModelCar.php';
 include "src/class/ManageCar.php";
+include "src/class/ImageHelper.php";
 
 $objCar = new ManageCar();
 $objBrand = new ManageBrandCar ();
 $objModel = new ManageModelCar ();
+$objImgHlp = new ImageHelper ();
+
 $brand_id = "";
 $model_id = "";
 $year = "";
 $car_id = "";
+
 if (isset($_GET['page'])) {
     $currentPage = $_GET['page'];
 }
@@ -146,116 +150,57 @@ if (isset($_GET['car_id'])) {
                                             <?php
                                             $arrCar = $objCar->getCarById($car_id);
                                             $imgCar = $objCar->getCarImages($car_id);
+                                            
+                                            $objImgHlp->slideShow($imgCar);
                                             ?>
-
-                                            <div id="carousel-example-generic" class="carousel slide col-md-10" data-ride="carousel">
-                                                <!-- Indicators -->
-                                                <ol class="carousel-indicators">
-                                                    <?php
-                                                    $i = 0;
-                                                    foreach ($imgCar as $row) {
-                                                        ?>
-                                                        <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i++; ?>" ></li>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                </ol>
-
-                                                <!-- Wrapper for slides -->
-                                                <div class="carousel-inner" role="listbox">
-                                                    <?php
-                                                    $i = 0;
-                                                    if ($imgCar->count() > 0) {
-                                                        foreach ($imgCar as $row) {
-                                                            if ($i == 0) {
-                                                                ?>
-                                                                <div class="item active">
-                                                                    <?php
-                                                                } else {
-                                                                    ?>
-                                                                    <div class="item ">
-                                                                        <?php
-                                                                    }
-                                                                    ?>
-                                                                    <img src="<?php echo $row->path; ?>" alt="..." >
-                                                                    <div class="carousel-caption">
-                                                                        <?php
-                                                                        $i++;
-                                                                        ?>
-                                                                    </div>
-                                                                </div>
-
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                        </div>
-                                                        <?php
-                                                    } else {
-                                                        ?>
-                                                        <div class="active">
-                                                            <img src="img/no_img.jpg" alt="..." >
-                                                        </div>
-                                                        <?php
-                                                    }
-                                                    ?>
-                                                    <!-- Controls -->
-                                                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
-									<div class="form-group">
-                                                        <div class="input-group">
-                                                            <span><strong>ยี่ห้อรถยนต์ : </strong><?= $arrCar->current()->brand_name ?></span>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="input-group">
-                                                            <span><strong>รุ่น : </strong><?= $arrCar->current()->model_name ?></span>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="input-group">
-                                                            <span><strong>ปี : </strong><?= $arrCar->current()->car_year ?></span>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="input-group">
-                                                            <span><strong>เลขตัวถัง : </strong><?= $arrCar->current()->body_number ?></span>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="input-group">
-                                                            <span><strong>ปริมาตรกระบอกสูบ (CC) : </strong><?= $arrCar->current()->cylinder ?></span>
-                                                        </div>
-                                                        <p></p>
-                                                        <div class="input-group">
-                                                            <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?= $arrCar->current()->fuel_tank ?></span>
-                                                        </div>
-                                                        <p></p>
-                                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span><strong>ยี่ห้อรถยนต์ : </strong><?= $arrCar->current()->brand_name ?></span>
+                                    </div>
+                                    <p></p>
+                                    <div class="input-group">
+                                        <span><strong>รุ่น : </strong><?= $arrCar->current()->model_name ?></span>
+                                    </div>
+                                    <p></p>
+                                    <div class="input-group">
+                                        <span><strong>ปี : </strong><?= $arrCar->current()->car_year ?></span>
+                                    </div>
+                                    <p></p>
+                                    <div class="input-group">
+                                        <span><strong>เลขตัวถัง : </strong><?= $arrCar->current()->body_number ?></span>
+                                    </div>
+                                    <p></p>
+                                    <div class="input-group">
+                                        <span><strong>ปริมาตรกระบอกสูบ (CC) : </strong><?= $arrCar->current()->cylinder ?></span>
+                                    </div>
+                                    <p></p>
+                                    <div class="input-group">
+                                        <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?= $arrCar->current()->fuel_tank ?></span>
+                                    </div>
+                                    <p></p>
                                 </div>
                             </div>
-
-
                         </div>
 
 
-
-
                     </div>
-                </div>
 
-            </div>
 
-            <div class="row clearfix">
-                <div class="col-md-12 column">
+
+
                 </div>
             </div>
-            <!-- Footer -->
-            <?php include 'footer.php'; ?>
+
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+            </div>
+        </div>
+        <!-- Footer -->
+        <?php include 'footer.php'; ?>
     </body>
 </html>
