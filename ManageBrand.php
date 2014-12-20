@@ -39,9 +39,7 @@ echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageBrand.php>';
                         </div>
 
                         <div class="panel-body">
-                            <a href="addCarBrand.php"><button type="button"
-                                                              class="btn btn-primary btn-lg">เพิ่มยี่ห้อรถยนต์</button></a>
-
+                            <a href="addCarBrand.php"><button type="button" class="btn btn-primary">เพิ่มยี่ห้อรถยนต์</button></a>
                             <table class="table .table-bordered">
                                 <thead>
                                     <tr>
@@ -57,8 +55,8 @@ echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageBrand.php>';
                                     <!-- insert some code  -->
                                     <tr>
                                         <td>
-                                            <a href="editCarBrand.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
-                                            <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                            <a href="editCarBrand.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
+                                            <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                         </td>
                                         <td><?php echo $row->name; ?></td>
                                     </tr>
