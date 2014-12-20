@@ -56,7 +56,7 @@ if (@$_GET ['submit'] == 'true') {
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
-                                    <button type=submit" id="add" name="add" class="btn btn-primary ">แก้ไข</button>
+                                    <button type=submit" id="add" name="add" class="btn btn-success ">แก้ไข</button>
                                 </fieldset>
                             </form>
                         </div>
