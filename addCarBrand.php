@@ -46,8 +46,8 @@ if (@$_GET ['submit'] == 'true') {
                                     </div>
                                 </div>
                                 
-                                <button type="reset" id="clear" name="clear" class="btn btn-success">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
-                                <button type="submit" id="add" name="add" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                <button type="reset" id="clear" name="clear" class="btn btn-primary">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
+                                <button type="submit" id="add" name="add" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                             </form>
                         </div>
                     </div>
