@@ -66,8 +66,8 @@ if (@$_GET ['submit'] == 'true') {
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
-                                    <button type="reset" id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button>
-                                    <button type="submit" id="add" name="add" class="btn btn-primary ">เพิ่ม</button>
+                                    <button type="reset" id="clear" name="clear" class="btn btn-primary">ล้างข้อมูล</button>
+                                    <button type="submit" id="add" name="add" class="btn btn-success">เพิ่ม</button>
                                 </fieldset>
                             </form>
                         </div>
