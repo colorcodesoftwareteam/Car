@@ -22,7 +22,7 @@ class ImageHelper{
 	
 	function process(){
 		$temp =' <div align="center"><div class="form-group"> <div class="col-md-12">  ';
-		$temp .='<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'"> <a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a></div> ';
+		$temp .='<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'"> <a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a></div> ';
 		$temp .='</div>';
 		$temp .='</div>';
 		
