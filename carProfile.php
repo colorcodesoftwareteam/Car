@@ -151,7 +151,7 @@ if (isset($_GET['car_id'])) {
                                             $arrCar = $objCar->getCarById($car_id);
                                             $imgCar = $objCar->getCarImages($car_id);
                                             
-                                            $objImgHlp->slideShow($imgCar);
+                                            $objImgHlp->slideShow("carProfileSlideShow", $imgCar);
                                             ?>
                                         </div>
                                     </div>
@@ -184,18 +184,10 @@ if (isset($_GET['car_id'])) {
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
-
-
-
-
                 </div>
             </div>
-
         </div>
-
         <div class="row clearfix">
             <div class="col-md-12 column">
             </div>
