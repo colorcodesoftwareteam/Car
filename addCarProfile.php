@@ -204,14 +204,14 @@ if (@$_GET ['submit'] == 'true') {
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ปีที่ผลิต</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputEmail3" type="text"
                                                                        name="caryear" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">เลขตัวถัง</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="bodynumber" />
                                                             </div>
@@ -219,14 +219,14 @@ if (@$_GET ['submit'] == 'true') {
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ปริมาตรกระบอกสูบ
                                                                 (CC)</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="cylinder" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ความจุถังน้ำมัน</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="fueltank" />
                                                             </div>
