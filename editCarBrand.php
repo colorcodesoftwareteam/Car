@@ -48,27 +48,16 @@ if (@$_GET ['submit'] == 'true') {
                                     ?>
                                     <!-- Text input-->
                                     <div class="form-group">
-                                        <div class="control-group col-md-7">
-                                            <label class="control-label " for="brand">ยี่ห้อ :</label>
-                                            <div class="controls">
-                                                <input id="brand" name="brand"
-                                                       value="<?php echo $arrBrand->current()->name; ?>" placeholder="กรอก....."
-                                                       class="input-xlarge" type="text">
+                                        <label class="col-sm-2 control-label" for="brand">ยี่ห้อ</label>
+                                        <div class="col-sm-4">
+                                            <input id="brand" name="brand"
+                                                   value="<?php echo $arrBrand->current()->name; ?>" placeholder="กรอก....."
+                                                   class="form-control" type="text">
 
-                                            </div>
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
-
-                                    <div class="form-group">
-                                        <div class="control-group ">
-                                            <label class="control-label " for="add"></label>
-                                            <div class="controls col-md-3">
-                                                <button id="add" name="add" class="btn btn-primary ">แก้ไข</button>
-                                                <!-- <button id="clear" name="clear" class="btn btn-danger">ล้างข้อมูล</button> -->
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <button type=submit" id="add" name="add" class="btn btn-primary ">แก้ไข</button>
                                 </fieldset>
                             </form>
                         </div>
