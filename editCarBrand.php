@@ -51,9 +51,8 @@ if (@$_GET ['submit'] == 'true') {
                                         <label class="col-sm-2 control-label" for="brand">ยี่ห้อ</label>
                                         <div class="col-sm-4">
                                             <input id="brand" name="brand"
-                                                   value="<?php echo $arrBrand->current()->name; ?>" placeholder="กรอก....."
+                                                   value="<?php echo $arrBrand->current()->name; ?>" placeholder=""
                                                    class="form-control" type="text">
-
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
