@@ -41,8 +41,7 @@ if (@$_GET['delete'] == 'true') {
                         <div class="panel-body">
                             <div class="row clearfix">
                                 <div class="col-md-12 column">
-                                    <a href="addCarProfile.php"><button type="button"
-                                                                        class="btn btn-primary btn-lg">เพิ่มสมาชิก</button></a>
+                                    <a href="addCarProfile.php"><button type="button" class="btn btn-primary">เพิ่มสมาชิก</button></a>
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -62,8 +61,8 @@ if (@$_GET['delete'] == 'true') {
                                                 ?>
                                                 <tr>
                                                     <td>
-                                                        <a href="editCarProfile.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning btn-lg">แก้ไข&nbsp;</button></a>
-                                                        <a href="ManageCarProfile.php?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger btn-lg">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                                        <a href="editCarProfile.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
+                                                        <a href="ManageCarProfile.php?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                                     </td>
                                                     <td><?php echo $row->brand_name ?></td>
                                                     <td><?php echo $row->model_name ?></td>
