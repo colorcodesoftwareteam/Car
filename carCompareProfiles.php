@@ -41,7 +41,7 @@ $objCar = new ManageCar();
                                 <div class=" col-md-offset-9">
                                     <div class="row clearfix" >
 
-                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn ">
+                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn " onclick="window.print();">
                                             พิมพ์
                                         </button> 
                                         <p></p>
