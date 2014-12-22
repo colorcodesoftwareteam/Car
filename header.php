@@ -50,48 +50,47 @@ include_once 'src/class/MemberSystem.php';
                 <?php } ?>
             </ul>
             <!-- Login form -->
-            <?php if (!isset($_SESSION['memberId'])) { ?>
-                <form class="form-inline pull-right" style="margin-top:10px;" role="form" action="actionsNonMember.php?action=login"  method="post">
-                    <div class="form-group">
+            <div style="float:right;">
+                <?php if (!isset($_SESSION['memberId'])) { ?>
+                    <form class="form-inline pull-right" role="form" action="actionsNonMember.php?action=login"  method="post">
                         <div class="form-group">
                             <label class="sr-only" for="exampleInputEmail2">ชื่อผู้ใช้</label>
                             <input type="email" name="email" class="form-control" id="exampleInputEmail2" placeholder="ชื่อผู้ใช้">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="exampleInputPassword2">รหัสผ่าน</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
+                        </div>
+                        <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
+
+                        <div class="form-inline">
+
+                            <label>
+                                <a href="addMemberProfile.php">สมัครสมาชิก</a>
+                            </label>
 
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="exampleInputPassword2">รหัสผ่าน</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword2" placeholder="รหัสผ่าน">
-                    </div>
-                    <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
+                        <?php if (@$_GET['username'] == 'false') { ?>
+                            <span class="text-danger">username นี้ไม่มีในระบบ!,</span>
+                            <?php
+                        }
+                        if (@$_GET['login'] == 'false') {
+                            ?>
+                            <span class="text-danger">รหัสผ่านไม่ถูกต้อง!</span>
+                        <?php } ?>
 
-                    <div class="form-inline">
+                    </form>
+                    <?php
+                } else {
+                    $objMem = new MemberSystem();
+                    $curMember = $objMem->getMemeberById($_SESSION['memberId']);
+                    ?>
 
-                        <label>
-                            <a href="addMemberProfile.php">สมัครสมาชิก</a>
-                        </label>
-
-                    </div>
-                    <?php if (@$_GET['username'] == 'false') { ?>
-                        <span class="text-danger">username นี้ไม่มีในระบบ!,</span>
-                        <?php
-                    }
-                    if (@$_GET['login'] == 'false') {
-                        ?>
-                        <span class="text-danger">รหัสผ่านไม่ถูกต้อง!</span>
-                    <?php } ?>
-
-                </form>
-                <?php
-            } else {
-                $objMem = new MemberSystem();
-                $curMember = $objMem->getMemeberById($_SESSION['memberId']);
-                ?>
-
-                <span class="" style="color:white;">สวัสดี <?php echo $curMember->current()->name . ' ' . $curMember->current()->lastname; ?></span>,<a href="editMemberProfile.php"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
-            <?php } ?>
+                    <span class="" style="color:white;">สวัสดี <?php echo $curMember->current()->name;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>,<a href="editMemberProfile.php"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
+                <?php } ?>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.navbar-collapse -->
     </div>
 </nav>
 
