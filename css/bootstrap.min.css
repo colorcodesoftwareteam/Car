@@ -690,7 +690,7 @@ pre code{
 	padding-left:15px;
 	margin-right:auto;
 	margin-left:auto;
-	margin-top:20px;
+	margin-top:10px;
 }
 
 .container:before,.container:after{
@@ -4131,7 +4131,8 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 .navbar-nav>li>a{
 	padding-top:10px;
 	padding-bottom:10px;
-	line-height:20px
+	line-height:8px;
+        margin-top: -2px;
 }
 
 @media(max-width:767px){
