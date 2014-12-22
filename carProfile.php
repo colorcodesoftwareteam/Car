@@ -138,7 +138,7 @@ if (isset($_GET['car_id'])) {
                             <div class="row clearfix">
                                 <div class=" col-md-offset-11">
                                     <div class="row " >
-                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn btn-lg ">
+                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn btn-lg " onclick="window.print();">
                                             พิมพ์
                                         </button>
                                         <p></p>
