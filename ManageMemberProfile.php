@@ -80,7 +80,7 @@ if (@$_GET['delete'] == 'true') {
                             </div>
 
                             <nav>
-                                <?php $objMember->getPageing($currentPage); ?>
+                                <?php $objMember->getPaging("ManageMemberProfile", $currentPage); ?>
                             </nav>
                         </div>
                     </div>

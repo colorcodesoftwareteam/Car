@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Database.php';
+include_once 'Pagination.php';
 
 class MemberSystem {
 
@@ -60,18 +61,7 @@ class MemberSystem {
         return $arrayIterator;
     }
     
-    function getPageing($currentPage) {
-        $pages = ceil($this->NUM_ROWS / $this->PAGE_SIZE);
-        
-        $temp = '<ul class="pagination">';
-        $temp .= '<li><a>หน้าที่</a></li>';
-        $temp .= '<li><a href="ManageMemberProfile.php?page=' .(($currentPage - 1) < 1 ? 1 : ($currentPage - 1)). '"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>';
-        for ($i = 1; $i <= $pages; $i++) {
-            $temp .= '<li><a href="ManageMemberProfile.php?page=' .$i. '">' .$i. '</a></li>';
-        }
-        $temp .= '<li><a href="ManageMemberProfile.php?page=' .(($currentPage + 1) > $pages ? $currentPage : ($currentPage + 1)). '"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>';
-        $temp .= '</ul>';
-        
-        echo $temp;
+    function getPaging($page, $currentPage) {
+        Pagination::getPaging($page, $currentPage, $this->NUM_ROWS, $this->PAGE_SIZE);
     }
 }

@@ -41,7 +41,7 @@ if (@$_GET ['delete'] == 'true') {
                             <table class="table .table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>จัดการ</th>
+                                        <th></th>
                                         <th>ยี่ห้อ</th>
                                         <th>รุ่น<th>
                                     </tr>
@@ -64,23 +64,11 @@ if (@$_GET ['delete'] == 'true') {
                                     <!-- insert some code  -->
                                 </tbody>
                             </table>
+                            <nav>
+                                <?php $objModelCar->getPaging("ManageModel", $currentPage); ?>
+                            </nav>
                         </div>
                     </div>
-                    <nav>
-                        <ul class="pagination">
-                            <li><a>หน้าที่</a></li>
-                            <?php $pages = $objModelCar->getPageing(); ?>
-                            <li><a href="ManageModel.php?page=<?= ($currentPage - 1) < 1 ? 1 : ($currentPage - 1) ?>"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                            <?php
-                            for ($i = 1; $i <= $pages; $i++) {
-                                ?>
-                                <li><a href="ManageModel.php?page=<?= $i ?>"><?= $i ?></a></li>
-                                <?php
-                            }
-                            ?>
-                            <li><a href="ManageModel.php?page=<?= ($currentPage + 1) > $pages ? $currentPage : ($currentPage + 1) ?>"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
         </div>

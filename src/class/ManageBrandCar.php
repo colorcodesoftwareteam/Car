@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Database.php';
+include_once 'Pagination.php';
 
 class ManageBrandCar {
 
@@ -68,8 +69,8 @@ class ManageBrandCar {
         return $arrayIterator;
     }
     
-    function getPageing() {
-        return ceil($this->NUM_ROWS / $this->PAGE_SIZE);
+    function getPaging($page, $currentPage) {
+        Pagination::getPaging($page, $currentPage, $this->NUM_ROWS, $this->PAGE_SIZE);
     }
 }
 
