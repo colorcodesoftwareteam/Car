@@ -45,7 +45,7 @@ include_once 'src/class/MemberSystem.php';
                     ?>
 
                     <li>
-                        <a href="#">จัดการสมาชิก</a>
+                        <a href="ManageMemberProfile.php">จัดการสมาชิก</a>
                     </li>
                 <?php } ?>
             </ul>
@@ -64,21 +64,21 @@ include_once 'src/class/MemberSystem.php';
                         <button type="submit" class="btn btn-default">เข้าสู่ระบบ</button>
 
                         <div class="form-inline">
-
                             <label>
                                 <a href="addMemberProfile.php">สมัครสมาชิก</a>
                             </label>
-
                         </div>
                         <?php if (@$_GET['username'] == 'false') { ?>
-                            <span class="text-danger">username นี้ไม่มีในระบบ!,</span>
+                        <div class="form-inline">
+                            <label class="text-danger">username นี้ไม่มีในระบบ! </label>
+                        </div>
                             <?php
-                        }
-                        if (@$_GET['login'] == 'false') {
+                        } else if (@$_GET['login'] == 'false') {
                             ?>
-                            <span class="text-danger">รหัสผ่านไม่ถูกต้อง!</span>
+                        <div class="form-inline">
+                            <label class="text-danger">รหัสผ่านไม่ถูกต้อง! </label>
+                        </div>
                         <?php } ?>
-
                     </form>
                     <?php
                 } else {
@@ -86,7 +86,7 @@ include_once 'src/class/MemberSystem.php';
                     $curMember = $objMem->getMemeberById($_SESSION['memberId']);
                     ?>
 
-                    <span class="" style="color:white;">สวัสดี <?php echo $curMember->current()->name;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>,<a href="editMemberProfile.php"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
+                    <span class="" style="color:white;">สวัสดี,&nbsp;&nbsp;<?php echo $curMember->current()->name;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>,<a href="editMemberProfile.php"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
                 <?php } ?>
             </div>
             <!-- /.navbar-collapse -->
