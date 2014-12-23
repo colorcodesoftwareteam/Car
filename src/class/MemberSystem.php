@@ -14,15 +14,14 @@ class MemberSystem {
     }
 
     function newMember($data) {
-
-        $str = "insert into member (Role_id,name,lastname,gender,birthdate,address,phoneNumber,email,password,create_dt,update_dt) "
+        $str = "insert into member (role_id,name,lastname,gender,birthdate,address,phoneNumber,email,password,create_dt,update_dt) "
                 . "values(2,'" . $data['name'] . "','" . $data['lname'] . "'," . $data['gender'] . ",'" . $data['birthday'] . "','" . $data['address'] . "','" . $data['phone'] . "','" . $data['email'] . "','". $data['password'] ."','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
 
         return $this->objDB->query($str);
     }
 
     function editMember($data) {
-        $str = "update member set name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "' ,  gender='" . $data['POST']['gender'] . "',birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "',password='". $data['password'] ."' where id = '" . $data['GET']['memberid'] . "'";
+        $str = "update member set role_id='" .(isset($data['POST']['role']) ? $data['POST']['role'] : '2'). "', name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "' ,  gender='" . $data['POST']['gender'] . "',birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "',password='". $data['POST']['password'] ."' where id = '" . $data['GET']['memberid'] . "'";
         return $this->objDB->query($str);
     }
 
@@ -31,7 +30,10 @@ class MemberSystem {
     }
 
     function getMemeberById($id) {
-        $str = "select * from member where id='" . $id . "'";
+        $str = "select m.id, m.role_id, m.name, m.lastname, m.gender, m.birthdate, m.address, m.phoneNumber, 
+                m.email, m.password, m.detail, m.create_dt, m.update_dt, r.name as role_name, r.detail as role_detail 
+                from member m left join role r on m.role_id=r.id 
+                where m.id='" . $id . "'";
         $rs = $this->objDB->query($str);
         $arrauIterator = new ArrayIterator();
         while ($row = mysql_fetch_object($rs)) {
