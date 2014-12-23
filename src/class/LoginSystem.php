@@ -24,7 +24,7 @@ class LoginSystem {
             return false;
         }
         $_SESSION['memberId'] = $this->profile->id;
-        $_SESSION['Role_id'] = $this->profile->Role_id;
+        $_SESSION['role_id'] = $this->profile->role_id;
         $_SESSION['name'] = $this->profile->name;
         $_SESSION['lastname'] = $this->profile->lastname;
         return true;
