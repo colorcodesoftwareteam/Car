@@ -80,10 +80,15 @@ if (@$_GET['delete'] == 'true') {
                                     </table>
                                 </div>
                             </div>
-
-                            <nav>
-                                <?php $objMember->getPaging("ManageMemberProfile", $currentPage); ?>
-                            </nav>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row clearfix">
+                                <div class="col-md-offset-4">
+                                    <nav>
+                                        <?php $objMember->getPaging("ManageMemberProfile", $currentPage); ?>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
