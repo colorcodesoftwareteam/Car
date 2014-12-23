@@ -64,9 +64,15 @@ if (@$_GET ['delete'] == 'true') {
                                     <!-- insert some code  -->
                                 </tbody>
                             </table>
-                            <nav>
-                                <?php $objModelCar->getPaging("ManageModel", $currentPage); ?>
-                            </nav>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row clearfix">
+                                <div class="col-md-offset-4">
+                                    <nav>
+                                        <?php $objModelCar->getPaging("ManageModel", $currentPage); ?>
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
