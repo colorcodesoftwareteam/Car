@@ -167,6 +167,8 @@ if (isset($_GET['year'])) {
                                 <?php
                             }
                             ?>
+                        </div>
+                        <div class="panel-footer">
                             <div class="row clearfix">
                                 <div class="col-md-offset-4">
                                     <nav>
