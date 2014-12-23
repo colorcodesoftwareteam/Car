@@ -41,10 +41,10 @@ include_once 'src/class/MemberSystem.php';
                                                 <div class="panel-body">
                                                     <?php
                                                     $objMem = new MemberSystem();
-                                                    $curMember = $objMem->getMemeberById($_SESSION['memberId']);
+                                                    $curMember = $objMem->getMemeberById($_GET['id']);
                                                     ?>
                                                     <form class="form-horizontal" role="form"
-                                                          action="actionsMember.php?action=updateprofile&memberid=<?php echo $_SESSION['memberId'] ?>" method="post"  enctype="multipart/form-data">
+                                                          action="actionsMember.php?action=updateprofile&memberid=<?php echo $_GET['id']; ?>" method="post"  enctype="multipart/form-data">
                                                         <hr/>
 
 
@@ -77,43 +77,52 @@ include_once 'src/class/MemberSystem.php';
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">วันเกิด</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="dateData" type="datetime" name="birthdate" value="<?php echo $curMember->current()->birthdate; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ที่อยู่</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="address"  value="<?php echo $curMember->current()->address; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">เบอร์โทรศัพท์</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="phoneNumber"  value="<?php echo $curMember->current()->phoneNumber; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">อีเมลล์</label>
-                                                            <div class="col-sm-10">
+                                                            <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="email" name="email" value="<?php echo $curMember->current()->email; ?>" />
                                                             </div>
                                                         </div>
+                                                        <?php
+                                                        if ($_SESSION['role_id'] == '1') {
+                                                            ?>
+                                                            <div class="form-group">
+                                                                <label for="inputEmail3" class="col-sm-2 control-label">บทบาท</label>
+                                                                <div class="col-md-4">
+                                                                    <select class="form-control" name="role">
+                                                                        <option value="1" <?php echo $curMember->current()->role_id == '1' ? 'selected' : ''?>>ผู้ดูแลระบบ</option>
+                                                                        <option value="2" <?php echo $curMember->current()->role_id == '2' ? 'selected' : ''?>>สมาชิก</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">รหัสผ่าน</label>
                                                             <div class="col-sm-4">
-                                                                <input class="form-control" id="inputPassword3"
-                                                                       type="password" name="password" />
+                                                                <input class="form-control" id="inputPassword3" type="password" name="password" value="<?php echo $curMember->current()->password; ?>" />
                                                             </div>
                                                         </div>
                                                         <!-- <button type="button" class="btn btn-success">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button> -->
                                                         <button type="submit" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-
-
-
                                                     </form>
                                                 </div>
 
