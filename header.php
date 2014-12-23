@@ -69,13 +69,13 @@ include_once 'src/class/MemberSystem.php';
                         </div>
                         <?php if (@$_GET['username'] == 'false') { ?>
                         <div class="form-inline">
-                            <label class="text-danger">username นี้ไม่มีในระบบ! </label>
+                            <span class="text-danger"><b>username นี้ไม่มีในระบบ ! </b></span>
                         </div>
                             <?php
                         } else if (@$_GET['login'] == 'false') {
                             ?>
                         <div class="form-inline">
-                            <label class="text-danger">รหัสผ่านไม่ถูกต้อง! </label>
+                            <span class="text-danger"><b>รหัสผ่านไม่ถูกต้อง ! </b></span>
                         </div>
                         <?php } ?>
                     </form>
