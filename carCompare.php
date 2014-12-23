@@ -181,8 +181,8 @@ if (isset($_GET['year'])) {
                                                                             $action = 'choosecar2';
                                                                         }
                                                                         ?>
-                                                                        <a href="actionsNonMember.php?action=<?php echo $action; ?>&carid=<?php echo $row->id ?>">
-                                                                        <!-- <a href="carProfile.php?car_id=<?php //echo $row->id      ?>&brandid=<?php //echo $brand_id      ?>&modelid=<?php //echo $model_id      ?>&year=<?php //echo $year      ?>"> -->
+                                                                        <a href="actionsMember.php?action=<?php echo $action; ?>&carid=<?php echo $row->id ?>">
+                                                                        <!-- <a href="carProfile.php?car_id=<?php //echo $row->id         ?>&brandid=<?php //echo $brand_id         ?>&modelid=<?php //echo $model_id         ?>&year=<?php //echo $year         ?>"> -->
                                                                             <div class="col-md-6 column">
                                                                                 <?php
                                                                                 $arrImgs = $objCar->getCarImagesWithNoImage($row->id);
@@ -199,7 +199,7 @@ if (isset($_GET['year'])) {
                                                                             </div>
                                                                             <div class="col-md-6 column">
                                                                                 <strong><?php echo $row->brand_name; ?></strong><br> <?php echo $row->model_name; ?> ปี : <?php echo $row->car_year; ?><br>
-                                                                                <!-- <a href="actionsNonMember.php?action=<?php //echo $action;      ?>&carid=<?php //echo $row->id      ?>"><button class="btn">เลือก</button></a> -->
+                                                                                <!-- <a href="actionsNonMember.php?action=<?php //echo $action;         ?>&carid=<?php //echo $row->id         ?>"><button class="btn">เลือก</button></a> -->
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -240,167 +240,175 @@ if (isset($_GET['year'])) {
                                     </div>
                                 </div>
                                 <div class="col-md-6 column">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
+                                    <?php if (isset($_SESSION['car1'])) { ?>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-heading">
+                                                <h3 class="panel-title">
 
-                                            </h3>
+                                                </h3>
+                                            </div>
+                                            <div class="panel-body">
+                                                <form class="form-horizontal" role="form"
+                                                      action="actionsMember.php?action=choosecarbynewcar" method="post"  enctype="multipart/form-data">
+
+                                                    <div class="form-group">
+                                                        <label for="pic1" class="col-sm-3 control-label">รูปภาพที่ 1</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic1" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic2" class="col-sm-3 control-label">รูปภาพที่ 2</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic2" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic3" class="col-sm-3 control-label">รูปภาพที่ 3</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic3" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic4" class="col-sm-3 control-label">รูปภาพที่ 4</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic4" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic5" class="col-sm-3 control-label">รูปภาพที่ 5</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic5" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic6" class="col-sm-3 control-label">รูปภาพที่ 6</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic6" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic7" class="col-sm-3 control-label">รูปภาพที่ 7</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic7" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic8" class="col-sm-3 control-label">รูปภาพที่ 8</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic8" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic9" class="col-sm-3 control-label">รูปภาพที่ 9</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic9" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="pic10" class="col-sm-3 control-label">รูปภาพที่ 10</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" id="pic10" type="file" name="files[]" />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <hr/>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-3 control-label">ยี่ห้อรถ</label>
+                                                        <div class="col-md-8">
+                                                            <select class="form-control" id="brandAdd" name="brandid">
+                                                                <option>-เลือก-</option>
+                                                                <?php
+                                                                $rsBrand = $objBrand->getBrandAll();
+                                                                foreach ($rsBrand as $row) {
+                                                                    ?>
+                                                                    <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-3 control-label">รุ่น</label>
+
+                                                        <div class="col-md-8">
+                                                            <select class="form-control" name="modelid" id="modelAdd" style="visibility: hidden;">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-3 control-label">ประเภทรถยนต์</label>
+                                                        <div class="col-md-8">
+
+                                                            <select class="form-control" name="typecar">
+                                                                <option value="0">-เลือก-</option>
+                                                                <option value="1">รถเก๋ง</option>
+                                                                <option value="2">รถกระบะ</option>
+
+                                                            </select>
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputEmail3" class="col-sm-3 control-label">ปีที่ผลิต</label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" id="inputEmail3" type="text"
+                                                                   name="caryear" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPassword3" class="col-sm-3 control-label">เลขตัวถัง</label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" id="inputPassword3"
+                                                                   type="text" name="bodynumber" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPassword3" class="col-sm-3 control-label">ปริมาตรกระบอกสูบ
+                                                            (CC)</label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" id="inputPassword3"
+                                                                   type="text" name="cylinder" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="inputPassword3" class="col-sm-3 control-label">ความจุถังน้ำมัน</label>
+                                                        <div class="col-sm-8">
+                                                            <input class="form-control" id="inputPassword3"
+                                                                   type="text" name="fueltank" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                       
+                                                        <div class="col-sm-8 col-md-offset-3">
+                                                            <input type="submit" class="btn btn-primary" value="เพิ่ม">
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <div class="panel-footer">
+
+                                            </div>
                                         </div>
-                                        <div class="panel-body">
-                                            <form class="form-horizontal" role="form"
-                                                  action="addCarProfile.php?submit=true" method="post"  enctype="multipart/form-data">
-
-                                                <div class="form-group">
-                                                    <label for="pic1" class="col-sm-3 control-label">รูปภาพที่ 1</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic1" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic2" class="col-sm-3 control-label">รูปภาพที่ 2</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic2" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic3" class="col-sm-3 control-label">รูปภาพที่ 3</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic3" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic4" class="col-sm-3 control-label">รูปภาพที่ 4</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic4" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic5" class="col-sm-3 control-label">รูปภาพที่ 5</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic5" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic6" class="col-sm-3 control-label">รูปภาพที่ 6</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic6" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic7" class="col-sm-3 control-label">รูปภาพที่ 7</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic7" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic8" class="col-sm-3 control-label">รูปภาพที่ 8</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic8" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic9" class="col-sm-3 control-label">รูปภาพที่ 9</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic9" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label for="pic10" class="col-sm-3 control-label">รูปภาพที่ 10</label>
-                                                    <div class="col-md-8">
-                                                        <input class="form-control" id="pic10" type="file" name="files[]" />
-
-                                                    </div>
-                                                </div>
-
-                                                <hr/>
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-3 control-label">ยี่ห้อรถ</label>
-                                                    <div class="col-md-8">
-                                                        <select class="form-control" id="brandAdd" name="brandid">
-                                                            <option>-เลือก-</option>
-                                                            <?php
-                                                            $rsBrand = $objBrand->getBrandAll();
-                                                            foreach ($rsBrand as $row) {
-                                                                ?>
-                                                                <option value="<?php echo $row->id; ?>"><?php echo $row->name; ?></option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-3 control-label">รุ่น</label>
-
-                                                    <div class="col-md-8">
-                                                        <select class="form-control" name="modelid" id="modelAdd" style="visibility: hidden;">
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-3 control-label">ประเภทรถยนต์</label>
-                                                    <div class="col-md-8">
-
-                                                        <select class="form-control" name="typecar">
-                                                            <option value="0">-เลือก-</option>
-                                                            <option value="1">รถเก๋ง</option>
-                                                            <option value="2">รถกระบะ</option>
-
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputEmail3" class="col-sm-3 control-label">ปีที่ผลิต</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" id="inputEmail3" type="text"
-                                                               name="caryear" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-3 control-label">เลขตัวถัง</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" id="inputPassword3"
-                                                               type="text" name="bodynumber" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-3 control-label">ปริมาตรกระบอกสูบ
-                                                        (CC)</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" id="inputPassword3"
-                                                               type="text" name="cylinder" />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="inputPassword3" class="col-sm-3 control-label">ความจุถังน้ำมัน</label>
-                                                    <div class="col-sm-8">
-                                                        <input class="form-control" id="inputPassword3"
-                                                               type="text" name="fueltank" />
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="panel-footer">
-
-                                        </div>
-                                    </div>
+                                    <?php } ?>
                                     <div class="panel panel-primary hidden">
                                         <div class="panel-heading">
                                             <h3 class="panel-title">
@@ -434,11 +442,11 @@ if (isset($_GET['year'])) {
 </html>
 
 <script type="text/javascript">
-    $(function() {
-        $('#brandAdd').change(function() {
+    $(function () {
+        $('#brandAdd').change(function () {
             var brandid = $('#brandAdd').val();
             $('#modelAdd').css('visibility', 'visible');
-            $.post('json/listModel.php', {id: brandid}, function(data) {
+            $.post('json/listModel.php', {id: brandid}, function (data) {
                 $('#modelAdd').html(data);
             });
         });

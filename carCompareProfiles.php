@@ -33,7 +33,7 @@ $objCar = new ManageCar();
                         <div class="panel-body">
                             <div class="row clearfix">
                                 <div class="col-md-3">
-                                    <a href="actionsNonMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn ">
+                                    <a href="actionsMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn ">
                                             เลือกอีกครั้ง
                                         </button> 
                                     </a>
