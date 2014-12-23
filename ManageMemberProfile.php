@@ -53,6 +53,7 @@ if (@$_GET['delete'] == 'true') {
                                                 <th>ทึ่อยู่</th>
                                                 <th>เบอร์โทรศัพท์</th>
                                                 <th>อีเมลล์</th>
+                                                <th>บทบาท</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -72,6 +73,7 @@ if (@$_GET['delete'] == 'true') {
                                                     <td><?php echo $row->address ?></td>
                                                     <td><?php echo $row->phoneNumber ?></td>
                                                     <td><?php echo $row->email ?></td>
+                                                    <td><?php echo $row->role_name ?></td>
                                                 </tr>
                                             <?php } ?>
                                         </tbody>
