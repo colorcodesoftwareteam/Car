@@ -39,9 +39,6 @@
 
                                                     <form class="form-horizontal" role="form"
                                                           action="actionsNonMember.php?action=register" submit=true" method="post"  enctype="multipart/form-data">
-
-
-
                                                         <hr/>
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ชื่อ</label>
@@ -107,7 +104,6 @@
                                                         </div>
                                                         <button type="reset" class="btn btn-success ">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
                                                         <button type="submit" class="btn btn-primary ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เพิ่ม&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-
                                                     </form>
                                                 </div>
 
