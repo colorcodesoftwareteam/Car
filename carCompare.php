@@ -182,7 +182,7 @@ if (isset($_GET['year'])) {
                                                                         }
                                                                         ?>
                                                                         <a href="actionsNonMember.php?action=<?php echo $action; ?>&carid=<?php echo $row->id ?>">
-                                                                        <!-- <a href="carProfile.php?car_id=<?php //echo $row->id     ?>&brandid=<?php //echo $brand_id     ?>&modelid=<?php //echo $model_id     ?>&year=<?php //echo $year     ?>"> -->
+                                                                        <!-- <a href="carProfile.php?car_id=<?php //echo $row->id      ?>&brandid=<?php //echo $brand_id      ?>&modelid=<?php //echo $model_id      ?>&year=<?php //echo $year      ?>"> -->
                                                                             <div class="col-md-6 column">
                                                                                 <?php
                                                                                 $arrImgs = $objCar->getCarImagesWithNoImage($row->id);
@@ -199,7 +199,7 @@ if (isset($_GET['year'])) {
                                                                             </div>
                                                                             <div class="col-md-6 column">
                                                                                 <strong><?php echo $row->brand_name; ?></strong><br> <?php echo $row->model_name; ?> ปี : <?php echo $row->car_year; ?><br>
-                                                                                <!-- <a href="actionsNonMember.php?action=<?php //echo $action;     ?>&carid=<?php //echo $row->id     ?>"><button class="btn">เลือก</button></a> -->
+                                                                                <!-- <a href="actionsNonMember.php?action=<?php //echo $action;      ?>&carid=<?php //echo $row->id      ?>"><button class="btn">เลือก</button></a> -->
                                                                             </div>
                                                                         </a>
                                                                     </div>
@@ -219,19 +219,7 @@ if (isset($_GET['year'])) {
                                             <div class="row clearfix">
                                                 <div class="col-md-offset-4">
                                                     <nav>
-                                                        <ul class="pagination">
-                                                            <li><a>หน้าที่</a></li>
-                                                            <?php $pages = $objCar->getPageing(); ?>
-                                                            <li><a href="carCompare.php?page=<?= ($currentPage - 1) < 1 ? 1 : ($currentPage - 1) ?>&brandid=<?= $brand_id ?>&modelid=<?= $model_id ?>&year=<?= $year ?>"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                                                            <?php
-                                                            for ($i = 1; $i <= $pages; $i++) {
-                                                                ?>
-                                                                <li><a href="carCompare.php?page=<?= $i ?>&brandid=<?= $brand_id ?>&modelid=<?= $model_id ?>&year=<?= $year ?>"><?= $i ?></a></li>
-                                                                <?php
-                                                            }
-                                                            ?>
-                                                            <li><a href="carCompare.php?page=<?= ($currentPage + 1) > $pages ? $currentPage : ($currentPage + 1) ?>&brandid=<?= $brand_id ?>&modelid=<?= $model_id ?>&year=<?= $year ?>"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                                                        </ul>
+                                                        <?php $objCar->getPaging("carCompare", $currentPage); ?>
                                                     </nav>
                                                 </div>
                                             </div>
