@@ -21,10 +21,11 @@ include_once 'src/class/MemberSystem.php';
                 <li>
                     <a href="index.php">หน้าหลัก</a>
                 </li>
-                <li>
-                    <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
-                </li>
                 <?php if (isset($_SESSION['memberId'])) { ?>
+                    <li>
+                        <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
+                    </li>
+
                     <li>
                         <a href="ManageCarProfile.php">จัดการรถยนต์</a>
                     </li>
@@ -68,15 +69,15 @@ include_once 'src/class/MemberSystem.php';
                             </label>
                         </div>
                         <?php if (@$_GET['username'] == 'false') { ?>
-                        <div class="form-inline">
-                            <span class="text-danger"><b>username นี้ไม่มีในระบบ ! </b></span>
-                        </div>
+                            <div class="form-inline">
+                                <span class="text-danger"><b>username นี้ไม่มีในระบบ ! </b></span>
+                            </div>
                             <?php
                         } else if (@$_GET['login'] == 'false') {
                             ?>
-                        <div class="form-inline">
-                            <span class="text-danger"><b>รหัสผ่านไม่ถูกต้อง ! </b></span>
-                        </div>
+                            <div class="form-inline">
+                                <span class="text-danger"><b>รหัสผ่านไม่ถูกต้อง ! </b></span>
+                            </div>
                         <?php } ?>
                     </form>
                     <?php
@@ -84,7 +85,7 @@ include_once 'src/class/MemberSystem.php';
                     $objMem = new MemberSystem();
                     $curMember = $objMem->getMemeberById($_SESSION['memberId']);
                     ?>
-                    <span class="" style="color:white;">สวัสดี,&nbsp;&nbsp;<?php echo $curMember->current()->name;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>,<a href="editMemberProfile.php?id=<?=$_SESSION['memberId']?>"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
+                    <span class="" style="color:white;">สวัสดี,&nbsp;&nbsp;<?php echo $curMember->current()->name; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>,<a href="editMemberProfile.php?id=<?= $_SESSION['memberId'] ?>"<button class="btn btn-default">แก้ไขข้อมูล</button></a> <a href="actionsMember.php?action=logout" ><button class="btn btn-danger">ออกจากระบบ</button></a>
                 <?php } ?>
             </div>
             <!-- /.navbar-collapse -->
