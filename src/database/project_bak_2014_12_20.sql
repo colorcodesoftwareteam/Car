@@ -155,7 +155,7 @@ INSERT INTO `carmodel` (`id`, `name`, `brand_id`) VALUES
 
 CREATE TABLE IF NOT EXISTS `member` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `Role_id` int(10) unsigned NOT NULL,
+  `role_id` int(10) unsigned NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `lastname` varchar(45) DEFAULT NULL,
   `gender` bit(1) DEFAULT NULL,
@@ -168,14 +168,14 @@ CREATE TABLE IF NOT EXISTS `member` (
   `create_dt` datetime DEFAULT NULL,
   `update_dt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `Member_FKIndex1` (`Role_id`)
+  KEY `Member_FKIndex1` (`role_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id`, `Role_id`, `name`, `lastname`, `gender`, `birthdate`, `address`, `phoneNumber`, `email`, `password`, `detail`, `create_dt`, `update_dt`) VALUES
+INSERT INTO `member` (`id`, `role_id`, `name`, `lastname`, `gender`, `birthdate`, `address`, `phoneNumber`, `email`, `password`, `detail`, `create_dt`, `update_dt`) VALUES
 (1, 1, 'Administrator', 'Administrator', NULL, NULL, NULL, 'admin', 'admin@mail.com', '', NULL, NULL, NULL),
 (6, 2, 'aaa', 'aaaa', '0', '0000-00-00', '', '088', 'aaa@aaa.com', '', NULL, '2014-12-19 10:06:38', '2014-12-19 10:06:38');
 
