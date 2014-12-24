@@ -1,20 +1,10 @@
-Projects
-**/
-* ReadMe for contact in my team
-*
-*
-**/
-========
+# ReadMe for contact in my team
+2014-12-24 ake 
+add new develop
 
-ManageBrand.php //จัดการยี่ห้อ
-ManageModel.php //จัดการรุ่น
-ManageCar.php //จัดการรถยนต์
+# old changelog
+* ManageBrand.php //จัดการยี่ห้อ
+* ManageModel.php //จัดการรุ่น
+* ManageCar.php //จัดการรถยนต์
 
-=========
-Database 
-src/Database/project.sql 
 
--- table car 
-- add brand_id , model_id
--- table model
-- add brand_id
