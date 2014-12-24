@@ -1,10 +1,11 @@
 # ReadMe for contact in my team
-2014-12-24 ake 
-add new develop
+#### 2014-12-24
+
+add new develop branch.
 
 # old changelog
-* ManageBrand.php //จัดการยี่ห้อ
-* ManageModel.php //จัดการรุ่น
-* ManageCar.php //จัดการรถยนต์
+* ManageBrand.php 
+* ManageModel.php 
+* ManageCar.php 
 
 
