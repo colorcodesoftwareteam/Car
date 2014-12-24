@@ -335,8 +335,8 @@ if (isset($_GET['year'])) {
                                                     <div class="form-group">
                                                         <label for="inputEmail3" class="col-sm-3 control-label">ยี่ห้อรถ</label>
                                                         <div class="col-md-8">
-                                                            <select class="form-control" id="brandAdd" name="brandid">
-                                                                <option>-เลือก-</option>
+                                                            <select class="form-control" id="brandAdd" name="brandid" required>
+                                                                <option >-เลือก-</option>
                                                                 <?php
                                                                 $rsBrand = $objBrand->getBrandAll();
                                                                 foreach ($rsBrand as $row) {
@@ -350,7 +350,7 @@ if (isset($_GET['year'])) {
                                                         <label for="inputEmail3" class="col-sm-3 control-label">รุ่น</label>
 
                                                         <div class="col-md-8">
-                                                            <select class="form-control" name="modelid" id="modelAdd" style="visibility: hidden;">
+                                                            <select class="form-control" name="modelid" id="modelAdd" style="visibility: hidden;" required>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -358,7 +358,7 @@ if (isset($_GET['year'])) {
                                                         <label for="inputEmail3" class="col-sm-3 control-label">ประเภทรถยนต์</label>
                                                         <div class="col-md-8">
 
-                                                            <select class="form-control" name="typecar">
+                                                            <select class="form-control" name="typecar" required="required">
                                                                 <option value="0">-เลือก-</option>
                                                                 <option value="1">รถเก๋ง</option>
                                                                 <option value="2">รถกระบะ</option>
@@ -371,14 +371,14 @@ if (isset($_GET['year'])) {
                                                         <label for="inputEmail3" class="col-sm-3 control-label">ปีที่ผลิต</label>
                                                         <div class="col-sm-8">
                                                             <input class="form-control" id="inputEmail3" type="text"
-                                                                   name="caryear" />
+                                                                   name="caryear" required="required"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputPassword3" class="col-sm-3 control-label">เลขตัวถัง</label>
                                                         <div class="col-sm-8">
                                                             <input class="form-control" id="inputPassword3"
-                                                                   type="text" name="bodynumber" />
+                                                                   type="text" name="bodynumber" required="required"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -386,14 +386,14 @@ if (isset($_GET['year'])) {
                                                             (CC)</label>
                                                         <div class="col-sm-8">
                                                             <input class="form-control" id="inputPassword3"
-                                                                   type="text" name="cylinder" />
+                                                                   type="text" name="cylinder" required="required"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="inputPassword3" class="col-sm-3 control-label">ความจุถังน้ำมัน</label>
                                                         <div class="col-sm-8">
                                                             <input class="form-control" id="inputPassword3"
-                                                                   type="text" name="fueltank" />
+                                                                   type="text" name="fueltank" required="required"/>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
