@@ -10,7 +10,7 @@ class Database {
 	function __construct() {
 		$this->host = 'localhost';
 		$this->username = 'root';
-		$this->password = '1234';
+		$this->password = '';
 		$this->db = 'project';
 		$this->connectDB();
 	}
@@ -31,6 +31,18 @@ class Database {
         function hasRows(){
             if(mysql_num_rows($this->result)>0)
                 return true;
+        }
+        
+        function begin() {
+            mysql_query("BEGIN");
+        }
+        
+        function commit() {
+            mysql_query("COMMIT");
+        }
+        
+        function rollback() {
+            mysql_query("ROLLBACK");
         }
 }
 ?>

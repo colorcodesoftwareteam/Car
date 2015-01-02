@@ -13,24 +13,56 @@ class ManageModelCar {
         $this->objDB = new Database ();
     }
 
-    function add($brandid, $model) {
-        $str = "insert into carmodel (brand_id,name) values ('" . $brandid . "','" . $model . "')";
-        return $this->objDB->query($str);
+    function add($brand_id, $model) {
+        $fg = true;
+        $str = "insert into carmodel (name) values ('" . $model . "')";
+                    
+        try {
+            $this->objDB->begin();
+            $this->objDB->query($str);
+            $model_id = mysql_insert_id();
+            $str2 = "insert into brand_model_mapping (brand_id, model_id) values ('" .$brand_id. "', '" .$model_id. "' )";
+            $this->objDB->query($str2);            
+            $this->objDB->commit();
+        } catch (Exception $ex) {
+            $this->objDB->rollback();
+            $fg = false;
+        }
+        
+        return $fg;
     }
 
     function edit($id, $brand_id, $model) {
-        $str = "update carmodel set name='" . $model . "', brand_id='" . $brand_id . "' where id = '" . $id . "'";
-        return $this->objDB->query($str);
+        $fg = true;
+        $str = "update carmodel set name='" . $model . "')";
+                    
+        try {
+            $this->objDB->begin();
+            $this->objDB->query($str);
+            $str2 = "update brand_model_mapping set brand_id='" .$brand_id. "' where model_id='" .$id. "' ";
+            $this->objDB->query($str2);            
+            $this->objDB->commit();
+        } catch (Exception $ex) {
+            $this->objDB->rollback();
+            $fg = false;
+        }
+        
+        return $fg;
     }
 
     function delete($id) {
         $str = "delete from carmodel where id='" . $id . "'";
+        // delete mapping
         return $this->objDB->query($str);
     }
 
     function getModelAll() {
-        $str = "select cm.id, cm.name, cb.id as brand_id, cb.name as brand_name from carmodel cm
-                left join carbrand cb on cm.brand_id=cb.id ";
+        $str = "select cb.id as brand_id, cb.name as brand_name, cm.id as model_id, cm.name as model_name "
+                . "from brand_model_mapping m "
+                . "left join carbrand cb "
+                . "on m.brand_id=cb.id "
+                . "left join carmodel cm "
+                . "on m.model_id=cm.id ";
         
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
@@ -47,8 +79,12 @@ class ManageModelCar {
         $lim_end = $pageSize;
         $limit = "limit " . $lim_start . ", " . $lim_end;
 
-        $str = "select cm.id, cm.name, cb.id as brand_id, cb.name as brand_name from carmodel cm
-                left join carbrand cb on cm.brand_id=cb.id ";
+        $str = "select cb.id as brand_id, cb.name as brand_name, cm.id as model_id, cm.name as model_name "
+                . "from brand_model_mapping m "
+                . "left join carbrand cb "
+                . "on m.brand_id=cb.id "
+                . "left join carmodel cm "
+                . "on m.model_id=cm.id ";
         
         $this->NUM_ROWS = mysql_num_rows($this->objDB->query($str));
         $rs = $this->objDB->query($str . $limit);
@@ -72,7 +108,12 @@ class ManageModelCar {
     }
     
     function getModelByBrand($id) {
-        $str = "select * from  carmodel where brand_id='" . $id . "'";
+        $str = "select xxx from brand_model_mapping m "
+                . "left join carbrand cb "
+                . "on m.brand_id=cb.id "
+                . "left join carmodel cm "
+                . "on m.model_id=cm.id "
+                . "where m.brand_id='" . $id . "'";
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
 
