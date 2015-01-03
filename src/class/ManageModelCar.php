@@ -59,10 +59,8 @@ class ManageModelCar {
     function getModelAll() {
         $str = "select cb.id as brand_id, cb.name as brand_name, cm.id as model_id, cm.name as model_name "
                 . "from brand_model_mapping m "
-                . "left join carbrand cb "
-                . "on m.brand_id=cb.id "
-                . "left join carmodel cm "
-                . "on m.model_id=cm.id ";
+                . "left join carbrand cb on m.brand_id=cb.id "
+                . "left join carmodel cm on m.model_id=cm.id ";
         
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();

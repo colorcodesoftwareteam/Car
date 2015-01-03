@@ -15,15 +15,46 @@ class ManageCar {
     }
 
     function add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank) {
-        $str = "insert into car (brand_id, model_id, car_year, body_number, cylinder, fuel_tank, create_dt, update_dt) values ('" . $brandid . "','" . $modelid . "','" . $caryear . "','" . $bodynumber . "','" . $cylinder . "','" . $fueltank . "','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
-        //exit();
-        return $this->objDB->query($str);
+        $fg = true;
+        try {
+            $this->objDB->begin();
+            $str = "select id "
+                . "from brand_model_mapping "
+                . "where brand_id='" .$brandid. "' and model_id='" .$modelid. "' ";
+            $rs = $this->objDB->query($str);
+            $row = mysql_fetch_object($rs);
+            $mapping_id = $row['id'];     
+            $str2 = "insert into car (brand_model_mapping_id, car_year, body_number, cylinder, fuel_tank, create_dt, update_dt) "
+                . "values ('" . $mapping_id . "','" . $caryear . "','" . $bodynumber . "','" . $cylinder . "','" . $fueltank . "','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
+            $this->objDB->query($str2);          
+            $this->objDB->commit();
+        } catch (Exception $ex) {
+            $this->objDB->rollback();
+            $fg = false;
+        }
+        
+        return $fg;
     }
 
     function edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank) {
-        ;
-        $str = "update car set  brand_id='" . $brandid . "', model_id='" . $modelid . "', car_year='" . $caryear . "', body_number='" . $bodynumber . "', cylinder='" . $cylinder . "', fuel_tank='" . $fueltank . "', update_dt='" . date("Y-m-d  H:i:s") . "' where id = '" . $id . "'";
-        return $this->objDB->query($str);
+        $fg = true;
+        try {
+            $this->objDB->begin();
+            $str = "select id "
+                . "from brand_model_mapping "
+                . "where brand_id='" .$brandid. "' and model_id='" .$modelid. "' ";
+            $rs = $this->objDB->query($str);
+            $row = mysql_fetch_object($rs);
+            $mapping_id = $row['id'];     
+            $str = "update car set brand_model_mapping_id='" . $mapping_id . "', car_year='" . $caryear . "', body_number='" . $bodynumber . "', cylinder='" . $cylinder . "', fuel_tank='" . $fueltank . "', update_dt='" . date("Y-m-d  H:i:s") . "' where id = '" . $id . "'";
+            $this->objDB->query($str2);          
+            $this->objDB->commit();
+        } catch (Exception $ex) {
+            $this->objDB->rollback();
+            $fg = false;
+        }
+        
+        return $fg;
     }
 
     function delete($id) {
@@ -38,27 +69,28 @@ class ManageCar {
         unlink($rowImage->path);
         return $this->objDB->query($str);
     }
-
-	
+/*
     function getCarAll() {
         $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
 		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt 
-                from car c left join carbrand cb on c.brand_id=cb.id 
-		left join carmodel cm on c.model_id=cm.id 
+                from car c left join brand_model_mapping m on c.brand_model_mapping_id=m.id 
+                left join carbrand cb on m.brand_id=cb.id 
+		left join carmodel cm on m.model_id=cm.id 
                 order by c.create_dt desc";
         return $this->objDB->query($str);
     }
-
+*/
     function getCarAllPaging($pageSize, $page) {
         $this->PAGE_SIZE = $pageSize;
         $lim_start = (($page - 1) * $pageSize);
         $lim_end = $pageSize;
         $limit = "limit " . $lim_start . ", " . $lim_end;
 
-        $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
+        $str = "select c.id, m.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name,
 		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt  
-                from car c left join carbrand cb on c.brand_id=cb.id 
-		left join carmodel cm on c.model_id=cm.id 
+                from car c left join brand_model_mapping m on c.brand_model_mapping_id=m.id 
+                left join carbrand cb on m.brand_id=cb.id 
+		left join carmodel cm on m.model_id=cm.id 
                 order by c.create_dt desc ";
 
         $this->NUM_ROWS = mysql_num_rows($this->objDB->query($str));
@@ -90,12 +122,12 @@ class ManageCar {
         if ($condition != "") {
             $condition = "WHERE " . $condition;
         }
-        $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
-		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt  
-                from car c left join carbrand cb on c.brand_id=cb.id 
-		left join carmodel cm on c.model_id=cm.id 
-                " . $condition . " " .
-                "order by c.id desc ";
+        $str = "select c.id, m.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name,
+		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt 
+                from car c left join brand_model_mapping m on c.brand_model_mapping_id=m.id 
+                left join carbrand cb on m.brand_id=cb.id 
+		left join carmodel cm on m.model_id=cm.id 
+                " . $condition . " order by c.id desc ";
 
         $this->NUM_ROWS = mysql_num_rows($this->objDB->query($str));
         $rs = $this->objDB->query($str . $limit);
@@ -111,29 +143,19 @@ class ManageCar {
         Pagination::getPaging($page, $currentPage, $this->NUM_ROWS, $this->PAGE_SIZE);
     }
 
-//    function getCarById($id) {
-//        $str = "SELECT *
-//		FROM car , carbrand , carmodel 
-//		WHERE car.brand_id = carbrand.id AND 
-//		car.model_id = carmodel.id 
-//		AND car.id='" . $id . "'";
-//        return $this->objDB->query($str);
-//    }
-
     function getCarById($id) {
-        $str = "SELECT c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
+        $str = "SELECT c.id, m.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name,
 		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt,
                 im.id as img_id, im.path as img_path, im.name as img_name, im.detail as img_detail, im.create_dt as img_create_dt
-                FROM car c LEFT JOIN carbrand cb ON c.brand_id=cb.id 
-		LEFT JOIN carmodel cm ON c.model_id=cm.id 
+                FROM car c LEFT JOIN brand_model_mapping m ON c.brand_model_mapping_id=m.id 
+                LEFT JOIN carbrand cb ON m.brand_id=cb.id 
+		LEFT JOIN carmodel cm ON m.model_id=cm.id 
                 left join carimages im on c.id=im.car_id 
                 WHERE c.id='" . $id . "' ";
 
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
 
-        $objx = new ArrayObject();
-                
         while ($row = mysql_fetch_object($rs)) {
             $arrayIterator->append($row);
         }
