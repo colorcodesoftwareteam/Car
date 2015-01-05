@@ -69,17 +69,7 @@ class ManageCar {
         unlink($rowImage->path);
         return $this->objDB->query($str);
     }
-/*
-    function getCarAll() {
-        $str = "select c.id, c.brand_id, cb.name as brand_name, c.model_id, cm.name as model_name,
-		c.car_year, c.body_number, c.cylinder, c.fuel_tank, c.color, c.detail, c.create_dt, c.update_dt 
-                from car c left join brand_model_mapping m on c.brand_model_mapping_id=m.id 
-                left join carbrand cb on m.brand_id=cb.id 
-		left join carmodel cm on m.model_id=cm.id 
-                order by c.create_dt desc";
-        return $this->objDB->query($str);
-    }
-*/
+
     function getCarAllPaging($pageSize, $page) {
         $this->PAGE_SIZE = $pageSize;
         $lim_start = (($page - 1) * $pageSize);
