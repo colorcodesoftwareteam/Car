@@ -16,7 +16,6 @@ class Database {
 	}
 	
 	function query($StrQuery) {
-		//echo $StrQuery;//for debug
 		mysql_query('set names utf8');
 		$this->result = mysql_query( $StrQuery );
 		return $this->result;
