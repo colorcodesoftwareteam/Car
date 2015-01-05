@@ -54,11 +54,11 @@ if (@$_GET ['delete'] == 'true') {
                                         <!-- insert some code  -->
                                         <tr>
                                             <td>
-                                                <a href="editCarModel.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
-                                                <a href="?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                                <a href="editCarModel.php?id=<?php echo $row->model_id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
+                                                <a href="?delete=true&id=<?php echo $row->model_id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                             </td>
                                             <td><?php echo $row->brand_name; ?></td>
-                                            <td><?php echo $row->name; ?></td>
+                                            <td><?php echo $row->model_name; ?></td>
                                         </tr>
                                     <?php } ?>
                                     <!-- insert some code  -->
