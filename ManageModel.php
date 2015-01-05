@@ -1,149 +1,84 @@
 <?php
+include 'src/class/ManageModelCar.php';
 
-include_once 'Database.php';
-include_once 'Pagination.php';
-
-class ManageModelCar {
-
-    private $objDB;
-    private $NUM_ROWS;
-    private $PAGE_SIZE;
-    
-    function __construct() {
-        $this->objDB = new Database ();
-    }
-
-    function add($brand_id, $model) {
-        $fg = true;
-        $str = "insert into carmodel (name) values ('" . $model . "')";
-                    
-        try {
-            $this->objDB->begin();
-            $this->objDB->query($str);
-            $model_id = mysql_insert_id();
-            $str2 = "insert into brand_model_mapping (brand_id, model_id) values ('" .$brand_id. "', '" .$model_id. "' )";
-            $this->objDB->query($str2);            
-            $this->objDB->commit();
-        } catch (Exception $ex) {
-            $this->objDB->rollback();
-            $fg = false;
-        }
-        
-        return $fg;
-    }
-
-    function edit($model_id, $brand_id, $model_name) {
-        $fg = true;
-        $str = "update carmodel set name='" . $model_name . "')";
-                    
-        try {
-            $this->objDB->begin();
-            $this->objDB->query($str);
-            $str2 = "update brand_model_mapping set brand_id='" .$brand_id. "' where model_id='" .$model_id. "' ";
-            $this->objDB->query($str2);            
-            $this->objDB->commit();
-        } catch (Exception $ex) {
-            $this->objDB->rollback();
-            $fg = false;
-        }
-        
-        return $fg;
-    }
-
-    function delete($brand_id, $model_id) {
-        $fg = true;
-        $str = "delete from brand_model_mapping where brand_id='" .$brand_id. "' and model_id='" .$model_id. "' ";
-        
-        try {
-            $this->objDB->begin();
-            $this->objDB->query($str);
-            $str2 = "delete from carmodel where id='" . $model_id . "'";
-            $this->objDB->query($str2);            
-            $this->objDB->commit();
-        } catch (Exception $ex) {
-            $this->objDB->rollback();
-            $fg = false;
-        }
-        
-        return $fg;
-    }
-
-    function getModelAll() {
-        $str = "selectm.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name "
-                . "from brand_model_mapping m "
-                . "left join carbrand cb on m.brand_id=cb.id "
-                . "left join carmodel cm on m.model_id=cm.id ";
-        
-        $rs = $this->objDB->query($str);
-        $arrayIterator = new ArrayIterator();
-
-        while ($row = mysql_fetch_object($rs)) {
-            $arrayIterator->append($row);
-        }
-        return $arrayIterator;
-    }
-    
-    function getModelAllPaging($pageSize, $page) {
-        $this->PAGE_SIZE = $pageSize;
-        $lim_start = (($page - 1) * $pageSize);
-        $lim_end = $pageSize;
-        $limit = "limit " . $lim_start . ", " . $lim_end;
-
-        $str = "select m.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name "
-                . "from brand_model_mapping m "
-                . "left join carbrand cb "
-                . "on m.brand_id=cb.id "
-                . "left join carmodel cm "
-                . "on m.model_id=cm.id ";
-        
-        $this->NUM_ROWS = mysql_num_rows($this->objDB->query($str));
-        $rs = $this->objDB->query($str . $limit);
-        $arrayIterator = new ArrayIterator();
-
-        while ($row = mysql_fetch_object($rs)) {
-            $arrayIterator->append($row);
-        }
-        return $arrayIterator;
-    }
-
-    function getModelById($model_id) {
-        $str = "select m.brand_id, m.model_id, cb.name as brand_name, cm.name as model_name "
-                . "from brand_model_mapping m "
-                . "left join carbrand cb "
-                . "on m.brand_id=cb.id "
-                . "left join carmodel cm "
-                . "on m.model_id=cm.id "
-                . "where m.model_id='" .$model_id. "' ";
-        
-        $rs = $this->objDB->query($str);
-        $arrayIterator = new ArrayIterator();
-
-        while ($row = mysql_fetch_object($rs)) {
-            $arrayIterator->append($row);
-        }
-        return $arrayIterator;
-    }
-    
-    function getModelByBrand($brand_id) {
-        $str = "select m.brand_id, m.model_id, cb.name as brand_name, cm.name as model_name "
-                . "from brand_model_mapping m "
-                . "left join carbrand cb "
-                . "on m.brand_id=cb.id "
-                . "left join carmodel cm "
-                . "on m.model_id=cm.id "
-                . "where m.brand_id='" . $brand_id . "'";
-        $rs = $this->objDB->query($str);
-        $arrayIterator = new ArrayIterator();
-
-        while ($row = mysql_fetch_object($rs)) {
-            $arrayIterator->append($row);
-        }
-        return $arrayIterator;
-    }
-        
-    function getPaging($page, $currentPage) {
-        Pagination::getPaging($page, $currentPage, $this->NUM_ROWS, $this->PAGE_SIZE);
-    }
+$objModelCar = new ManageModelCar();
+$pageSize = 10;
+$currentPage = 1;
+if (isset($_GET['page'])) {
+    $currentPage = $_GET['page'];
 }
-
+if (@$_GET ['delete'] == 'true') {
+    if ($objModelCar->delete($_GET['brand_id'], $_GET['model_id']))
+        echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageModel.php>';
+}
 ?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>ระบบจัดการแสดงรถยนต์</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <?php include 'includes.php' ?>
+    </head>
+
+    <body>
+        <!-- Header -->
+        <?php include 'header.php'; ?>
+
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-12 column">
+                    <div class=" panel panel-default">
+                        <div class="panel-heading">
+                            <h4>รายการรุ่นรถยนต์</h4>
+                        </div>
+
+                        <div class="panel-body">
+                            <a href="addCarModel.php"><button type="button" class="btn btn-primary">เพิ่มรุ่นรถยนต์</button></a>
+
+                            <table class="table .table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>ยี่ห้อ</th>
+                                        <th>รุ่น<th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $arrModel = $objModelCar->getModelAllPaging($pageSize, $currentPage);
+                                    foreach ($arrModel as $row) {
+                                        ?>
+                                        <!-- insert some code  -->
+                                        <tr>
+                                            <td>
+                                                <a href="editCarModel.php?model_id=<?php echo $row->model_id; ?>&brand_id=<?php echo $row->brand_id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
+                                                <a href="?delete=true&model_id=<?php echo $row->model_id; ?>&brand_id=<?php echo $row->brand_id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                            </td>
+                                            <td><?php echo $row->brand_name; ?></td>
+                                            <td><?php echo $row->model_name; ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                    <!-- insert some code  -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row clearfix">
+                                <div class="col-md-offset-4">
+                                    <nav>
+                                        <?php $objModelCar->getPaging("ManageModel", $currentPage); ?>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer -->
+        <?php include 'footer.php'; ?>
+    </body>
+</html>
