@@ -69,7 +69,7 @@ class ManageModelCar {
     }
 
     function getModelAll() {
-        $str = "selectm.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name "
+        $str = "select m.brand_id, cb.name as brand_name, m.model_id, cm.name as model_name "
                 . "from brand_model_mapping m "
                 . "left join carbrand cb on m.brand_id=cb.id "
                 . "left join carmodel cm on m.model_id=cm.id ";
