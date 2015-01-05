@@ -25,8 +25,9 @@ class MemberSystem {
         return $this->objDB->query($str);
     }
 
-    function deleteMember($data) {
-        echo 'Deleted Member';
+    function deleteMember($id) {
+        $str = "delete from member where id='" .$id. "'";
+        return $this->objDB->query($str);
     }
 
     function getMemeberById($id) {
