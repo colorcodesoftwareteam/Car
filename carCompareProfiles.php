@@ -2,8 +2,10 @@
 include_once 'src/class/ManageBrandCar.php';
 include_once 'src/class/ManageModelCar.php';
 include_once "src/class/ManageCar.php";
+include_once "src/class/ImageHelper.php";
 
 $objCar = new ManageCar();
+$objImgHlp = new ImageHelper ();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,9 +40,8 @@ $objCar = new ManageCar();
                                         </button> 
                                     </a>
                                 </div>
-                                <div class=" col-md-offset-9">
+                                <div class=" col-md-offset-11">
                                     <div class="row clearfix" >
-
                                         <button type="button" class="glyphicon glyphicon-print btn-primary btn " onclick="window.print();">
                                             พิมพ์
                                         </button> 
@@ -60,119 +61,42 @@ $objCar = new ManageCar();
                                         <div class="panel-footer">
                                             <div class="row clearfix">
                                                 <div class="col-md-12 col-md-offset-1">
-
-                                                    <div class="col-md-6 ">
-                                                        <?php
-                                                        $imgCar = $objCar->getCarImages($_SESSION['car1'][0]->id);
-                                                        ?>
-
-                                                        <div id="carousel-example-generic" class="carousel slide col-md-10" data-ride="carousel">
-                                                            <!-- Indicators -->
-                                                            <ol class="carousel-indicators">
+                                                    <div class="col-md-10">
+                                                        <div class="row clearfix">
+                                                            <div class="col-md-12 col-md-offset-1">
                                                                 <?php
-                                                                $i = 0;
-                                                                foreach ($imgCar as $row) {
-                                                                    ?>
-                                                                    <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i++; ?>" ></li>
-                                                                    <?php
-                                                                }
-                                                                ?>
-                                                            </ol>
+                                                                $imgCar = $objCar->getCarImages($_SESSION['car1'][0]->id);
 
-                                                            <!-- Wrapper for slides -->
-                                                            <div class="carousel-inner" role="listbox">
-                                                                <?php
-                                                                $i = 0;
-                                                                if ($imgCar->count() > 0) {
-                                                                    foreach ($imgCar as $row) {
-                                                                        if ($i == 0) {
-                                                                            ?>
-                                                                            <div class="item active">
-                                                                                <?php
-                                                                            } else {
-                                                                                ?>
-                                                                                <div class="item ">
-                                                                                    <?php
-                                                                                }
-                                                                                ?>
-                                                                                <img src="<?php echo $row->path; ?>" alt="..." >
-                                                                                <div class="carousel-caption">
-                                                                                    <?php
-                                                                                    $i++;
-                                                                                    ?>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                    <?php
-                                                                } else {
-                                                                    ?>
-                                                                    <div class="active">
-                                                                        <img src="img/no_img.jpg" alt="..." >
-                                                                    </div>
-                                                                    <?php
-                                                                }
+                                                                $objImgHlp->slideShow("carProfileSlideShow", $imgCar);
                                                                 ?>
-                                                                <!-- Controls -->
-                                                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                                    <span class="sr-only">Previous</span>
-                                                                </a>
-                                                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                                    <span class="sr-only">Next</span>
-                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
-
-
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ยี่ห้อรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text1" placeholder="ยี่ห้อรถยนต์" value="<?php echo $_SESSION['car1'][0]->brand_name; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEma">รุ่น</label>
-                                                                <input type="email" class="form-control" id="text2" placeholder="รุ่น" value="<?php echo $_SESSION['car1'][0]->model_name; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <!--
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ประเภทรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text3" placeholder="ประเภทรถยนต์" value="<?php echo $_SESSION['car1'][0]->brand_name; ?>">
-                                                            </div> 
-                                                            -->
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ปีที่ผลิต</label>
-                                                                <input type="email" class="form-control" id="text4" placeholder="ปีที่ผลิต" value="<?php echo $_SESSION['car1'][0]->car_year; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">เลขตัวถัง</label>
-                                                                <input type="email" class="form-control" id="text5" placeholder="เลขตัวถัง" value="<?php echo $_SESSION['car1'][0]->body_number; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ปริมาตรกระบอกสูบ(CC)</label>
-                                                                <input type="email" class="form-control" id="text6" placeholder="ปริมาตรกระบอกสูบ" value="<?php echo $_SESSION['car1'][0]->cylinder; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ความจุถังน้ำมัน</label>
-                                                                <input type="email" class="form-control" id="text7" placeholder="ความจุถังน้ำมัน" value="<?php echo $_SESSION['car1'][0]->fuel_tank; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">รายละเอียดอื่นๆ</label>
-                                                                <input type="email" class="form-control" id="text8" placeholder="รายละเอียดอื่นๆ" value="<?php echo $_SESSION['car1'][0]->detail; ?>">
-                                                            </div>
+                                                    <div class="col-md-6 col-md-offset-2" style="margin-top:15px;">
+                                                        <div class="input-group">
+                                                            <span><strong>ยี่ห้อรถยนต์ : </strong><?php echo $_SESSION['car1'][0]->brand_name; ?></span>
                                                         </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>รุ่น : </strong><?php echo $_SESSION['car1'][0]->model_name; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>ปี : </strong><?php echo $_SESSION['car1'][0]->car_year; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>เลขตัวถัง : </strong><?php echo $_SESSION['car1'][0]->body_number; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>ปริมาตรกระบอกสูบ (CC) : </strong><?php echo $_SESSION['car1'][0]->cylinder; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?php echo $_SESSION['car1'][0]->fuel_tank; ?></span>
+                                                        </div>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,121 +127,43 @@ $objCar = new ManageCar();
                                         <div class="panel-footer">
                                             <div class="row clearfix">
                                                 <div class="col-md-12 col-md-offset-1">
-
-                                                    <div class="col-md-6">
-                                                        <?php
-                                                        $imgCar = $objCar->getCarImages($_SESSION['car2'][0]->id);
-                                                        ?>
-                                                        <div id="carousel-example-generic" class="carousel slide col-md-10" data-ride="carousel">
-                                                            <!-- Indicators -->
-                                                            <ol class="carousel-indicators">
+                                                    <div class="col-md-10">
+                                                        <div class="row clearfix">
+                                                            <div class="col-md-12 col-md-offset-1">
                                                                 <?php
-                                                                $i = 0;
-                                                                foreach ($imgCar as $row) {
-                                                                    ?>
-                                                                    <li data-target="#carousel-example-generic" data-slide-to="<?php echo $i++; ?>" ></li>
-                                                                    <?php
-                                                                }
+                                                                $imgCar = $objCar->getCarImages($_SESSION['car2'][0]->id);
+                                                                $objImgHlp->slideShow("carProfileSlideShow", $imgCar);
                                                                 ?>
-                                                            </ol>
-
-                                                            <!-- Wrapper for slides -->
-                                                            <div class="carousel-inner" role="listbox">
-                                                                <?php
-                                                                $i = 0;
-                                                                if ($imgCar->count() > 0) {
-                                                                    foreach ($imgCar as $row) {
-                                                                        if ($i == 0) {
-                                                                            ?>
-                                                                            <div class="item active">
-                                                                                <?php
-                                                                            } else {
-                                                                                ?>
-                                                                                <div class="item ">
-                                                                                    <?php
-                                                                                }
-                                                                                ?>
-                                                                                <img src="<?php echo $row->path; ?>" alt="..." >
-                                                                                <div class="carousel-caption">
-                                                                                    <?php
-                                                                                    $i++;
-                                                                                    ?>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                    <?php
-                                                                } else {
-                                                                    ?>
-                                                                    <div class="active">
-                                                                        <img src="img/no_img.jpg" alt="..." >
-                                                                    </div>
-                                                                    <?php
-                                                                }
-                                                                ?>
-                                                                <!-- Controls -->
-                                                                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                                                    <span class="sr-only">Previous</span>
-                                                                </a>
-                                                                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                                                    <span class="sr-only">Next</span>
-                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
-
-
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ยี่ห้อรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text1" placeholder="ยี่ห้อรถยนต์" value="<?php echo $_SESSION['car2'][0]->brand_name; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEma">รุ่น</label>
-                                                                <input type="email" class="form-control" id="text2" placeholder="รุ่น" value="<?php echo $_SESSION['car2'][0]->model_name; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <!--
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ประเภทรถยนต์</label>
-                                                                <input type="email" class="form-control" id="text3" placeholder="ประเภทรถยนต์" value="<?php echo $_SESSION['car2'][0]->brand_name; ?>">
-                                                            </div>
-                                                            -->
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ปีที่ผลิต</label>
-                                                                <input type="email" class="form-control" id="text4" placeholder="ปีที่ผลิต" value="<?php echo $_SESSION['car2'][0]->car_year; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">เลขตัวถัง</label>
-                                                                <input type="email" class="form-control" id="text5" placeholder="เลขตัวถัง" value="<?php echo $_SESSION['car2'][0]->body_number; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ปริมาตรกระบอกสูบ(CC)</label>
-                                                                <input type="email" class="form-control" id="text6" placeholder="ปริมาตรกระบอกสูบ" value="<?php echo $_SESSION['car2'][0]->cylinder; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">ความจุถังน้ำมัน</label>
-                                                                <input type="email" class="form-control" id="text7" placeholder="ความจุถังน้ำมัน" value="<?php echo $_SESSION['car2'][0]->fuel_tank; ?>">
-                                                            </div>
-                                                            <p></p>
-                                                            <div class="input-group">
-                                                                <label class="sr-only" for="exampleInputEmail2">รายละเอียดอื่นๆ</label>
-                                                                <input type="email" class="form-control" id="text8" placeholder="รายละเอียดอื่นๆ" value="<?php echo $_SESSION['car2'][0]->detail; ?>">
-                                                            </div>
+                                                    <div class="col-md-6 col-md-offset-2" style="margin-top:15px;">
+                                                        <div class="input-group">
+                                                            <span><strong>ยี่ห้อรถยนต์ : </strong><?php echo $_SESSION['car2'][0]->brand_name; ?></span>
                                                         </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>รุ่น : </strong><?php echo $_SESSION['car2'][0]->model_name; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>ปี : </strong><?php echo $_SESSION['car2'][0]->car_year; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>เลขตัวถัง : </strong><?php echo $_SESSION['car2'][0]->body_number; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>ปริมาตรกระบอกสูบ (CC) : </strong><?php echo $_SESSION['car2'][0]->cylinder; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?php echo $_SESSION['car2'][0]->fuel_tank; ?></span>
+                                                        </div>
+                                                        <p></p>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
