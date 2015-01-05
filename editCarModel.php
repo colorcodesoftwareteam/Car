@@ -4,7 +4,7 @@ include 'src/class/ManageModelCar.php';
 
 $objBrandCar = new ManageBrandCar ();
 $objModelCar = new ManageModelCar ();
-$id = $_GET ['id'];
+$id = $_GET ['model_id'];
 
 if (@$_GET ['submit'] == 'true') {
 
@@ -70,7 +70,7 @@ if (@$_GET ['submit'] == 'true') {
                                         <label  class="col-sm-2 control-label " for="model">รุ่น</label>
                                         <div class="col-sm-4">
                                             <input class="form-control" id="model" name="model" placeholder=""
-                                                   value="<?php echo $arrModel->current()->name; ?>" type="text">
+                                                   value="<?php echo $arrModel->current()->model_name; ?>" type="text">
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
