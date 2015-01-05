@@ -8,7 +8,7 @@ if (isset($_GET['page'])) {
     $currentPage = $_GET['page'];
 }
 if (@$_GET ['delete'] == 'true') {
-    if ($objModelCar->delete($_GET['id']))
+    if ($objModelCar->delete($_GET['brand_id'], $_GET['model_id']))
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageModel.php>';
 }
 ?>
@@ -54,8 +54,8 @@ if (@$_GET ['delete'] == 'true') {
                                         <!-- insert some code  -->
                                         <tr>
                                             <td>
-                                                <a href="editCarModel.php?id=<?php echo $row->model_id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
-                                                <a href="?delete=true&id=<?php echo $row->model_id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
+                                                <a href="editCarModel.php?model_id=<?php echo $row->model_id; ?>&brand_id=<?php echo $row->brand_id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
+                                                <a href="?delete=true&model_id=<?php echo $row->model_id; ?>&brand_id=<?php echo $row->brand_id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                             </td>
                                             <td><?php echo $row->brand_name; ?></td>
                                             <td><?php echo $row->model_name; ?></td>
