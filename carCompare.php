@@ -126,9 +126,9 @@ if (isset($_GET['year'])) {
                                                                         $arrModel = $objModel->getModelAll();
                                                                         foreach ($arrModel as $row) {
                                                                             ?>
-                                                                            <option value="<?php echo $row->id; ?>"
-                                                                                    <?php echo ($row->id == $model_id) ? 'selected' : ''; ?>>
-                                                                                <?php echo $row->name; ?></option>
+                                                                            <option value="<?php echo $row->model_id; ?>"
+                                                                                    <?php echo ($row->model_id == $model_id) ? 'selected' : ''; ?>>
+                                                                                <?php echo $row->model_name; ?></option>
                                                                             <?php
                                                                         }
                                                                         ?>
