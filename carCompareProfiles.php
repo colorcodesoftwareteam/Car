@@ -67,7 +67,7 @@ $objImgHlp = new ImageHelper ();
                                                                 <?php
                                                                 $imgCar = $objCar->getCarImages($_SESSION['car1'][0]->id);
 
-                                                                $objImgHlp->slideShow("carProfileSlideShow", $imgCar);
+                                                                $objImgHlp->slideShow("carCompareProfilesSlideShow_1", $imgCar);
                                                                 ?>
                                                             </div>
                                                         </div>
@@ -132,7 +132,7 @@ $objImgHlp = new ImageHelper ();
                                                             <div class="col-md-12 col-md-offset-1">
                                                                 <?php
                                                                 $imgCar = $objCar->getCarImages($_SESSION['car2'][0]->id);
-                                                                $objImgHlp->slideShow("carProfileSlideShow", $imgCar);
+                                                                $objImgHlp->slideShow("carCompareProfilesSlideShow_2", $imgCar);
                                                                 ?>
                                                             </div>
                                                         </div>
