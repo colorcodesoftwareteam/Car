@@ -10,7 +10,7 @@ if (isset($_GET['page'])) {
 }
 if (@$_GET['delete'] == 'true') {
     $id = $_GET['id'];
-    if ($objcar->delete($id))
+    if ($objMember->deleteMember($id))
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageMemberProfile.php>';
 }
 ?>
