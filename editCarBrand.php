@@ -7,7 +7,7 @@ $id = $_GET ['id'];
 if (@$_GET ['submit'] == 'true') {
 
     $newname = $_POST ['brand'];
-    if ($obj->edit($id, $newname))
+    if ($objBrandCar->edit($id, $newname))
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageBrand.php>';
 }
 ?>
