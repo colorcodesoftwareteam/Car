@@ -44,7 +44,7 @@
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ชื่อ</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="name" />
+                                                                       type="text" name="name" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -52,7 +52,7 @@
 
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="lname" />
+                                                                       type="text" name="lname" required="true"/>
 
                                                             </div>
                                                         </div>
@@ -60,7 +60,7 @@
                                                             <label for="inputEmail3" class="col-sm-2 control-label">เพศ</label>
                                                             <div class="col-md-4">
 
-                                                                <select class="form-control" name="gender">
+                                                                <select class="form-control" name="gender" required="true">
                                                                     <option value="0">ชาย</option>
                                                                     <option value="1">หญิง</option>
 
@@ -71,28 +71,28 @@
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">วันเกิด</label>
                                                             <div class="col-sm-4">
-                                                                <input class="form-control" id="date" type="datetime" name="birthday" />
+                                                                <input class="form-control" id="date" type="datetime" name="birthday" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">ที่อยู่</label>
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="address" />
+                                                                       type="text" name="address" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">เบอร์โทรศัพท์</label>
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="text" name="phone" />
+                                                                       type="number" name="phone" required="true" />
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="inputPassword3" class="col-sm-2 control-label">อีเมลล์</label>
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="email" name="email" />
+                                                                       type="email" name="email" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
