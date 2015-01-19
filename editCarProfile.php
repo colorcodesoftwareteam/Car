@@ -43,7 +43,7 @@ if (@$_GET['delete'] == 'true') {
     $carid = $_GET['carid'];
     if ($objcar->deleteImageById($carid)) {
 
-        echo '<meta http-equiv=REFRESH CONTENT=0;url=editCarProfile.php?id='.$id.'>';
+        echo '<meta http-equiv=REFRESH CONTENT=0;url=editCarProfile.php?id=' . $id . '>';
     }
 }
 ?>
@@ -91,40 +91,40 @@ if (@$_GET['delete'] == 'true') {
                                                             ?>
                                                             <div class="form-group">
                                                                 <label for="pic<?php echo $i; ?>" class="col-sm-2 control-label">รูปภาพที่
-                                                            <?php echo $i; ?></label>
+                                                                    <?php echo $i; ?></label>
                                                                 <div class="col-md-4">
                                                                     <input class="form-control" id="pic<?php echo $i; ?>" type="file"
                                                                            name="files[]" />
 
                                                                 </div>
                                                             </div>
-    <?php
-}
-$objImage = new ImageHelper();
+                                                            <?php
+                                                        }
+                                                        $objImage = new ImageHelper();
 
-while ($rowImages = mysql_fetch_object($rsCar)) {
-    $objImage->init($rowImages->path, $id, $rowImages->id);
-    $objImage->process();
-}
-?>
+                                                        while ($rowImages = mysql_fetch_object($rsCar)) {
+                                                            $objImage->init($rowImages->path, $id, $rowImages->id);
+                                                            $objImage->process();
+                                                        }
+                                                        ?>
 
                                                         <hr />
 
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ยี่ห้อรถ</label>
                                                             <div class="col-md-4">
-                                                                <select class="form-control" id="brand" name="brandid">
+                                                                <select class="form-control" id="brand" name="brandid" required="true">
                                                                     <option>-เลือก-</option>
-<?php
-$arrCar = $objcar->getCarById($id);
-$arrBrand = $objBrand->getBrandAll();
-foreach ($arrBrand as $row) {
-    ?>
+                                                                    <?php
+                                                                    $arrCar = $objcar->getCarById($id);
+                                                                    $arrBrand = $objBrand->getBrandAll();
+                                                                    foreach ($arrBrand as $row) {
+                                                                        ?>
                                                                         <option
                                                                             value="<?php echo $row->id; ?>"
-                                                                        <?php echo ($row->id == $arrCar->current()->brand_id) ? 'selected' : '' ?>>
-    <?php echo $row->name; ?></option>
-                                                                        <?php } ?>
+                                                                            <?php echo ($row->id == $arrCar->current()->brand_id) ? 'selected' : '' ?>>
+                                                                            <?php echo $row->name; ?></option>
+                                                                    <?php } ?>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -132,39 +132,24 @@ foreach ($arrBrand as $row) {
                                                             <label for="inputEmail3" class="col-sm-2 control-label">รุ่น</label>
 
                                                             <div class="col-md-4">
-                                                                <select class="form-control" name="modelid" id="model">
-<?php
-$arrModel = $objModel->getModelByBrand($arrCar->current()->brand_id);
-foreach ($arrModel as $row) {
-    ?>
+                                                                <select class="form-control" name="modelid" id="model" required="true">
+                                                                    <?php
+                                                                    $arrModel = $objModel->getModelByBrand($arrCar->current()->brand_id);
+                                                                    foreach ($arrModel as $row) {
+                                                                        ?>
                                                                         <option
                                                                             value="<?php echo $row->id; ?>"
-                                                                        <?php echo ($row->id == $arrCar->current()->model_id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
-<?php } ?>
+                                                                            <?php echo ($row->id == $arrCar->current()->model_id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
+                                                                        <?php } ?>
                                                                 </select>
 
                                                             </div>
                                                         </div>
-                                                        <!-- 
-        <div class="form-group">
-                <label for="inputEmail3" class="col-sm-2 control-label">ประเภทรถยนต์</label>
-                <div class="col-md-4">
-
-                        <select class="form-control" name="typecar">
-                                <option value="0">-เลือก-</option>
-                                <option value="1">รถเก๋ง</option>
-                                <option value="2">รถกระบะ</option>
-
-                        </select>
-                </div>
-
-        </div>
-                                                        -->
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ปีที่ผลิต</label>
                                                             <div class="col-sm-4">
-                                                                <input class="form-control" id="inputEmail3" type="text"
-                                                                       name="caryear" value="<?php echo $arrCar->current()->car_year; ?>" />
+                                                                <input class="form-control" id="inputEmail3" type="number"
+                                                                       name="caryear" value="<?php echo $arrCar->current()->car_year; ?>" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -172,7 +157,7 @@ foreach ($arrModel as $row) {
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="bodynumber"
-                                                                       value="<?php echo $arrCar->current()->body_number; ?>" />
+                                                                       value="<?php echo $arrCar->current()->body_number; ?>" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -181,7 +166,7 @@ foreach ($arrModel as $row) {
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="cylinder"
-                                                                       value="<?php echo $arrCar->current()->cylinder; ?>" />
+                                                                       value="<?php echo $arrCar->current()->cylinder; ?>" required="true"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -189,10 +174,10 @@ foreach ($arrModel as $row) {
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="fueltank"
-                                                                       value="<?php echo $arrCar->current()->fuel_tank; ?>" />
+                                                                       value="<?php echo $arrCar->current()->fuel_tank; ?>" required="true" />
                                                             </div>
                                                         </div>
-                                                        <!-- <button type="button" class="btn btn-success btn-lg">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button> -->
+                                                        
                                                         <button type="submit" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
                                                     </form>
                                                 </div>
@@ -204,6 +189,6 @@ foreach ($arrModel as $row) {
                         </div>
                     </div>
                     <!-- Footer -->
-<?php include 'footer.php'; ?>
+                    <?php include 'footer.php'; ?>
                     </body>
                     </html>
