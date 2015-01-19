@@ -46,7 +46,7 @@ if (@$_GET ['submit'] == 'true') {
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label " for="brand">ยี่ห้อ</label> 
                                         <div class="col-sm-4">
-                                            <select class="form-control" id="brand" name="brand">
+                                            <select class="form-control" id="brand" name="brand" required="true">
                                                 <option selectd>-เลือก-</option>
                                                 <?php
                                                 $arrBrand = $objBrandCar->getBrandAll();
@@ -62,7 +62,7 @@ if (@$_GET ['submit'] == 'true') {
                                     <div class="form-group">
                                         <label class="col-sm-2 control-label " for="model">รุ่น</label>
                                         <div class="col-sm-4">
-                                            <input class="form-control" id="model" name="model" placeholder="" type="text">
+                                            <input class="form-control" id="model" name="model" placeholder="" type="text" required="true">
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
