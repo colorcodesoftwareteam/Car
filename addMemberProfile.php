@@ -99,7 +99,7 @@
                                                             <label for="inputPassword3" class="col-sm-2 control-label">รหัสผ่าน</label>
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
-                                                                       type="password" name="password" />
+                                                                       type="password" name="password" required="true"/>
                                                             </div>
                                                         </div>
                                                         <button type="reset" class="btn btn-success ">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>
