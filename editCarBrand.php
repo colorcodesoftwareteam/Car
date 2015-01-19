@@ -52,7 +52,7 @@ if (@$_GET ['submit'] == 'true') {
                                         <div class="col-sm-4">
                                             <input id="brand" name="brand"
                                                    value="<?php echo $arrBrand->current()->name; ?>" placeholder=""
-                                                   class="form-control" type="text">
+                                                   class="form-control" type="text" required="true">
                                         </div>
                                     </div>
                                     <!-- Button (Double) -->
