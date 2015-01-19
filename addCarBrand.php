@@ -42,7 +42,7 @@ if (@$_GET ['submit'] == 'true') {
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label" for="brand">ยี่ห้อ </label>
                                     <div class="col-sm-4">
-                                        <input class="form-control" id="brand" name="brand" placeholder="" type="text">
+                                        <input class="form-control" id="brand" name="brand" placeholder="" type="text" required="true">
                                     </div>
                                 </div>
                                 
