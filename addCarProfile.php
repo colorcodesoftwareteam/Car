@@ -183,10 +183,7 @@ if (@$_GET ['submit'] == 'true') {
                                                             <div class="col-md-4">
                                                                 <select class="form-control" name="modelid" id="model"
                                                                         style="visibility: hidden;" required="true">
-
-
                                                                 </select>
-
                                                             </div>
                                                         </div>
                                                         <div class="form-group">

@@ -10,7 +10,7 @@ class Database {
 	function __construct() {
 		$this->host = 'localhost';
 		$this->username = 'root';
-		$this->password = '';
+		$this->password = 'password1';
 		$this->db = 'project';
 		$this->connectDB();
 	}

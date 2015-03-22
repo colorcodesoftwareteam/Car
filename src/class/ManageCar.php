@@ -101,10 +101,10 @@ class ManageCar {
         $limit = "limit " . $lim_start . ", " . $lim_end;
 
         if ($brand_id != "") {
-            $condition .= " c.brand_id='" . $brand_id . "' ";
+            $condition .= " m.brand_id='" . $brand_id . "' ";
         }
         if ($model_id != "") {
-            $condition .= ($condition != "" ? " AND" : "") . " c.model_id='" . $model_id . "' ";
+            $condition .= ($condition != "" ? " AND" : "") . " m.model_id='" . $model_id . "' ";
         }
         if ($year != "") {
             $condition .= ($condition != "" ? " AND" : "") . " c.car_year='" . $year . "' ";

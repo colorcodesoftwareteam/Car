@@ -6,8 +6,8 @@ $objModel = new ManageModelCar ();
 $rsModel = $objModel->getModelByBrand($id);
 
 foreach  ( $rsModel as $row ) {
-	?>
-<option value="<?php echo $row->id;?>"><?php echo $row->name;?></option>
+?>
+<option value="<?php echo $row->model_id;?>"><?php echo $row->model_name;?></option>
 <?php }?>
 															
 													
