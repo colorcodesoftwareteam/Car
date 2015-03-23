@@ -8,10 +8,11 @@ $currentPage = 1;
 if (isset($_GET['page'])) {
     $currentPage = $_GET['page'];
 }
-if (@$_GET['delete'] == 'true') {
+if (isset($_GET['delete'])) {
     $id = $_GET['id'];
-    if ($objcar->delete($id))
+    if ($objCar->delete($id)) {
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -45,7 +46,9 @@ if (@$_GET['delete'] == 'true') {
                                     <table class="table">
                                         <thead>
                                             <tr>
+                                                <?php if (isset($_SESSION['memberId'])) { ?>
                                                 <th></th>
+                                                <?php } ?>
                                                 <th>ยี่ห้อ</th>
                                                 <th>รุ่น</th>
                                                 <th>ปีที่ผลิต</th>
@@ -60,10 +63,12 @@ if (@$_GET['delete'] == 'true') {
                                             foreach ($arrCar as $row) {
                                                 ?>
                                                 <tr>
+                                                    <?php if (isset($_SESSION['memberId'])) { ?>
                                                     <td>
                                                         <a href="editCarProfile.php?id=<?php echo $row->id; ?>"<button type="button" class="btn btn-warning">แก้ไข&nbsp;</button></a>
                                                         <a href="ManageCarProfile.php?delete=true&id=<?php echo $row->id; ?>"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>
                                                     </td>
+                                                    <?php } ?>
                                                     <td><?php echo $row->brand_name ?></td>
                                                     <td><?php echo $row->model_name ?></td>
                                                     <td><?php echo $row->car_year ?></td>

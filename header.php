@@ -2,7 +2,7 @@
 session_start();
 include_once 'src/class/MemberSystem.php';
 ?>
-<!-- Navigation panel -->
+<!-- Navigation panelcontainer -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -21,26 +21,28 @@ include_once 'src/class/MemberSystem.php';
                 <li>
                     <a href="index.php">หน้าหลัก</a>
                 </li>
+                <li>
+                    <a href="http://goo.gl/forms/mZ9U0m4IOU" target="_blank">* แบบสอบถาม</a>
+                </li>
+                <li>
+                    <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
+                </li>
+                <li>
+                    <a href="ManageCarProfile.php">จัดการรถยนต์</a>
+                </li>
                 <?php if (isset($_SESSION['memberId'])) { ?>
-                    <li>
-                        <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
-                    </li>
-
-                    <li>
-                        <a href="ManageCarProfile.php">จัดการรถยนต์</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">จัดการหมวดหมู่รถยนต์<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a href="ManageBrand.php">จัดการยี่ห้อ</a>
-                            </li>
-                            <li>
-                                <a href="ManageModel.php">จัดการรุ่น</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <?php
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">จัดการหมวดหมู่รถยนต์<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="ManageBrand.php">จัดการยี่ห้อ</a>
+                        </li>
+                        <li>
+                            <a href="ManageModel.php">จัดการรุ่น</a>
+                        </li>
+                    </ul>
+                </li>
+                <?php
                 }
                 if (@$_SESSION['role_id'] == '1') {
                     ?>
@@ -65,7 +67,7 @@ include_once 'src/class/MemberSystem.php';
 
                         <div class="form-inline">
                             <label>
-                                <a href="addMemberProfile.php">สมัครสมาชิก</a>
+                                <!-- a href="addMemberProfile.php">สมัครสมาชิก</a -->
                             </label>
                         </div>
                         <?php if (@$_GET['username'] == 'false') { ?>

@@ -78,7 +78,7 @@ include_once 'src/class/MemberSystem.php';
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">วันเกิด</label>
                                                             <div class="col-sm-4">
-                                                                <input class="form-control" id="dateData" type="datetime" name="birthdate" value="<?php echo $curMember->current()->birthdate; ?>"/>
+                                                                <input class="form-control" id="dateData" name="birthdate" placeholder="2014-12-31" value="<?php echo $curMember->current()->birthdate; ?>"/>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">

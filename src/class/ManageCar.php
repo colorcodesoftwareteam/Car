@@ -23,7 +23,7 @@ class ManageCar {
                 . "where brand_id='" .$brandid. "' and model_id='" .$modelid. "' ";
             $rs = $this->objDB->query($str);
             $row = mysql_fetch_object($rs);
-            $mapping_id = $row['id'];     
+            $mapping_id = $row->id;     
             $str2 = "insert into car (brand_model_mapping_id, car_year, body_number, cylinder, fuel_tank, create_dt, update_dt) "
                 . "values ('" . $mapping_id . "','" . $caryear . "','" . $bodynumber . "','" . $cylinder . "','" . $fueltank . "','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
             $this->objDB->query($str2);          
@@ -45,9 +45,9 @@ class ManageCar {
                 . "where brand_id='" .$brandid. "' and model_id='" .$modelid. "' ";
             $rs = $this->objDB->query($str);
             $row = mysql_fetch_object($rs);
-            $mapping_id = $row['id'];     
+            $mapping_id = $row->id;     
             $str = "update car set brand_model_mapping_id='" . $mapping_id . "', car_year='" . $caryear . "', body_number='" . $bodynumber . "', cylinder='" . $cylinder . "', fuel_tank='" . $fueltank . "', update_dt='" . date("Y-m-d  H:i:s") . "' where id = '" . $id . "'";
-            $this->objDB->query($str2);          
+            $this->objDB->query($str);          
             $this->objDB->commit();
         } catch (Exception $ex) {
             $this->objDB->rollback();
@@ -59,10 +59,19 @@ class ManageCar {
 
     function delete($id) {
         $str = "delete from car where id='" . $id . "'";
+        $this->deleteImageByCarId($id);
+        return $this->objDB->query($str);
+    }	
+
+    function deleteImageByCarId($car_id) {
+        $str = "delete from carimages where car_id='" . $car_id . "'";
+        $rs = $this->getImageByCarId($car_id);
+        while ($row = mysql_fetch_object($rs)) {
+            unlink($row->path);
+        }
         return $this->objDB->query($str);
     }
-	
-
+    
     function deleteImageById($id) {
         $str = "delete from carimages where id='" . $id . "'";
         $rowImage = $this->getImageById($id);

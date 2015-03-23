@@ -138,8 +138,8 @@ if (@$_GET['delete'] == 'true') {
                                                                     foreach ($arrModel as $row) {
                                                                         ?>
                                                                         <option
-                                                                            value="<?php echo $row->id; ?>"
-                                                                            <?php echo ($row->id == $arrCar->current()->model_id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
+                                                                            value="<?php echo $row->model_id; ?>"
+                                                                            <?php echo ($row->model_id == $arrCar->current()->model_id) ? 'selected' : ''; ?>><?php echo $row->model_name; ?></option>
                                                                         <?php } ?>
                                                                 </select>
 

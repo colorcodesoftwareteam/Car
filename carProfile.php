@@ -30,7 +30,6 @@ if (isset($_GET['car_id'])) {
     $car_id = $_GET['car_id'];
 }
 ?>
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -149,9 +148,15 @@ if (isset($_GET['car_id'])) {
                                         <div class="col-md-12 col-md-offset-1">
                                             <?php
                                             $arrCar = $objCar->getCarById($car_id);
-                                            $imgCar = $objCar->getCarImages($car_id);
+                                            $imgCars = $objCar->getCarImages($car_id);
                                             
-                                            $objImgHlp->slideShow("carProfileSlideShow", $imgCar);
+                                            if ($imgCars->count() > 0) {
+                                                $objImgHlp->slideShow("carProfileSlideShow", $imgCars);
+                                            } else {
+                                            ?>
+                                                <img width="450px" hight="300px" src="img/no_img.jpg">
+                                            <?php
+                                            }
                                             ?>
                                         </div>
                                     </div>
