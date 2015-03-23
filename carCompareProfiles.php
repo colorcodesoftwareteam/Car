@@ -33,7 +33,7 @@ $objImgHlp = new ImageHelper ();
                         </div>
 
                         <div class="panel-body">
-                            <div class="row clearfix">
+                            <div class="row clearfix hidden-print">
                                 <div class="col-md-3">
                                     <a href="actionsMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn ">
                                             เลือกอีกครั้ง
