@@ -46,7 +46,7 @@ if (isset($_GET['car_id'])) {
         <?php include 'header.php'; ?>
 
         <div class="container">
-            <div class="row clearfix">
+            <div class="row clearfix hidden-print">
                 <div class="col-md-8 col-md-offset-2 " >
                     <div class="row clearfix panel panel-default ">
                         <div class="col-md-10">
@@ -137,7 +137,7 @@ if (isset($_GET['car_id'])) {
                             <div class="row clearfix">
                                 <div class=" col-md-offset-11">
                                     <div class="row " >
-                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn  " onclick="window.print();">
+                                        <button type="button" class="glyphicon glyphicon-print btn-primary btn  hidden-print" onclick="window.print();">
                                             พิมพ์
                                         </button>
                                         <p></p>
