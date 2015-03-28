@@ -1,5 +1,19 @@
 <?php
 include_once 'src/class/MemberSystem.php';
+include 'src/class/ManageModelCar.php';
+
+$objBrandCar = new ManageBrandCar ();
+$objModelCar = new ManageModelCar ();
+$id = $_GET ['id'];
+
+if (@$_GET ['submit'] == 'true') {
+
+    $brandid = $_POST ['brand'];
+    $model = $_POST ['model'];
+
+    if ($objModelCar->edit($id, $brandid, $model))
+        echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageModel.php>';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
