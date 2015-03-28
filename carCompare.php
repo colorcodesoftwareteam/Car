@@ -64,9 +64,12 @@ if (isset($_GET['year'])) {
                                 </div>
                                 <div class="col-md-6 column">
                                     <div class="col-md-offset-10">
+<!--                                      
                                         <button type="button" class="glyphicon glyphicon-print btn-primary btn">
                                             พิมพ์
                                         </button> 
+                                      
+-->       
                                     </div>
                                 </div>
                             </div>

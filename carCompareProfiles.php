@@ -33,7 +33,7 @@ $objImgHlp = new ImageHelper ();
                         </div>
 
                         <div class="panel-body">
-                            <div class="row clearfix">
+                            <div class="row clearfix hidden-print">
                                 <div class="col-md-3">
                                     <a href="actionsMember.php?action=choosecaragain"><button type="button" class="glyphicon glyphicon-arrow-left btn-primary btn ">
                                             เลือกอีกครั้ง
@@ -102,20 +102,11 @@ $objImgHlp = new ImageHelper ();
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel panel-primary hidden">
-                                        <div class="panel-heading disabled">
-                                            <h3 class="panel-title">
-                                                Panel title
-                                            </h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            Panel Content
-                                        </div>
-                                        <div class="panel-footer">
-                                            Panel footer
-                                        </div>
-                                    </div>
+                                    
                                 </div>
+                                
+                                <div style="page-break-before: always"></div>
+                                
                                 <div class="col-md-6 column">
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">
@@ -123,6 +114,7 @@ $objImgHlp = new ImageHelper ();
 
                                             </h3>
                                         </div>
+                                        
                                         <div class="panel-body"></div>
                                         <div class="panel-footer">
                                             <div class="row clearfix">
@@ -167,19 +159,8 @@ $objImgHlp = new ImageHelper ();
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="panel panel-primary hidden">
-                                        <div class="panel-heading">
-                                            <h3 class="panel-title">
-                                                Panel title
-                                            </h3>
-                                        </div>
-                                        <div class="panel-body">
-                                            Panel content
-                                        </div>
-                                        <div class="panel-footer">
-                                            Panel footer
-                                        </div>
-                                    </div>
+                                    
+                                    
                                 </div>
                             </div>   
                         </div>

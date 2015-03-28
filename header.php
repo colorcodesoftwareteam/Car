@@ -3,7 +3,7 @@ session_start();
 include_once 'src/class/MemberSystem.php';
 ?>
 <!-- Navigation panelcontainer -->
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top hidden-print" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <!-- <div class="navbar-header">
@@ -96,7 +96,7 @@ include_once 'src/class/MemberSystem.php';
 </nav>
 
 <!-- Header image -->
-<header id="myCarousel" class="carousel slide">
+<header id="myCarousel" class="carousel slide hidden-print">
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
