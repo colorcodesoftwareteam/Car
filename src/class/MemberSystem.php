@@ -21,7 +21,7 @@ class MemberSystem {
     }
 
     function editMember($data) {
-        $str = "update member set role_id='" .(isset($data['POST']['role']) ? $data['POST']['role'] : '2'). "', name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "' ,  gender='" . $data['POST']['gender'] . "',birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "',password='". $data['POST']['password'] ."' where id = '" . $data['GET']['memberid'] . "'";
+        $str = "update member set role_id='" .(isset($data['POST']['role']) ? $data['POST']['role'] : '2'). "', name='" . $data['POST']['name'] . "' , lastname='" . $data['POST']['lastname'] . "',gender=" . $data['POST']['gender'] . ",birthdate='" . $data['POST']['birthdate'] . "',address='" . $data['POST']['address'] . "',phoneNumber='" . $data['POST']['phoneNumber'] . "',email='" . $data['POST']['email'] . "',password='". $data['POST']['password'] ."' where id = '" . $data['GET']['memberid'] . "'";
         return $this->objDB->query($str);
     }
 

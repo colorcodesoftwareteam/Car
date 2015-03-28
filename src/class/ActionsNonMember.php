@@ -18,7 +18,7 @@ class ActionsNonMember {
 
     function register($data) {
         if ($this->memSystem->newMember($data))
-            echo '<meta http-equiv="refresh" content="0; url=index.php">';
+            echo '<meta http-equiv="refresh" content="0; url=ManageMemberProfile.php">';
     }
 
     function login($data) {

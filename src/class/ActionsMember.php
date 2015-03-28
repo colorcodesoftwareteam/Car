@@ -24,7 +24,7 @@ class ActionsMember {
 
     function updateProfile() {
         if ($this->memSystem->editMember($this->data))
-            echo '<meta http-equiv="refresh" content="0; url=index.php">';
+            echo '<meta http-equiv="refresh" content="0; url=ManageMemberProfile.php">';
     }
 
     function chooseCarByNewCar() {

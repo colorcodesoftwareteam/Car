@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'src/class/MemberSystem.php';
 ?>
 <!-- Navigation panelcontainer -->
@@ -22,7 +21,7 @@ include_once 'src/class/MemberSystem.php';
                     <a href="index.php">หน้าหลัก</a>
                 </li>
                 <li>
-                    <a href="http://goo.gl/forms/mZ9U0m4IOU" target="_blank">* แบบสอบถาม</a>
+                    <a href="http://goo.gl/forms/fkiUr6FUhP" target="_blank">* แบบสอบถาม</a>
                 </li>
                 <li>
                     <a href="carCompare.php">เปรียบเทียบรถยนต์</a>

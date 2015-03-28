@@ -34,11 +34,12 @@ class ManageModelCar {
 
     function edit($model_id, $brand_id, $model_name) {
         $fg = true;
-        $str = "update carmodel set name='" . $model_name . "')";
-                    
+        
         try {
             $this->objDB->begin();
+            $str = "update carmodel set name='" . $model_name . "' where id='" .$model_id. "' ";
             $this->objDB->query($str);
+            $this->objDB->commit();
             $str2 = "update brand_model_mapping set brand_id='" .$brand_id. "' where model_id='" .$model_id. "' ";
             $this->objDB->query($str2);            
             $this->objDB->commit();

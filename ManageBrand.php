@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'src/class/ManageBrandCar.php';
 
 $objManageBrandCar = new ManageBrandCar ();

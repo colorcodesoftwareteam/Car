@@ -1,11 +1,20 @@
 <?php
+session_start();
 include_once 'src/class/MemberSystem.php';
 include 'src/class/ManageModelCar.php';
+include 'src/class/ManageBrandCar.php';
 
 $objBrandCar = new ManageBrandCar ();
 $objModelCar = new ManageModelCar ();
-$id = $_GET ['id'];
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    $id = '';
+}
+if (isset($_GET['brand_id'])) {
+    $brand_id = $_GET['brand_id'];
+}
 if (@$_GET ['submit'] == 'true') {
 
     $brandid = $_POST ['brand'];
@@ -60,7 +69,6 @@ if (@$_GET ['submit'] == 'true') {
                                                     ?>
                                                     <option value="<?php echo $row->id; ?>"
                                                             <?php echo ($arrModel->current()->brand_id == $row->id) ? 'selected' : ''; ?>><?php echo $row->name; ?></option>
-
                                                 <?php } ?>
                                             </select>
                                         </div>

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'src/class/ManageBrandCar.php';
 include 'src/class/ManageModelCar.php';
 include "src/class/ManageCar.php";

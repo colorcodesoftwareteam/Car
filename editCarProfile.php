@@ -1,10 +1,16 @@
 <?php
+session_start();
 include 'src/class/ManageBrandCar.php';
 include 'src/class/ManageModelCar.php';
 include 'src/class/ManageCar.php';
 include 'src/class/ImageHelper.php';
 
-$id = $_GET ['id'];
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    $id = '';
+}
+
 $objcar = new ManageCar ();
 $objBrand = new ManageBrandCar ();
 $objModel = new ManageModelCar ();

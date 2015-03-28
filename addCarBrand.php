@@ -1,7 +1,6 @@
 <?php
+session_start();
 include 'src/class/ManageBrandCar.php';
-
-
 
 if (@$_GET ['submit'] == 'true') {
 

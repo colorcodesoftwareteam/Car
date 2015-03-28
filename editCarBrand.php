@@ -1,9 +1,14 @@
 <?php
+session_start();
 include 'src/class/ManageBrandCar.php';
 
 $objBrandCar = new ManageBrandCar ();
-$id = $_GET ['id'];
 
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+} else {
+    $id = '';
+}
 if (@$_GET ['submit'] == 'true') {
 
     $newname = $_POST ['brand'];

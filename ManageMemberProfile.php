@@ -1,4 +1,5 @@
 ﻿<?php
+session_start();
 include 'src/class/MemberSystem.php';
 
 $objMember = new MemberSystem();
@@ -68,7 +69,7 @@ if (@$_GET['delete'] == 'true') {
                                                     </td>
                                                     <td><?php echo $row->name ?></td>
                                                     <td><?php echo $row->lastname ?></td>
-                                                    <td><?php echo $row->gender == 0 ? "ชาย" : "หญิง" ?></td>
+                                                    <td><?php echo $row->gender == '0' ? "ชาย" : "หญิง" ?></td>
                                                     <td><?php echo $row->birthdate ?></td>
                                                     <td><?php echo $row->address ?></td>
                                                     <td><?php echo $row->phoneNumber ?></td>
