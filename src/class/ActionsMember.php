@@ -34,9 +34,11 @@ class ActionsMember {
         $bodynumber = $this->data['POST']['bodynumber'];
         $cylinder = $this->data['POST']['cylinder'];
         $fueltank = $this->data['POST']['fueltank'];
+        $car_detail = $this->data['POST']['car_detail'];
         $files = $this->data['FILES']['files'];
-
-        if ($this->mCar->add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)) {
+        $files_detail = $this->data['POST']['files_detail'];
+        
+        if ($this->mCar->add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank, $car_detail)) {
             $lastRow = $this->mCar->getLastCar();
 
             for ($i = 0; $i < 10; $i++) {
@@ -51,7 +53,7 @@ class ActionsMember {
 
                 move_uploaded_file($files['tmp_name'][$i], $path);
 
-                $this->mCar->addImage($lastRow->id, $name, $path);
+                $this->mCar->addImage($lastRow->id, $name, $path, $files_detail[$i]);
             }
             
              $_SESSION['car2'] = $this->mCar->getCarById($lastRow->id);

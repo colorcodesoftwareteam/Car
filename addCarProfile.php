@@ -13,9 +13,11 @@ if (@$_GET ['submit'] == 'true') {
     $bodynumber = $_POST ['bodynumber'];
     $cylinder = $_POST ['cylinder'];
     $fueltank = $_POST ['fueltank'];
+    $car_detail = $_POST['car_detail'];
     $files = $_FILES['files'];
+    $files_detail = $_POST['files_detail'];
 
-    if ($objCar->add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)) {
+    if ($objCar->add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank, $car_detail)) {
         $lastRow = $objCar->getLastCar();
 
         for ($i = 0; $i < 10; $i++) {
@@ -30,7 +32,7 @@ if (@$_GET ['submit'] == 'true') {
 
             move_uploaded_file($files['tmp_name'][$i], $path);
 
-            $objCar->addImage($lastRow->id, $name, $path);
+            $objCar->addImage($lastRow->id, $name, $path, $files_detail[$i]);
         }
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
     }
@@ -83,7 +85,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic1" class="col-sm-2 control-label">รูปภาพที่ 1</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic1" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -91,7 +95,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic2" class="col-sm-2 control-label">รูปภาพที่ 2</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic2" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -99,7 +105,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic3" class="col-sm-2 control-label">รูปภาพที่ 3</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic3" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -107,7 +115,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic4" class="col-sm-2 control-label">รูปภาพที่ 4</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic4" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -115,7 +125,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic5" class="col-sm-2 control-label">รูปภาพที่ 5</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic5" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -123,7 +135,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic6" class="col-sm-2 control-label">รูปภาพที่ 6</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic6" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -131,7 +145,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic7" class="col-sm-2 control-label">รูปภาพที่ 7</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic7" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -139,7 +155,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic8" class="col-sm-2 control-label">รูปภาพที่ 8</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic8" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -147,7 +165,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic9" class="col-sm-2 control-label">รูปภาพที่ 9</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic9" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -155,7 +175,9 @@ if (@$_GET ['submit'] == 'true') {
                                                             <label for="pic10" class="col-sm-2 control-label">รูปภาพที่ 10</label>
                                                             <div class="col-md-4">
                                                                 <input class="form-control" id="pic10" type="file" name="files[]" />
-
+                                                            </div>
+                                                            <div class="col-md-4">
+                                                                <input class="form-control" type="text" name="files_detail[]" />
                                                             </div>
                                                         </div>
 
@@ -200,7 +222,7 @@ if (@$_GET ['submit'] == 'true') {
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ปีที่ผลิต</label>
                                                             <div class="col-sm-4">
-                                                                <input class="form-control" id="inputEmail3" type="number"
+                                                                <input class="form-control" id="inputEmail3" type="text"
                                                                        name="caryear" />
                                                             </div>
                                                         </div>
@@ -224,6 +246,13 @@ if (@$_GET ['submit'] == 'true') {
                                                             <div class="col-sm-4">
                                                                 <input class="form-control" id="inputPassword3"
                                                                        type="text" name="fueltank" required="true"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-2 control-label">รายละเอียด</label>
+                                                            <div class="col-sm-4">
+                                                                <textarea class="form-control" id="inputPassword3" name="car_detail"
+                                                                          rows="3"></textarea>
                                                             </div>
                                                         </div>
                                                         <button type="reset" class="btn btn-primary">&nbsp;&nbsp;ล้างข้อมูล&nbsp;&nbsp;</button>

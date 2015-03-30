@@ -98,6 +98,10 @@ $objImgHlp = new ImageHelper ();
                                                             <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?php echo $_SESSION['car1'][0]->fuel_tank; ?></span>
                                                         </div>
                                                         <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>รายละเอียด : </strong><?php echo $_SESSION['car1'][0]->detail; ?></span>
+                                                        </div>
+                                                        <p></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -153,6 +157,10 @@ $objImgHlp = new ImageHelper ();
                                                         <p></p>
                                                         <div class="input-group">
                                                             <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?php echo $_SESSION['car2'][0]->fuel_tank; ?></span>
+                                                        </div>
+                                                        <p></p>
+                                                        <div class="input-group">
+                                                            <span><strong>รายละเอียด : </strong><?php echo $_SESSION['car2'][0]->detail; ?></span>
                                                         </div>
                                                         <p></p>
                                                     </div>

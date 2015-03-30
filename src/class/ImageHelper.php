@@ -7,6 +7,7 @@ class ImageHelper{
 	private $h;
 	private $id;
 	private $car_id;
+        private $detail;
 	
 	function __construct(){
 		$this->class = 'img-thumbnail';
@@ -14,18 +15,29 @@ class ImageHelper{
 		$this->w = '240';
 		$this->h ='240';
 	}
-	function init($src,$id,$car_id){
+	function init($src,$id,$car_id,$detail){
 		$this->src = $src;
 		$this->id = $id;
 		$this->car_id = $car_id;
+                $this->detail = $detail;
 	}
 	
 	function process(){
-		$temp =' <div align="center"><div class="form-group"> <div class="col-md-12">  ';
-		$temp .='<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'"> <a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a></div> ';
-		$temp .='</div>';
-		$temp .='</div>';
-		
+		$temp ='<div class="form-group"><div class="col-md-10 col-md-offset-2">';
+                $temp .= '<div class="row">';
+                $temp .= '<div class="col-md-3">';
+		$temp .= '<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'" />';
+                $temp .= '</div>';
+                $temp .= '<div class="col-md-4">';
+                $temp .= '<input class="form-control" type="text" value="' .$this->detail. '" disabled />';
+                $temp .= '</div>';
+                $temp .= '<div class="col-md-1">';
+                $temp .= '<a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>';
+                $temp .= '</div>';
+                $temp .= '</div>';
+		$temp .= '</div>';
+                $temp .= '</div>';
+                
 		echo $temp;
 	}
 	
@@ -50,10 +62,12 @@ class ImageHelper{
                     $temp .= '<div class="item active">';
                     //$temp .= '<div class="fill" style="background-image:url(\'' .$row->path. '\');"></div>';
                     $temp .= '<img src="' .$row->path. '" />';
+                    $temp .= '<div class="carousel-caption"><h2>' .$row->detail. '</h2></div>';
                     $temp .= '</div>';
                 } else {
                     $temp .= '<div class="item">';
                     $temp .= '<img src="' .$row->path. '" />';
+                    $temp .= '<div class="carousel-caption"><h2>' .$row->detail. '</h2></div>';
                     $temp .= '</div>';
                 }
                 $i++;
@@ -66,6 +80,12 @@ class ImageHelper{
             $temp .= '<span class="icon-next"></span>';
             $temp .= '</a>';
             $temp .= '</div>';
+            
+            $temp .= '<script>';
+            $temp .= '$(\'.carousel\').carousel({';
+            $temp .= 'interval: false';
+            $temp .= '})';
+            $temp .= '</script>';
             
             echo $temp;
         }

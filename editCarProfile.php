@@ -24,9 +24,11 @@ if (@$_GET ['submit'] == 'true') {
     $bodynumber = $_POST ['bodynumber'];
     $cylinder = $_POST ['cylinder'];
     $fueltank = $_POST ['fueltank'];
+    $car_detail = $_POST['car_detail'];
     $files = $_FILES['files'];
-
-    if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank)) {
+    $files_detail = $_POST['files_detail'];
+    
+    if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank, $car_detail)) {
         for ($i = 0; $i < (10 - $numRow); $i++) {
             if ($files['name'][$i] == '') {
                 continue;
@@ -39,7 +41,7 @@ if (@$_GET ['submit'] == 'true') {
 
             move_uploaded_file($files['tmp_name'][$i], $path);
 
-            $objcar->addImage($id, $name, $path);
+            $objcar->addImage($id, $name, $path, $files_detail[$i]);
         }
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
     }
@@ -101,7 +103,9 @@ if (@$_GET['delete'] == 'true') {
                                                                 <div class="col-md-4">
                                                                     <input class="form-control" id="pic<?php echo $i; ?>" type="file"
                                                                            name="files[]" />
-
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <input class="form-control" type="text" name="files_detail[]" />
                                                                 </div>
                                                             </div>
                                                             <?php
@@ -109,12 +113,10 @@ if (@$_GET['delete'] == 'true') {
                                                         $objImage = new ImageHelper();
 
                                                         while ($rowImages = mysql_fetch_object($rsCar)) {
-                                                            $objImage->init($rowImages->path, $id, $rowImages->id);
+                                                            $objImage->init($rowImages->path, $id, $rowImages->id, $rowImages->detail);
                                                             $objImage->process();
                                                         }
                                                         ?>
-
-                                                        <hr />
 
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ยี่ห้อรถ</label>
@@ -154,7 +156,7 @@ if (@$_GET['delete'] == 'true') {
                                                         <div class="form-group">
                                                             <label for="inputEmail3" class="col-sm-2 control-label">ปีที่ผลิต</label>
                                                             <div class="col-sm-4">
-                                                                <input class="form-control" id="inputEmail3" type="number"
+                                                                <input class="form-control" id="inputEmail3" type="text"
                                                                        name="caryear" value="<?php echo $arrCar->current()->car_year; ?>" required="true"/>
                                                             </div>
                                                         </div>
@@ -183,8 +185,16 @@ if (@$_GET['delete'] == 'true') {
                                                                        value="<?php echo $arrCar->current()->fuel_tank; ?>" required="true" />
                                                             </div>
                                                         </div>
-                                                        
+                                                        <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-2 control-label">รายละเอียด</label>
+                                                            <div class="col-sm-4">
+                                                                <textarea class="form-control" id="inputPassword3" name="car_detail"
+                                                                          rows="3"><?php echo $arrCar->current()->detail; ?></textarea>
+                                                            </div>
+                                                        </div>
+
                                                         <button type="submit" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;แก้ไข&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+
                                                     </form>
                                                 </div>
                                             </div>
@@ -196,5 +206,20 @@ if (@$_GET['delete'] == 'true') {
                     </div>
                     <!-- Footer -->
                     <?php include 'footer.php'; ?>
+                    
+                    <script type="text/javascript">
+                        $(function () {
+                            $('#brand').change(function () {
+                                var brandid = $('#brand').val();
+                                $('#model').css('visibility', 'visible');
+                                $.post('json/listModel.php', {id: brandid}, function (data) {
+                                    $('#model').html(data);
+                                });
+
+
+                            });
+
+                        });
+                    </script>
                     </body>
                     </html>

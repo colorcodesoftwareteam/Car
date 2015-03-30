@@ -187,6 +187,10 @@ if (isset($_GET['car_id'])) {
                                         <span><strong>ความจุถังน้ำมัน (ลิตร) : </strong><?= $arrCar->current()->fuel_tank ?></span>
                                     </div>
                                     <p></p>
+                                    <div class="input-group">
+                                        <span><strong>รายละเอียด : </strong><?= $arrCar->current()->detail ?></span>
+                                    </div>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>

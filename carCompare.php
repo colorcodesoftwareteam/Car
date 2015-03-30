@@ -256,82 +256,102 @@ if (isset($_GET['year'])) {
                                                       action="actionsMember.php?action=choosecarbynewcar" method="post"  enctype="multipart/form-data">
 
                                                     <div class="form-group">
-                                                        <label for="pic1" class="col-sm-3 control-label">รูปภาพที่ 1</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic1" class="col-md-2 control-label">รูปที่ 1</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic1" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic2" class="col-sm-3 control-label">รูปภาพที่ 2</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic2" class="col-md-2 control-label">รูปที่ 2</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic2" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic3" class="col-sm-3 control-label">รูปภาพที่ 3</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic3" class="col-md-2 control-label">รูปที่ 3</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic3" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic4" class="col-sm-3 control-label">รูปภาพที่ 4</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic4" class="col-md-2 control-label">รูปที่ 4</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic4" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic5" class="col-sm-3 control-label">รูปภาพที่ 5</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic5" class="col-md-2 control-label">รูปที่ 5</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic5" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic6" class="col-sm-3 control-label">รูปภาพที่ 6</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic6" class="col-md-2 control-label">รูปที่ 6</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic6" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic7" class="col-sm-3 control-label">รูปภาพที่ 7</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic7" class="col-md-2 control-label">รูปที่ 7</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic7" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic8" class="col-sm-3 control-label">รูปภาพที่ 8</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic8" class="col-md-2 control-label">รูปที่ 8</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic8" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic9" class="col-sm-3 control-label">รูปภาพที่ 9</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic9" class="col-md-2 control-label">รูปที่ 9</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic9" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="pic10" class="col-sm-3 control-label">รูปภาพที่ 10</label>
-                                                        <div class="col-md-8">
+                                                        <label for="pic10" class="col-md-2 control-label">รูปที่ 10</label>
+                                                        <div class="col-md-6">
                                                             <input class="form-control" id="pic10" type="file" name="files[]" />
-
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input class="form-control" type="text" name="files_detail[]" />
                                                         </div>
                                                     </div>
 
@@ -400,6 +420,13 @@ if (isset($_GET['year'])) {
                                                                    type="text" name="fueltank" required="required"/>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group">
+                                                            <label for="inputPassword3" class="col-sm-3 control-label">รายละเอียด</label>
+                                                            <div class="col-sm-8">
+                                                                <textarea class="form-control" id="inputPassword3" name="car_detail"
+                                                                          rows="3"></textarea>
+                                                            </div>
+                                                        </div>
                                                     <div class="form-group">
                                                        
                                                         <div class="col-sm-8 col-md-offset-3">

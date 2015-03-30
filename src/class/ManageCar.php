@@ -14,7 +14,7 @@ class ManageCar {
         $this->objDB = new Database ();
     }
 
-    function add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank) {
+    function add($brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank, $car_detail) {
         $fg = true;
         try {
             $this->objDB->begin();
@@ -24,8 +24,8 @@ class ManageCar {
             $rs = $this->objDB->query($str);
             $row = mysql_fetch_object($rs);
             $mapping_id = $row->id;     
-            $str2 = "insert into car (brand_model_mapping_id, car_year, body_number, cylinder, fuel_tank, create_dt, update_dt) "
-                . "values ('" . $mapping_id . "','" . $caryear . "','" . $bodynumber . "','" . $cylinder . "','" . $fueltank . "','" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
+            $str2 = "insert into car (brand_model_mapping_id, car_year, body_number, cylinder, fuel_tank, detail, create_dt, update_dt) "
+                . "values ('" . $mapping_id . "','" . $caryear . "','" . $bodynumber . "','" . $cylinder . "','" . $fueltank . "', '" .$car_detail. "', '" . date("Y-m-d  H:i:s") . "','" . date("Y-m-d  H:i:s") . "')";
             $this->objDB->query($str2);          
             $this->objDB->commit();
         } catch (Exception $ex) {
@@ -36,7 +36,7 @@ class ManageCar {
         return $fg;
     }
 
-    function edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank) {
+    function edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank, $car_detail) {
         $fg = true;
         try {
             $this->objDB->begin();
@@ -46,7 +46,7 @@ class ManageCar {
             $rs = $this->objDB->query($str);
             $row = mysql_fetch_object($rs);
             $mapping_id = $row->id;     
-            $str = "update car set brand_model_mapping_id='" . $mapping_id . "', car_year='" . $caryear . "', body_number='" . $bodynumber . "', cylinder='" . $cylinder . "', fuel_tank='" . $fueltank . "', update_dt='" . date("Y-m-d  H:i:s") . "' where id = '" . $id . "'";
+            $str = "update car set brand_model_mapping_id='" . $mapping_id . "', car_year='" . $caryear . "', body_number='" . $bodynumber . "', cylinder='" . $cylinder . "', fuel_tank='" . $fueltank . "', detail='" .$car_detail. "', update_dt='" . date("Y-m-d  H:i:s") . "' where id = '" . $id . "'";
             $this->objDB->query($str);          
             $this->objDB->commit();
         } catch (Exception $ex) {
@@ -180,14 +180,14 @@ class ManageCar {
         return mysql_fetch_object($rs);
     }
 
-    function addImage($idCar, $name, $location) {
-        $str = "insert into carimages (Car_id, name, path ) values ('" . $idCar . "','" . $name . "','" . $location . "')";
+    function addImage($idCar, $name, $location, $detail) {
+        $str = "insert into carimages (Car_id, name, path, detail) values ('" . $idCar . "','" . $name . "','" . $location . "', '" .$detail. "')";
         //exit();
         return $this->objDB->query($str);
     }
     
     function getCarImages($carID) {
-        $str = "SELECT * FROM carimages WHERE car_id='" . $carID . "' order by create_dt desc";
+        $str = "SELECT * FROM carimages WHERE car_id='" . $carID . "' order by id asc";
 
         $rs = $this->objDB->query($str);
         $arrayIterator = new ArrayIterator();
