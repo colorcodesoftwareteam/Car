@@ -24,7 +24,7 @@ include_once 'src/class/MemberSystem.php';
                     <a href="http://goo.gl/forms/fkiUr6FUhP" target="_blank">* แบบสอบถาม</a>
                 </li>
                 <li>
-                    <a href="carCompare.php">เปรียบเทียบรถยนต์</a>
+                    <a href="carCompare.php">เลือกเปรียบเทียบรถยนต์</a>
                 </li>
                 <li>
                     <a href="ManageCarProfile.php">จัดการรถยนต์</a>

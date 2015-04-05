@@ -98,71 +98,61 @@ if (isset($_GET['year'])) {
                                                 </div>
                                             <?php } ?>
                                             <form class="form-horizontal" role="form" action="carCompare.php" method="get">
-                                                <table class="table table-no-border">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>
-                                                                <div align="right">
-                                                                    <select class="form-control-combobox" id="brand" name="brandid">
-                                                                        <option value="">-เลือก-</option>
-                                                                        <?php
-                                                                        $arrBrand = $objBrand->getBrandAll();
-                                                                        foreach ($arrBrand as $row) {
-                                                                            ?>
-                                                                            <option value="<?php echo $row->id; ?>"
-                                                                                    <?php echo ($row->id == $brand_id) ? 'selected' : '' ?>>
-                                                                                <?php echo $row->name; ?></option>
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                    </select>
-                                                                </div>
-                                                            </td>
-
-                                                            <td>&nbsp;</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div align="right">
-                                                                    <select class="form-control-combobox" name="modelid" id="model">
-                                                                        <option value="">-เลือก-</option>
-                                                                        <?php
-                                                                        $arrModel = $objModel->getModelAll();
-                                                                        foreach ($arrModel as $row) {
-                                                                            ?>
-                                                                            <option value="<?php echo $row->model_id; ?>"
-                                                                                    <?php echo ($row->model_id == $model_id) ? 'selected' : ''; ?>>
-                                                                                <?php echo $row->model_name; ?></option>
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                    </select>
-                                                                </div>
-                                                            </td>
-                                                            <td class="col-md-3 col-md-offset-2"><button type="submit" class="btn btn-primary ">ค้นหา</button></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <div align="right">
-                                                                    <select class="form-control-combobox" name="year" id="model">
-                                                                        <option value="">-เลือก-</option>
-                                                                        <?php
-                                                                        $arrYear = $objCar->getCarYearAll();
-                                                                        foreach ($arrYear as $row) {
-                                                                            ?>
-                                                                            <option value="<?php echo $row->car_year; ?>" 
-                                                                                    <?php echo ($row->car_year == $year) ? 'selected' : ''; ?>>
-                                                                                <?php echo $row->car_year; ?></option>
-                                                                            <?php
-                                                                        }
-                                                                        ?>
-                                                                    </select>
-                                                                </div>
-                                                            </td>
-                                                            <td>&nbsp;</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                                                <div class="row">
+                                                    <label class="col-md-2 col-sm-3 col-xs-3 control-label">ยี่ห้อ</label> 
+                                                    <div class="col-md-7 col-sm-7 col-xs-7">
+                                                        <select class="form-control" id="brand" name="brandid">
+                                                            <option value="">-เลือก-</option>
+                                                            <?php
+                                                            $arrBrand = $objBrand->getBrandAll();
+                                                            foreach ($arrBrand as $row) {
+                                                                ?>
+                                                                <option value="<?php echo $row->id; ?>"
+                                                                        <?php echo ($row->id == $brand_id) ? 'selected' : '' ?>>
+                                                                    <?php echo $row->name; ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top:5px;">
+                                                    <label class="col-md-2 col-sm-3 col-xs-3 control-label">รุ่น</label> 
+                                                    <div class="col-md-7 col-sm-7 col-xs-7">
+                                                        <select class="form-control" name="modelid" id="model">
+                                                            <option value="">-เลือก-</option>                                                            
+                                                            <?php
+                                                            $arrModel = $objModel->getModelByBrand($brand_id);
+                                                            foreach ($arrModel as $row) {
+                                                            ?>
+                                                            <option
+                                                                value="<?php echo $row->model_id; ?>"
+                                                                <?php echo ($row->model_id == $model_id) ? 'selected' : ''; ?>><?php echo $row->model_name; ?></option>
+                                                            <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-1 col-xs-2">
+                                                        <button type="submit" class="btn btn-primary ">ค้นหา</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="margin-top:5px;">
+                                                    <label class="col-md-2 col-sm-3 col-xs-3 control-label">ปีผลิต</label>
+                                                    <div class="col-md-7 col-sm-7 col-xs-7">
+                                                        <select class="form-control" name="year" id="model">
+                                                            <option value="">-เลือก-</option>
+                                                            <?php
+                                                            $arrYear = $objCar->getCarYearAll();
+                                                            foreach ($arrYear as $row) {
+                                                                ?>
+                                                                <option value="<?php echo $row->car_year; ?>" 
+                                                                        <?php echo ($row->car_year == $year) ? 'selected' : ''; ?>>
+                                                                    <?php echo $row->car_year; ?></option>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                             </form>									
                                             <hr/>
                                             <div class="row clearfix">
