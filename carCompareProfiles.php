@@ -61,10 +61,10 @@ $objImgHlp = new ImageHelper ();
                                         <div class="panel-body"></div>
                                         <div class="panel-footer">
                                             <div class="row clearfix">
-                                                <div class="col-md-12 col-md-offset-1">
-                                                    <div class="col-md-10">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
                                                         <div class="row clearfix">
-                                                            <div class="col-md-12 col-md-offset-1">
+                                                            <div class="col-md-12">
                                                                 <?php
                                                                 $imgCar = $objCar->getCarImages($_SESSION['car1'][0]->id);
 
@@ -123,10 +123,10 @@ $objImgHlp = new ImageHelper ();
                                         <div class="panel-body"></div>
                                         <div class="panel-footer">
                                             <div class="row clearfix">
-                                                <div class="col-md-12 col-md-offset-1">
-                                                    <div class="col-md-10">
+                                                <div class="col-md-12">
+                                                    <div class="col-md-12">
                                                         <div class="row clearfix">
-                                                            <div class="col-md-12 col-md-offset-1">
+                                                            <div class="col-md-12">
                                                                 <?php
                                                                 $imgCar = $objCar->getCarImages($_SESSION['car2'][0]->id);
                                                                 $objImgHlp->slideShow("carCompareProfilesSlideShow_2", $imgCar);

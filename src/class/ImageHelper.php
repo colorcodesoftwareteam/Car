@@ -29,7 +29,8 @@ class ImageHelper{
 		$temp .= '<img src="'.$this->src.'" alt="'.$this->alt.'" class="'.$this->class.'" width="'.$this->w.'" height="'.$this->h.'" />';
                 $temp .= '</div>';
                 $temp .= '<div class="col-md-4">';
-                $temp .= '<input class="form-control" type="text" value="' .$this->detail. '" disabled />';
+                $temp .= '<input type="hidden" name="edit_files_hidden[]" value="' .$this->car_id. '">';
+                $temp .= '<input class="form-control" name="edit_files_detail[]" type="text" value="' .$this->detail. '" />';
                 $temp .= '</div>';
                 $temp .= '<div class="col-md-1">';
                 $temp .= '<a href="?delete=true&id='.$this->id.'&carid='.$this->car_id.'"><button type="button" class="btn btn-danger">&nbsp;&nbsp;&nbsp;ลบ&nbsp;&nbsp;</button></a>';
@@ -42,7 +43,7 @@ class ImageHelper{
 	}
 	
         function slideShow($slideName, $imgCar) {
-            $temp = '<div id="' .$slideName. '" class="carousel slide col-md-10">';
+            $temp = '<div id="' .$slideName. '" class="carousel slide col-md-12">';
             $temp .= '<ol class="carousel-indicators">';
             $i = 0;
             foreach ($imgCar as $row) {
@@ -62,12 +63,12 @@ class ImageHelper{
                     $temp .= '<div class="item active">';
                     //$temp .= '<div class="fill" style="background-image:url(\'' .$row->path. '\');"></div>';
                     $temp .= '<img src="' .$row->path. '" />';
-                    $temp .= '<div class="carousel-caption"><h2>' .$row->detail. '</h2></div>';
+                    $temp .= '<div class="carousel-caption">' .$row->detail. '</div>';
                     $temp .= '</div>';
                 } else {
                     $temp .= '<div class="item">';
                     $temp .= '<img src="' .$row->path. '" />';
-                    $temp .= '<div class="carousel-caption"><h2>' .$row->detail. '</h2></div>';
+                    $temp .= '<div class="carousel-caption">' .$row->detail. '</div>';
                     $temp .= '</div>';
                 }
                 $i++;

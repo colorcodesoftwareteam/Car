@@ -27,8 +27,11 @@ if (@$_GET ['submit'] == 'true') {
     $car_detail = $_POST['car_detail'];
     $files = $_FILES['files'];
     $files_detail = $_POST['files_detail'];
+    $edit_files_hidden = $_POST['edit_files_hidden'];
+    $edit_files_detail = $_POST['edit_files_detail'];
     
     if ($objcar->edit($id, $brandid, $modelid, $caryear, $bodynumber, $cylinder, $fueltank, $car_detail)) {
+        // Add new images
         for ($i = 0; $i < (10 - $numRow); $i++) {
             if ($files['name'][$i] == '') {
                 continue;
@@ -43,6 +46,11 @@ if (@$_GET ['submit'] == 'true') {
 
             $objcar->addImage($id, $name, $path, $files_detail[$i]);
         }
+        // Edit old images
+        for ($i = 0; $i < count($edit_files_hidden); $i++) {
+            $objcar->editImage($edit_files_hidden[$i], $edit_files_detail[$i]);
+        }
+        
         echo '<meta http-equiv=REFRESH CONTENT=0;url=ManageCarProfile.php>';
     }
 }

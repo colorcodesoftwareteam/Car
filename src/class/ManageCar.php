@@ -186,6 +186,12 @@ class ManageCar {
         return $this->objDB->query($str);
     }
     
+    function editImage($idCarImage, $detail) {
+        $str = "update carimages set detail='" .$detail. "' where id='" .$idCarImage. "' ";
+        //exit();
+        return $this->objDB->query($str);
+    }
+    
     function getCarImages($carID) {
         $str = "SELECT * FROM carimages WHERE car_id='" . $carID . "' order by id asc";
 
