@@ -120,15 +120,17 @@ if (isset($_GET['year'])) {
                                                     <label class="col-md-2 col-sm-3 col-xs-3 control-label">รุ่น</label> 
                                                     <div class="col-md-7 col-sm-7 col-xs-7">
                                                         <select class="form-control" name="modelid" id="model">
-                                                            <option value="">-เลือก-</option>                                                            
+                                                            <option value="">-เลือก-</option>
                                                             <?php
-                                                            $arrModel = $objModel->getModelByBrand($brand_id);
+                                                            $arrModel = $objModel->getModelAll();
                                                             foreach ($arrModel as $row) {
+                                                                ?>
+                                                                <option value="<?php echo $row->model_id; ?>"
+                                                                        <?php echo ($row->model_id == $model_id) ? 'selected' : ''; ?>>
+                                                                    <?php echo $row->model_name; ?></option>
+                                                                <?php
+                                                            }
                                                             ?>
-                                                            <option
-                                                                value="<?php echo $row->model_id; ?>"
-                                                                <?php echo ($row->model_id == $model_id) ? 'selected' : ''; ?>><?php echo $row->model_name; ?></option>
-                                                            <?php } ?>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-3 col-sm-1 col-xs-2">
