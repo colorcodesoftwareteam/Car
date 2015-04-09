@@ -36,14 +36,14 @@ class LoginSystem {
     }
 
     function checkUsername() {
-        $StrQuery = "SELECT * FROM MEMBER WHERE email ='" . $this->user . "'";
+        $StrQuery = "SELECT * FROM member WHERE email='" . $this->user . "'";
         $this->objDB->query($StrQuery);
         if ($this->objDB->hasRows())
             return true;
     }
 
     function validate() {
-        $StrQuery = "SELECT * FROM MEMBER WHERE email ='" . $this->user . "' and password = '" . $this->pass . "'";
+        $StrQuery = "SELECT * FROM member WHERE email='" . $this->user . "' and password='" . $this->pass . "'";
         $rs = $this->objDB->query($StrQuery);
         $this->profile = mysql_fetch_object($rs);
         if ($this->objDB->hasRows())
