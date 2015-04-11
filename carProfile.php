@@ -144,6 +144,8 @@ if (isset($_GET['car_id'])) {
                                         <p></p>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row clearfix">
                                 <div class="col-md-6">
                                     <div class="row clearfix">
                                         <div class="col-md-12 col-md-offset-1">
@@ -162,7 +164,7 @@ if (isset($_GET['car_id'])) {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="col-md-5 col-md-offset-1 form-group">
                                     <div class="input-group">
                                         <span><strong>ยี่ห้อรถยนต์ : </strong><?= $arrCar->current()->brand_name ?></span>
                                     </div>
